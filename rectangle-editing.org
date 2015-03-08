@@ -16,6 +16,7 @@ Lec 25 |        1:25:21
 #+name: list-into-checklist-elisp
 #+header: :results list raw replace output 
 #+header: :var data=my-list-block()
+#+HEADER: :exports both 
 #+begin_src elisp
   (dolist (x (split-string data "\n"))
         (princ (format "[ ] %s\n" x)))
@@ -35,6 +36,7 @@ Lec 25 |        1:25:21
 #+name: list-into-checklist-perl
 #+header: :results list raw replace output
 #+header: :var data=my-list-block()
+#+HEADER: :exports both 
 #+begin_src perl
   map { printf qq([ ] %s\n), $_ } split(/\n/, $data); 
 #+end_src
@@ -54,6 +56,7 @@ Lec 25 |        1:25:21
 #+header: :results list raw replace output
 #+header: :shebang #!/usr/bin/env bash
 #+header: :var data=my-list-block()
+#+HEADER: :exports both 
 #+begin_src sh
   while IFS='
 ' read -ra ADDR; do
@@ -77,6 +80,7 @@ Lec 25 |        1:25:21
 #+name: list-into-checklist-python
 #+header: :results list raw replace output
 #+header: :var data=my-list-block()
+#+HEADER: :exports both 
 #+Begin_src python
   l = ["[ ] {x}".format(x=row) for row in data.splitlines()]
   for i in l: print i
@@ -96,6 +100,7 @@ Lec 25 |        1:25:21
 #+name: list-into-checklist-ruby
 #+header: :results list raw replace output
 #+header: :var data=my-list-block()
+#+HEADER: :exports both 
 #+Begin_src ruby
   for l in  data.split("\n")
     puts "[ ] #{l}"
