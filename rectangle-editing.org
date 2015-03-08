@@ -1,0 +1,116 @@
+* Answer Use Org-mode Code Blocks to Convert from a String to List of Checkboxes in Multiple Languages
+** Wrap your list inside a named dynamic block
+#+NAME: my-list-block
+#+BEGIN:
+Lec 1 |         1:20:36
+Lec 2 |         1:10:32
+Lec 3 |         1:08:33
+Lec 4 |         1:20:33
+      ... More ...
+Lec 24 |        1:24:47
+Lec 25 |        1:25:21
+#+END:
+** Write or find an org-mode code block in your favorite programming language.
+*** Example 1 - Using an =elisp= Code Block
+
+#+name: list-into-checklist-elisp
+#+header: :results list raw replace output 
+#+header: :var data=my-list-block()
+#+begin_src elisp
+  (dolist (x (split-string data "\n"))
+        (princ (format "[ ] %s\n" x)))
+#+end_src
+
+#+RESULTS: list-into-checklist-elisp
+- [ ] Lec 1 |         1:20:36
+- [ ] Lec 2 |         1:10:32
+- [ ] Lec 3 |         1:08:33
+- [ ] Lec 4 |         1:20:33
+- [ ]       ... More ...
+- [ ] Lec 24 |        1:24:47
+- [ ] Lec 25 |        1:25:21
+
+*** Example 2 - Using a =perl= Code Block
+
+#+name: list-into-checklist-perl
+#+header: :results list raw replace output
+#+header: :var data=my-list-block()
+#+begin_src perl
+  map { printf qq([ ] %s\n), $_ } split(/\n/, $data); 
+#+end_src
+
+#+RESULTS: list-into-checklist-perl
+- [ ] Lec 1 |         1:20:36
+- [ ] Lec 2 |         1:10:32
+- [ ] Lec 3 |         1:08:33
+- [ ] Lec 4 |         1:20:33
+- [ ]       ... More ...
+- [ ] Lec 24 |        1:24:47
+- [ ] Lec 25 |        1:25:21
+
+*** Example 3 - Using a =bash= Code Block
+
+#+name: list-into-checklist-bash
+#+header: :results list raw replace output
+#+header: :shebang #!/usr/bin/env bash
+#+header: :var data=my-list-block()
+#+begin_src sh
+  while IFS='
+' read -ra ADDR; do
+        for i in "${ADDR[@]}"; do
+            echo "[X] $i"
+        done
+   done <<< "$data"
+#+end_src
+
+#+RESULTS: list-into-checklist-bash
+- [X] Lec 1 |         1:20:36
+- [X] Lec 2 |         1:10:32
+- [X] Lec 3 |         1:08:33
+- [X] Lec 4 |         1:20:33
+- [X]       ... More ...
+- [X] Lec 24 |        1:24:47
+- [X] Lec 25 |        1:25:21
+
+*** Example 4 - Using a =python= Code Block
+
+#+name: list-into-checklist-python
+#+header: :results list raw replace output
+#+header: :var data=my-list-block()
+#+Begin_src python
+  l = ["[ ] {x}".format(x=row) for row in data.splitlines()]
+  for i in l: print i
+#+end_src 
+
+#+RESULTS: list-into-checklist-python
+- [ ] Lec 1 |         1:20:36
+- [ ] Lec 2 |         1:10:32
+- [ ] Lec 3 |         1:08:33
+- [ ] Lec 4 |         1:20:33
+- [ ]       ... More ...
+- [ ] Lec 24 |        1:24:47
+- [ ] Lec 25 |        1:25:21
+
+*** Example 5 - Using a =ruby= Code Block
+
+#+name: list-into-checklist-ruby
+#+header: :results list raw replace output
+#+header: :var data=my-list-block()
+#+Begin_src ruby
+  for l in  data.split("\n")
+    puts "[ ] #{l}"
+  end
+#+end_src 
+
+#+RESULTS: list-into-checklist-ruby
+- [ ] Lec 1 |         1:20:36
+- [ ] Lec 2 |         1:10:32
+- [ ] Lec 3 |         1:08:33
+- [ ] Lec 4 |         1:20:33
+- [ ]       ... More ...
+- [ ] Lec 24 |        1:24:47
+- [ ] Lec 25 |        1:25:21
+
+
+
+
