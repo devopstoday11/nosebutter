@@ -4,6 +4,7 @@ Answer Use Org-mode Code Blocks to Convert from a String to List of Checkboxes i
 Wrap your list inside a named dynamic block
 -------------------------------------------
 
+<div class="comment:">
 Lec 1 |         1:20:36
 Lec 2 |         1:10:32
 Lec 3 |         1:08:33
@@ -11,6 +12,8 @@ Lec 4 |         1:20:33
       &#x2026; More &#x2026;
 Lec 24 |        1:24:47
 Lec 25 |        1:25:21
+
+</div>
 
 Write or find an org-mode code block in your favorite programming language.
 ---------------------------------------------------------------------------
