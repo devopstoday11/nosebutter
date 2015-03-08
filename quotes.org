@@ -1,0 +1,16 @@
+* Keeping Backup Copies
+  :PROPERTIES:
+  :CUSTOM_ID: 
+  :END:
+
+#+BEGIN_QUOTE
+Even if you have no need for a synchronization application, you will still need to
+back up your work regularly. Because you are lazy and prone to magical thinking, you
+will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
+#+END_QUOTE
+
+* Footnotes
+
+[fn:1] Healy, Kieran. "Choosing Your Workflow Applications."
+
+
