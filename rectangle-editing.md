@@ -4,7 +4,7 @@ Answer Use Org-mode Code Blocks to Convert from a String to List of Checkboxes i
 Wrap your list inside a named dynamic block
 -------------------------------------------
 
-```
+```markdown
     Lec 1 |         1:20:36
     Lec 2 |         1:10:32
     Lec 3 |         1:08:33
@@ -21,7 +21,7 @@ Write or find an org-mode code block in your favorite programming language.
         (dolist (x (split-string data "\n"))
               (princ (format "[ ] %s\n" x)))
 ```    
-```org
+```markdown
     -   [ ] Lec 1 |         1:20:36
     -   [ ] Lec 2 |         1:10:32
     -   [ ] Lec 3 |         1:08:33
@@ -35,7 +35,7 @@ Write or find an org-mode code block in your favorite programming language.
 ```perl
         map { printf qq([ ] %s\n), $_ } split(/\n/, $data);
 ```
-```
+```markdown
     -   [ ] Lec 1 |         1:20:36
     -   [ ] Lec 2 |         1:10:32
     -   [ ] Lec 3 |         1:08:33
@@ -53,7 +53,7 @@ Write or find an org-mode code block in your favorite programming language.
               done
          done <<< "$data"
 ```
-```
+```markdown
     -   [X] Lec 1 |         1:20:36
     -   [X] Lec 2 |         1:10:32
     -   [X] Lec 3 |         1:08:33
@@ -67,7 +67,7 @@ Write or find an org-mode code block in your favorite programming language.
         l = ["[ ] {x}".format(x=row) for row in data.splitlines()]
         for i in l: print i
 ```
-```
+```markdown
     -   [ ] Lec 1 |         1:20:36
     -   [ ] Lec 2 |         1:10:32
     -   [ ] Lec 3 |         1:08:33
@@ -82,7 +82,7 @@ Write or find an org-mode code block in your favorite programming language.
           puts "[ ] #{l}"
         end
 ```
-```
+```markdown
     -   [ ] Lec 1 |         1:20:36
     -   [ ] Lec 2 |         1:10:32
     -   [ ] Lec 3 |         1:08:33
