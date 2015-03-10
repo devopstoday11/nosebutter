@@ -99,5 +99,4 @@
 
 #+RESULTS: static-ex1
 
-[[file:graphviz-static-ex1.svg]]
 
