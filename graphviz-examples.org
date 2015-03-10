@@ -1,0 +1,102 @@
+*** Static Example 1
+
+#+name: static-ex1
+#+begin_src dot :file static-ex1.svg :cmd dot
+  digraph Graph_1 {
+
+          node [shape=record];
+          //rankdir="LB";
+          //center=true;
+          //clusterrank="global";
+          //orientation="landscape";
+          //pagedir="LR";
+          //overlap=false;
+          //page=8;
+          //size="7,5";
+          //splines="ortho";
+          nodesep=0.75;
+          //len=2;
+         
+          subgraph cluster_application {
+
+                   label="Application";
+       
+                   subgraph cluster_zone_c {
+                   
+                          label="Zone C";
+                          User2 [label="User2"];
+                         LB2 [shape=circle, style=filled, fillcolor=lightgray, label="LB2"];
+
+                          subgraph cluster3 {
+                           label="Cluster 3";
+                            //fillcolor="whitesmoke";
+                            //style="filled";
+                            HostE [label="HostE"];
+                            HostG [label="HostG"];
+                           }
+
+                          subgraph cluster4 {
+
+                            label="Cluster 4";
+                            //fillcolor="whitesmoke";
+                            //style="filled";
+                            HostF [label="HostF"];
+                            HostH [label="HostH"];
+                           }       
+                   }
+
+
+                   subgraph cluster_zone_b {
+
+                            label="Zone B";
+
+                            HostC [label="HostC"];
+                            HostD [label="HostD"];
+                   }       
+
+          subgraph cluster_zone_a {
+
+                   label="Zone A";
+
+                   LB1 [shape=circle, style=filled, fillcolor=lightgray, label="LB1"];
+
+                            HostA [label="HostA"];
+                            HostB [label="HostB"];
+          }
+
+       }
+
+       // Now add Connections between Nodes
+
+       User1 -> LB1 [label="123"];
+
+       //LB1 -> LB1 [label="12 to 123"]
+       LB1 -> HostA [label="1234"]; 
+       LB1 -> HostB [label="1234"]; 
+       
+       HostA -> HostC [label="2345"];
+       HostB -> HostD [label="2345"];
+
+       HostE -> HostG [label="3456", constraint=false];
+       HostF -> HostH [label="3456", style=dashed];
+
+       HostG -> HostC [label="2345"];
+       HostG -> HostH [label="4567"];
+       HostG -> HostD [label="2345", headport="nw", tailport="se"];
+
+       //LB2 -> LB2 [label="12 to 123"]
+       LB2 -> HostE [label="1234"];
+       LB2 -> HostF [label="1234", style=dashed];
+       LB2 -> HostG [label="2345"];
+       //LB2 -> HostH [label="2345", constraint=false];
+       
+       User2 -> LB2 [label="123"];
+
+       
+
+  }
+#+end_src
+
+#+RESULTS: static-ex1
+[[file:static-ex1.svg]]
+
