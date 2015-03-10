@@ -1,7 +1,7 @@
 *** Static Example 1
 
 #+name: static-ex1
-#+begin_src dot :file static-ex1.svg :cmd dot
+#+begin_src dot :file graphviz-static-ex1.svg :cmd dot
   digraph Graph_1 {
 
           node [shape=record];
@@ -98,5 +98,6 @@
 #+end_src
 
 #+RESULTS: static-ex1
-[[file:static-ex1.svg]]
+
+[[file:graphviz-static-ex1.svg]]
 
