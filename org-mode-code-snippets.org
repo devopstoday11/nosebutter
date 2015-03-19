@@ -1,0 +1,29 @@
+* Code Snippets
+** =ob-table.el= example from Commentary Section - *Fixed* - *Works*
+
+   #+begin_src emacs-lisp :results silent
+   (defun fibbd (n) (if (< n 2) 1 (+ (fibbd (- n 1)) (fibbd (- n 2)))))
+   #+end_src
+
+
+   #+name: fibbd
+   #+begin_src emacs-lisp :var n=2 :results value
+   (fibbd n)
+   #+end_src
+
+
+   | original | fibbd |
+   |----------+-------|
+   |        0 |     1 |
+   |        1 |     1 |
+   |        2 |     2 |
+   |        3 |     3 |
+   |        4 |     5 |
+   |        5 |     8 |
+   |        6 |    13 |
+   |        7 |    21 |
+   |        8 |    34 |
+   |        9 |    55 |
+   #+TBLFM: $2='(org-sbe fibbd (n $1))
+
+Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
