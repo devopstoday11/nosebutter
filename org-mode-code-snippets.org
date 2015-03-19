@@ -1,5 +1,6 @@
 * Code Snippets
-** =ob-table.el= example from Commentary Section - *Fixed* - *Works*
+** =org-sbe=
+*** =ob-table.el= example from Commentary Section - *Fixed* - *Works*
 
    #+begin_src emacs-lisp :results silent
    (defun fibbd (n) (if (< n 2) 1 (+ (fibbd (- n 1)) (fibbd (- n 2)))))
