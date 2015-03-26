@@ -8,7 +8,6 @@ Remove call_email-address() from the *Business Parameters* configuration via the
 | Console URL      | http://askdjfhkasd:10006/webconsole/ |
 | Console Username | adlklasd                             |
 | Console Password | alkdfadjksfk                         |
-#+TBLFM: @1$2='(org-sbe obpm-pa-url () )::@2$2='(org-sbe obpm-pa-username () )::@3$2='(org-sbe obpm-pa-password () )
 
 *Note:* Use Chrome or Microsoft IE because Safari may not display correctly.
 
