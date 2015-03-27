@@ -30,7 +30,7 @@
 Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
 
 ** org-mode table functions =TBLFM=
-*** Example using =remote= to create =scp= links from data in another table   
+*** Example using =remote= to create clickable links from data in another table   
 
 #+name: example-hosts-table
 | hostname |  ip address |
