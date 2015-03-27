@@ -28,9 +28,9 @@
    #+TBLFM: $2='(org-sbe fibbd (n $1))
 
 Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
-** org-mode table functions =TBLFM=
-  
 
+** org-mode table functions =TBLFM=
+*** Example using =remote= to create =scp= links from data in another table   
 
 #+name: example-hosts-table
 | hostname |  ip address |
@@ -52,3 +52,4 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 | scp    | file:/scp:username@192.168.0.5:/dir |
 | scp    | file:/scp:username@192.168.0.6:/dir |
 #+TBLFM: $1=(scp)::$2='(concat "file:/" $1 ":username@" remote(example-hosts-table, @@#$2) ":" "/dir")
+
