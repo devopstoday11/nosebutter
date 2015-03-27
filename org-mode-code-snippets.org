@@ -28,3 +28,27 @@
    #+TBLFM: $2='(org-sbe fibbd (n $1))
 
 Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
+** org-mode table functions =TBLFM=
+  
+
+
+#+name: example-hosts-table
+| hostname |  ip address |
+|----------+-------------|
+| HostA    | 192.168.0.1 |
+| HostB    | 192.168.0.2 |
+| HostC    | 192.168.0.3 |
+| HostD    | 192.168.0.4 |
+| HostE    | 192.168.0.5 |
+| HostF    | 192.168.0.6 |
+
+#+name: example-scp-urls-table
+| *Type* | *URL*                               |
+|--------+-------------------------------------|
+| scp    | file:/scp:username@192.168.0.1:/dir |
+| scp    | file:/scp:username@192.168.0.2:/dir |
+| scp    | file:/scp:username@192.168.0.3:/dir |
+| scp    | file:/scp:username@192.168.0.4:/dir |
+| scp    | file:/scp:username@192.168.0.5:/dir |
+| scp    | file:/scp:username@192.168.0.6:/dir |
+#+TBLFM: $1=(scp)::$2='(concat "file:/" $1 ":username@" remote(example-hosts-table, @@#$2) ":" "/dir")
