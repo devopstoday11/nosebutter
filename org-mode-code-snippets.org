@@ -53,3 +53,14 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 | scp    | file:/scp:username@192.168.0.6:/dir |
 #+TBLFM: $1=(scp)::$2='(concat "file:/" $1 ":username@" remote(example-hosts-table, @@#$2) ":" "/dir")
 
+#+name: example-xterm-urls-table
+| *Type* | *URL*                                                                         |
+|--------+-------------------------------------------------------------------------------|
+| xterm  | [[shell:xterm -name 'username@192.168.0.1' -e ssh -X username@192.168.0.1 &]] |
+| xterm  | [[shell:xterm -name 'username@192.168.0.2' -e ssh -X username@192.168.0.2 &]] |
+| xterm  | [[shell:xterm -name 'username@192.168.0.3' -e ssh -X username@192.168.0.3 &]] |
+| xterm  | [[shell:xterm -name 'username@192.168.0.4' -e ssh -X username@192.168.0.4 &]] |
+| xterm  | [[shell:xterm -name 'username@192.168.0.5' -e ssh -X username@192.168.0.5 &]] |
+| xterm  | [[shell:xterm -name 'username@192.168.0.6' -e ssh -X username@192.168.0.6 &]] |
+#+TBLFM: $1=(xterm)::$2='(concat "[[" "shell:" $1 " -name 'username@" remote(example-hosts-table, @@#$2) "'" " -e ssh -X username@" remote(example-hosts-table, @@#$2) " &" "]]")
+
