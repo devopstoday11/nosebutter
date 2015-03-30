@@ -67,13 +67,13 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 ** Code blocks inside Drawers
 
 #+NAME: example-configs-table
-| *Configuration Name* | *Configuration Value*     |
-|----------------------+---------------------------|
-| try2-named-comment1  | try2-named-comment1-value |
-| try2-named-comment2  | try2-named-comment2-value |
-| try2-named-comment3  | try2-named-comment3-value |
-| try2-named-comment4  | try2-named-comment4-value |
-| try2-named-comment5  | try2-named-comment5-value |
+| *Configuration Name*   | *Configuration Value*        |
+|------------------------+------------------------------|
+| example-named-comment1 | example-named-comment1-value |
+| example-named-comment2 | example-named-comment2-value |
+| example-named-comment3 | example-named-comment3-value |
+| example-named-comment4 | example-named-comment4-value |
+| example-named-comment5 | example-named-comment5-value |
 
 #+NAME: example-make-named-comments
 #+HEADER: :var data=example-configs-table()
@@ -89,40 +89,41 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 
 #+RESULTS: example-named-comments
 :RESULTS:
-#+NAME: try2-named-comment1
+#+NAME: example-named-comment1
 #+BEGIN_COMMENT
-try2-named-comment1-value
+example-named-comment1-value
 #+END_COMMENT
 
-#+CALL: try2-named-comment1()
+#+CALL: example-named-comment1()
 
-#+NAME: try2-named-comment2
+#+NAME: example-named-comment2
 #+BEGIN_COMMENT
-try2-named-comment2-value
+example-named-comment2-value
 #+END_COMMENT
 
-#+CALL: try2-named-comment2()
+#+CALL: example-named-comment2()
 
-#+NAME: try2-named-comment3
+#+NAME: example-named-comment3
 #+BEGIN_COMMENT
-try2-named-comment3-value
+example-named-comment3-value
 #+END_COMMENT
 
-#+CALL: try2-named-comment3()
+#+CALL: example-named-comment3()
 
-#+NAME: try2-named-comment4
+#+NAME: example-named-comment4
 #+BEGIN_COMMENT
-try2-named-comment4-value
+example-named-comment4-value
 #+END_COMMENT
 
-#+CALL: try2-named-comment4()
+#+CALL: example-named-comment4()
 
-#+NAME: try2-named-comment5
+#+NAME: example-named-comment5
 #+BEGIN_COMMENT
-try2-named-comment5-value
+example-named-comment5-value
 #+END_COMMENT
 
-#+CALL: try2-named-comment5()
+#+CALL: example-named-comment5()
 
 :END:
+
 
