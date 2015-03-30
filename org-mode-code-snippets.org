@@ -64,3 +64,65 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 | xterm  | [[shell:xterm -name 'username@192.168.0.6' -e ssh -X username@192.168.0.6 &]] |
 #+TBLFM: $1=(xterm)::$2='(concat "[[" "shell:" $1 " -name 'username@" remote(example-hosts-table, @@#$2) "'" " -e ssh -X username@" remote(example-hosts-table, @@#$2) " &" "]]")
 
+** Code blocks inside Drawers
+
+#+NAME: example-configs-table
+| *Configuration Name* | *Configuration Value*     |
+|----------------------+---------------------------|
+| try2-named-comment1  | try2-named-comment1-value |
+| try2-named-comment2  | try2-named-comment2-value |
+| try2-named-comment3  | try2-named-comment3-value |
+| try2-named-comment4  | try2-named-comment4-value |
+| try2-named-comment5  | try2-named-comment5-value |
+
+#+NAME: example-make-named-comments
+#+HEADER: :var data=example-configs-table()
+#+HEADER: :results silent output 
+#+begin_src ruby
+  for d in data
+    puts "#+NAME: #{d[0]}\n#+BEGIN_COMMENT\n#{d[1]}\n#+END_COMMENT\n\n#+CALL: #{d[0]}()\n\n"
+  end
+#+end_src
+
+#+NAME: example-named-comments
+#+CALL: example-make-named-comments() :results drawer value 
+
+#+RESULTS: example-named-comments
+:RESULTS:
+#+NAME: try2-named-comment1
+#+BEGIN_COMMENT
+try2-named-comment1-value
+#+END_COMMENT
+
+#+CALL: try2-named-comment1()
+
+#+NAME: try2-named-comment2
+#+BEGIN_COMMENT
+try2-named-comment2-value
+#+END_COMMENT
+
+#+CALL: try2-named-comment2()
+
+#+NAME: try2-named-comment3
+#+BEGIN_COMMENT
+try2-named-comment3-value
+#+END_COMMENT
+
+#+CALL: try2-named-comment3()
+
+#+NAME: try2-named-comment4
+#+BEGIN_COMMENT
+try2-named-comment4-value
+#+END_COMMENT
+
+#+CALL: try2-named-comment4()
+
+#+NAME: try2-named-comment5
+#+BEGIN_COMMENT
+try2-named-comment5-value
+#+END_COMMENT
+
+#+CALL: try2-named-comment5()
+
+:END:
+
