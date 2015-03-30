@@ -1,0 +1,6 @@
+* org-mode tips
+** tangling
+*** tangle all blocks in org buffer =C-c C-v C-t=
+   If you want to tangle only blocks under a specific tree
+   1. Open Tree in Indirect Buffer =C-c C-x b=
+   2. Tangle blocks the indirect buffer using =C-c C-v C-t=
