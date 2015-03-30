@@ -126,4 +126,51 @@ example-named-comment5-value
 
 :END:
 
+** Tangling formatted org-tables into files or source code
+
+*** Call table with new name and have results wrapped as org code block
+
+#+NAME: example-table-into-org-block
+#+CALL: example-configs-table() :cache yes :results table org replace 
+
+#+RESULTS[e00168416978c3284ca41781e32a0e0f475c4445]: example-table-into-org-block
+#+BEGIN_SRC org
+| *Configuration Name*   | *Configuration Value*        |
+|------------------------+------------------------------|
+| example-named-comment1 | example-named-comment1-value |
+| example-named-comment2 | example-named-comment2-value |
+| example-named-comment3 | example-named-comment3-value |
+| example-named-comment4 | example-named-comment4-value |
+| example-named-comment5 | example-named-comment5-value |
+| example-named-comment6 | example-named-comment6-value |
+#+END_SRC
+
+*** Then Add new name above results block 
+
+#+NAME: example-table-into-org-block1
+#+CALL: example-configs-table() :cache yes :results table org replace 
+
+#+NAME: example-table-into-org-block1a
+#+RESULTS[e00168416978c3284ca41781e32a0e0f475c4445]: example-table-into-org-block1
+#+BEGIN_SRC org
+| *Configuration Name*   | *Configuration Value*        |
+|------------------------+------------------------------|
+| example-named-comment1 | example-named-comment1-value |
+| example-named-comment2 | example-named-comment2-value |
+| example-named-comment3 | example-named-comment3-value |
+| example-named-comment4 | example-named-comment4-value |
+| example-named-comment5 | example-named-comment5-value |
+| example-named-comment6 | example-named-comment6-value |
+#+END_SRC
+
+
+
+*** Then use noweb of renamed results block inside code or file 
+
+#+begin_src sh :eval never :noweb tangle :tangle example-tangle-formatted-org-tables 
+  #
+  # <<example-table-into-org-block1a()>>
+  #
+
+#+end_src
 
