@@ -2,6 +2,10 @@
 ** =inject=
 *** Example - How to sum from 1 to 10 with =inject=
 
+#+BEGIN_QUOTE
+In functional programming, fold – also known variously as reduce, accumulate, aggregate, compress, or inject – refers to a family of higher-order functions that analyze a recursive data structure and recombine through use of a given combining operation the results of recursively processing its constituent parts, building up a return value. Typically, a fold is presented with a combining function, a top node of a data structure, and possibly some default values to be used under certain conditions. The fold then proceeds to combine elements of the data structure's hierarchy, using the function in a systematic way.[fn:1] Wikipedia - Fold (higher-order function)
+#+END_QUOTE
+
 #+name: example-sum-1-to-10-with-inject-ruby
 #+begin_src ruby
 (1..10).inject(&:+)
@@ -16,3 +20,9 @@ http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29
 http://stackoverflow.com/questions/9429819/what-is-the-functionality-of-operator-in-ruby
 http://stackoverflow.com/questions/1961030/ruby-ampersand-colon-shortcut
 http://stackoverflow.com/questions/1217088/what-does-mapname-mean-in-ruby
+
+
+* Footnotes
+
+[fn:1] http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29
+
