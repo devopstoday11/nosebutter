@@ -3,6 +3,10 @@
 *** Example - How to sum from 1 to 10 with =inject=
 
 #+name: example-sum-1-to-10-with-inject-ruby
-#+begin_src: ruby
+#+begin_src ruby
 (1..10).inject(&:+)
 #+end_src
+
+#+RESULTS: example-sum-1-to-10-with-inject-ruby
+: 55
+
