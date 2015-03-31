@@ -13,3 +13,6 @@
 **** Reading
 http://stackoverflow.com/questions/710501/need-a-simple-explanation-of-the-inject-method
 http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29
+http://stackoverflow.com/questions/9429819/what-is-the-functionality-of-operator-in-ruby
+http://stackoverflow.com/questions/1961030/ruby-ampersand-colon-shortcut
+http://stackoverflow.com/questions/1217088/what-does-mapname-mean-in-ruby
