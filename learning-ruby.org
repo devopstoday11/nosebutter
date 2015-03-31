@@ -9,6 +9,7 @@
 
 #+RESULTS: example-sum-1-to-10-with-inject-ruby
 : 55
+
 **** Reading
 http://stackoverflow.com/questions/710501/need-a-simple-explanation-of-the-inject-method
 http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29
