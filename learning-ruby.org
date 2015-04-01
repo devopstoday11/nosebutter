@@ -39,7 +39,7 @@ This could dramatically speed up code where multiple filters are being applied t
 
 ** Fun with Arrays
 
-*** Use =include?= to Filter rows in Array then Order Columns with =map=
+*** Use =include?= to filter rows in array then order columns with =map=
 
 Note: =include?= does *exact match* not regular expression 
 
