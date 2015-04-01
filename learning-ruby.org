@@ -57,6 +57,32 @@ Note: =include?= does *exact match* not regular expression
 | b | a |
 | c | b |
 | d | c |
+** Currying
+*** Explain Example Code using Literate Programming
+**** Original Example Code
+
+[[http://blog.daniellobato.me/2013/06/why-is-curry-not-popular-among-rubyists%EF%BB%BF%EF%BB%BF/]]
+
+#+begin_src ruby
+is_weekday = lambda {|day_of_week, time| time.wday == day_of_week}.curry
+
+sunday    = is_weekday[0]
+monday    = is_weekday[1]
+tuesday   = is_weekday[2]
+wednesday = is_weekday[3]
+thursday  = is_weekday[4]
+friday    = is_weekday[5]
+saturday  = is_weekday[6]
+
+case Time.now
+when sunday 
+  puts "Day of rest"
+when monday, tuesday, wednesday, thursday, friday
+  puts "Work"
+when saturday
+  puts "chores"
+end
+#+end_src
 
 * Footnotes
 
