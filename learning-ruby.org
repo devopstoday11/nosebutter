@@ -1,4 +1,5 @@
 * Learning Ruby
+http://www.sitepoint.com/functional-programming-techniques-with-ruby-part-ii/
 ** =inject=
 *** Example - How to sum from 1 to 10 with =inject=
 
@@ -22,6 +23,40 @@ http://stackoverflow.com/questions/1961030/ruby-ampersand-colon-shortcut
 http://stackoverflow.com/questions/1217088/what-does-mapname-mean-in-ruby
 http://en.wikipedia.org/wiki/Higher-order_function
 
+#+BEGIN_COMMENT
+There is another huge advantage of lazy evaluation. Look at this code:
+
+1
+(1..100).select { |x| x % 3 == 0 }.select { |x| x % 4 == 0 }
+This code attempts to find all numbers between 1 and 100 that are divisible by both 3 and 4, but in the process iterates over the set of numbers twice! Lazy evaluation collapses all of the enumerator actions into a single iteration:
+
+1
+(1..100).lazy.select { |x| x % 3 == 0 }.select { |x| x % 4 == 0 }.to_a
+This could dramatically speed up code where multiple filters are being applied to a collection. This collapsing of the enumerable chain works for any of the many methods defined on the Enumerable class, including but not limited to, #select, #map and #take.
+
+
+#+END_COMMENT
+
+** Fun with Arrays
+
+*** Use =include?= to Filter rows in Array then Order Columns with =map=
+
+Note: =include?= does *exact match* not regular expression 
+
+#+name: example-filter-then-order-array-ruby
+#+header: :var data='(("a" "b" "c") ("b" "c" "d") ("c" "d" "e"))
+#+header: :var filter="c"
+#+header: :var columns='(1 0)
+#+header: :results replace 
+#+begin_src ruby
+  # Bug: Adding ":colnames yes" breaks this code
+  data.select{|d| Array.new(d) if d.include?(filter)}.map{|d1| Array.new(columns.length){|i| d1.fetch(columns[i])}} 
+#+end_src
+
+#+RESULTS: filter-then-order-array-ruby
+| b | a |
+| c | b |
+| d | c |
 
 * Footnotes
 
