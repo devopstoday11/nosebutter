@@ -57,8 +57,12 @@ Note: =include?= does *exact match* not regular expression
 | b | a |
 | c | b |
 | d | c |
+
+
 ** Currying
+
 *** Explain Example Code using Literate Programming
+
 **** Original Example Code
 
 [[http://blog.daniellobato.me/2013/06/why-is-curry-not-popular-among-rubyists%EF%BB%BF%EF%BB%BF/]]
