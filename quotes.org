@@ -1,7 +1,10 @@
+* Programming
+** Functional Programming
+
+#+BEGIN_QUOTE
+OO makes code understandable by encapsultating the moving parts. FP makes code understandable by minimizing moving parts.[fn:2] ~ Michael Feathers
+#+END_QUOTE
 * Keeping Backup Copies
-  :PROPERTIES:
-  :CUSTOM_ID: 
-  :END:
 
 #+BEGIN_QUOTE
 Even if you have no need for a synchronization application, you will still need to
@@ -12,5 +15,7 @@ will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
 * Footnotes
 
 [fn:1] Healy, Kieran. "Choosing Your Workflow Applications."
+
+[fn:2] [[https://twitter.com/mfeathers/status/29581296216]]
 
 
