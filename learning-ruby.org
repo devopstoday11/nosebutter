@@ -38,7 +38,7 @@ This could dramatically speed up code where multiple filters are being applied t
 
 ** Fun with Arrays
 
-*** Use =include?= to filter rows in array then order columns with =map=
+*** Use =include?= and =Regexp.new= to filter rows in array then change order of columns with =map=
 
 #+name: filter-table-rows-ruby
 #+header: :var data=""
