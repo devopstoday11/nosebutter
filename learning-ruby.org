@@ -41,9 +41,9 @@ This could dramatically speed up code where multiple filters are being applied t
 *** Use =include?= to filter rows in array then order columns with =map=
 
 #+name: filter-table-rows-ruby
-#+header: :var data='nil
-#+header: :var filter='nil
-#+header: :var columns='nil
+#+header: :var data='(("a" "b" "c") ("b" "c" "d") ("c" "d" "e"))
+#+header: :var filter="c"
+#+header: :var columns='(nil)
 #+header: :results silent 
 #+begin_src ruby
   # Bug: Adding ":colnames yes" breaks this code
@@ -54,8 +54,7 @@ This could dramatically speed up code where multiple filters are being applied t
   data.reject!(&:empty?)
 
   columns = Array(columns) unless columns.class.to_s == "Array"
-  columns.reject!(&:empty?)
-
+  
   filter = Array(filter) unless filter.class.to_s == "Array"
   filter.reject!(&:empty?)
 
@@ -63,11 +62,12 @@ This could dramatically speed up code where multiple filters are being applied t
   columns = Array(0..data[0].count-1) if columns.empty?
   
   # Feature: Use first row of data as column name, unknown column names will be removed.
-  columns.map!{|c| data[0].index(c) ? data[0].index(c) : Integer(c) rescue nil }.select{ |c| c }
-  
+  columns.map!{|c| data[0].index(c) ? data[0].index(c) : Integer(c) rescue nil }.select!{|x| x}
+  columns
   # Feature: Logical OR filter array
   data.select{|d| filter.empty? ? true : filter.map{|f| d.include?(f) }.inject(&:|) }.map{|d1| Array.new(columns.length){|i| d1.fetch(columns[i])}}
 #+end_src
+
 
 #+RESULTS: filter-then-order-array-ruby
 | b | a |
