@@ -39,40 +39,49 @@ This could dramatically speed up code where multiple filters are being applied t
 ** Fun with Arrays
 
 *** Use =include?= to filter rows in array then order columns with =map=
-
 #+name: filter-table-rows-ruby
-#+header: :var data='(("a" "b" "c") ("b" "c" "d") ("c" "d" "e"))
-#+header: :var filter="c"
-#+header: :var columns='(nil)
+#+header: :var data=""
+#+header: :var filter=""
+#+header: :var columns=""
 #+header: :results silent 
 #+begin_src ruby
   # Bug: Adding ":colnames yes" breaks this code
   # Note: =include?= does *exact match* not regular expression use =select= block for regexp 
   
-  # Required: Variables must be Ruby =Array= Class
+  # Required: Variables *must* be Ruby =Array= Class
   data = Array(data) unless data.class.to_s == "Array"
   data.reject!(&:empty?)
-
-  columns = Array(columns) unless columns.class.to_s == "Array"
   
   filter = Array(filter) unless filter.class.to_s == "Array"
   filter.reject!(&:empty?)
+
+  columns = Array(columns) unless columns.class.to_s == "Array"
 
   # Feature: Columns - display all columns if not defined
   columns = Array(0..data[0].count-1) if columns.empty?
   
   # Feature: Use first row of data as column name, unknown column names will be removed.
   columns.map!{|c| data[0].index(c) ? data[0].index(c) : Integer(c) rescue nil }.select!{|x| x}
-  columns
+
   # Feature: Logical OR filter array
-  data.select{|d| filter.empty? ? true : filter.map{|f| d.include?(f) }.inject(&:|) }.map{|d1| Array.new(columns.length){|i| d1.fetch(columns[i])}}
+  data.select!{ |d| filter.map{ |f| d.include?(f) }.inject(&:|) } unless filter.empty?
+  data.map!{ |d| Array.new(columns.length){ |i| d.fetch(columns[i]) } } unless columns.empty?
+  data
 #+end_src
 
+#+CALL: filter-table-rows-ruby(data='(("a" "b" "c" "d" "x") ("e" "f" "g" "h" "x") ("i" "j" "k" "l" "x") ("a" "b" "c" "d" "y") ("e" "f" "g" "h" "y") ("i" "j" "k" "l" "y") ("a" "b" "c" "d" "z") ("e" "f" "g" "h" "z") ("i" "j" "k" "l" "z") )) :exports none 
 
-#+RESULTS: filter-then-order-array-ruby
-| b | a |
-| c | b |
-| d | c |
+#+RESULTS:
+| a | b | c | d | x |
+| e | f | g | h | x |
+| i | j | k | l | x |
+| a | b | c | d | y |
+| e | f | g | h | y |
+| i | j | k | l | y |
+| a | b | c | d | z |
+| e | f | g | h | z |
+| i | j | k | l | z |
+
 
 
 ** Currying
