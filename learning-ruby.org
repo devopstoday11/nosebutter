@@ -39,49 +39,52 @@ This could dramatically speed up code where multiple filters are being applied t
 ** Fun with Arrays
 
 *** Use =include?= to filter rows in array then order columns with =map=
+
 #+name: filter-table-rows-ruby
 #+header: :var data=""
 #+header: :var filter=""
 #+header: :var columns=""
+#+header: :var s_filter=""
+#+header: :var lop=""
 #+header: :results silent 
 #+begin_src ruby
-  # Bug: Adding ":colnames yes" breaks this code
+  # Bug: Adding =:colnames yes= breaks this code when =columns= variable is defined
   # Note: =include?= does *exact match* not regular expression use =select= block for regexp 
-  
+
   # Required: Variables *must* be Ruby =Array= Class
   data = Array(data) unless data.class.to_s == "Array"
   data.reject!(&:empty?)
-  
+
   filter = Array(filter) unless filter.class.to_s == "Array"
   filter.reject!(&:empty?)
+
+  s_filter = Array(s_filter) unless s_filter.class.to_s == "Array"
+  s_filter.reject!(&:empty?)
 
   columns = Array(columns) unless columns.class.to_s == "Array"
 
   # Feature: Columns - display all columns if not defined
   columns = Array(0..data[0].count-1) if columns.empty?
-  
+
   # Feature: Use first row of data as column name, unknown column names will be removed.
   columns.map!{|c| data[0].index(c) ? data[0].index(c) : Integer(c) rescue nil }.select!{|x| x}
 
   # Feature: Logical OR filter array
   data.select!{ |d| filter.map{ |f| d.include?(f) }.inject(&:|) } unless filter.empty?
+   
+  # Feature: Logical AND is default for s_filter array. Otherwise Logical OR is used.
+  s_lop = (lop.empty? or lop.to_s.upcase.eql?("AND"))? "&".to_sym : "|".to_sym 
+  data.select!{ |v|  s_filter.map{|i|  (v[i[0]] =~ Regexp.new(i[1]))? true : false }.inject(&s_lop)} unless s_filter.empty?
+  
   data.map!{ |d| Array.new(columns.length){ |i| d.fetch(columns[i]) } } unless columns.empty?
   data
 #+end_src
 
-#+CALL: filter-table-rows-ruby(data='(("a" "b" "c" "d" "x") ("e" "f" "g" "h" "x") ("i" "j" "k" "l" "x") ("a" "b" "c" "d" "y") ("e" "f" "g" "h" "y") ("i" "j" "k" "l" "y") ("a" "b" "c" "d" "z") ("e" "f" "g" "h" "z") ("i" "j" "k" "l" "z") )) :exports none 
+#+CALL: filter-table-rows-ruby(data='(("a" "b" "c" "d" "x") ("e" "f" "g" "h" "x") ("i" "j" "k" "l" "x") ("a" "b" "c" "d" "y") ("e" "f" "g" "h" "y") ("i" "j" "k" "l" "y") ("a" "b" "c" "d" "z") ("e" "f" "g" "h" "z") ("i" "j" "k" "l" "z") ), columns='(0 4), s_filter='((0 "a|e") (4 "z")) ) :exports none 
 
 #+RESULTS:
-| a | b | c | d | x |
-| e | f | g | h | x |
-| i | j | k | l | x |
-| a | b | c | d | y |
-| e | f | g | h | y |
-| i | j | k | l | y |
-| a | b | c | d | z |
-| e | f | g | h | z |
-| i | j | k | l | z |
-
+| a | z |
+| e | z |
 
 
 ** Currying
