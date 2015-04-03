@@ -107,6 +107,7 @@ This could dramatically speed up code where multiple filters are being applied t
 #+end_src
 
 #+RESULTS: example-cross-product-of-tables-ruby
+
 | a | d |
 | a | e |
 | a | f |
