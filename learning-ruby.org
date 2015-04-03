@@ -86,6 +86,39 @@ This could dramatically speed up code where multiple filters are being applied t
 | a | z |
 | e | z |
 
+*** Do cartesian =product= of two arrays and use flatten  =flatten= 
+
+#+NAME: example-abc-table
+| a |
+| b |
+| c |
+
+#+NAME: example-def-table
+| d |
+| e |
+| f |
+
+
+#+NAME: example-cross-product-of-tables-ruby
+#+begin_src ruby :var data1=example-abc-table :var data2=example-def-table
+    
+  data1.flatten.product(data2.flatten)
+
+#+end_src
+
+#+RESULTS: example-cross-product-of-tables-ruby
+| a | d |
+| a | e |
+| a | f |
+| b | d |
+| b | e |
+| b | f |
+| c | d |
+| c | e |
+| c | f |
+
+*** Do Union =?=, Intersect =?= and Minus =?= on Arrays
+[[http://www.techotopia.com/index.php/Advanced_Ruby_Arrays#Intersection.2C_Union_and_Difference]]
 
 ** Currying
 
