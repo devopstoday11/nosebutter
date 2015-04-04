@@ -165,7 +165,7 @@ example-named-comment5-value
 
 
 
-*** Then use noweb of renamed results block inside code or file 
+*** Then use =noweb= of renamed results block inside code or file 
 
 #+begin_src sh :eval never :noweb tangle :tangle example-tangle-formatted-org-tables 
   #
