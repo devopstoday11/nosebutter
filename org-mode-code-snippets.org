@@ -174,3 +174,4 @@ example-named-comment5-value
 
 #+end_src
 
+*Note:* Renaming trick works when having trouble passing =#+RESULTS:= to another =src block=
