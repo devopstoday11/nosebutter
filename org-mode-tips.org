@@ -1,4 +1,7 @@
 * org-mode tips
+** code blocks
+*** weaving
+   Add =:noweb yes= header to =org= code blocks to build and nest more complex documents.
 ** tangling
 *** tangle all blocks in org buffer =C-c C-v C-t=
    If you want to tangle only blocks under a specific tree
