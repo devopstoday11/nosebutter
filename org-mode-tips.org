@@ -6,3 +6,26 @@
    If you want to tangle only blocks under a specific tree
    1. Open Tree in Indirect Buffer =C-c C-x b=
    2. Tangle blocks the indirect buffer using =C-c C-v C-t=
+** Prompt for =:var= variables dynamically in =minibuffer=
+#+begin_src elisp
+(read-passwd "Password: ")
+#+end_src
+
+#+RESULTS:
+: myPassword
+
+#+begin_src elisp
+(read-string "Username: ")
+#+end_src
+
+#+RESULTS:
+: myUsername
+
+#+NAME: ex2-rest-sp-curl
+#+HEADER: :wrap EXAMPLE
+#+HEADER: :results replace output 
+#+HEADER: :var password=(read-passwd "Password: ")
+#+HEADER: :var username=(read-string "Username: ")
+#+begin_src sh
+curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://onecorp.zbc.internal/tops/iops/appeng/_api/web/Lists/getbytitle('App%20Eng%20Sudo%20Commands%20List')/items?"
+#+end_src
