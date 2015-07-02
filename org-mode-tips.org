@@ -27,5 +27,5 @@
 #+HEADER: :var password=(read-passwd "Password: ")
 #+HEADER: :var username=(read-string "Username: ")
 #+begin_src sh
-curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://onecorp.zbc.internal/tops/iops/appeng/_api/web/Lists/getbytitle('App%20Eng%20Sudo%20Commands%20List')/items?"
+curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://sharepoint.example.org/the/path/_api/web/Lists/getbytitle('MyTitle')/items?"
 #+end_src
