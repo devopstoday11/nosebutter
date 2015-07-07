@@ -29,3 +29,114 @@
 #+begin_src sh
 curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://sharepoint.example.org/the/path/_api/web/Lists/getbytitle('MyTitle')/items?"
 #+end_src
+** Caveat: Passing tables with =hline= to code blocks can be confusing.
+*** Example 1
+**** Table with one =hline= on 2nd row
+
+#+NAME: ex1-table-one-hline
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+
+***** Default behavior
+
+#+NAME: ex1-table-one-hline-default
+#+begin_src elisp :var data=ex1-table-one-hline 
+  data
+#+end_src
+
+#+RESULTS: ex1-table-one-hline-default
+| Value 0 |
+| Value 1 |
+| Value 2 |
+| Value 3 |
+
+***** Added =:colnames yes=
+#+NAME: ex1-table-one-hline-added-colnames-yes
+#+begin_src elisp :var data=ex1-table-one-hline :colnames yes  
+  data
+#+end_src
+
+#+RESULTS: ex1-table-one-hline-added-colnames-yes
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+
+**** Table with =hline= on 2nd row and last row
+
+#+NAME: ex1-table-two-hline
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+|---------------|
+
+***** Default behavior
+
+#+NAME: ex1-table-two-hline-default
+#+begin_src elisp :var data=ex1-table-two-hline 
+  data
+#+end_src
+
+#+RESULTS: ex1-table-two-hline-default
+| Column_Header |
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+
+***** Added =:colnames yes=
+
+#+NAME: ex1-table-two-hline-added-colnames-yes
+#+begin_src elisp :var data=ex1-table-two-hline :colnames yes 
+  data
+#+end_src
+
+#+RESULTS: ex1-table-two-hline-added-colnames-yes
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+
+***** Added =hlines yes=
+
+#+NAME: ex1-table-two-hline-added-hlines-yes
+#+begin_src elisp :var data=ex1-table-two-hline :hlines yes  
+  data
+#+end_src
+
+#+RESULTS: ex1-table-two-hline-added-hlines-yes
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+|---------------|
+
+***** Added both =:colnames yes= and =hlines yes=
+
+#+NAME: ex1-table-two-hline-added-both-colnames-hlines-yes
+#+begin_src elisp :var data=ex1-table-two-hline :colnames yes :hlines yes  
+  data
+#+end_src
+
+#+RESULTS: ex1-table-two-hline-added-both-colnames-hlines-yes
+| Column_Header |
+|---------------|
+| Value 0       |
+| Value 1       |
+| Value 2       |
+| Value 3       |
+|---------------|
+
