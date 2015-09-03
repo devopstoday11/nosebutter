@@ -327,8 +327,8 @@
        
       }
 
-    # Generate Graph
-    g.output( :canon => String )
+    # Generate Graph - Fix \N
+    g.output( :canon => String ).gsub(%r{([\\])+N},"\\1\\1N")
 #+end_src
 
 #+RESULTS:
