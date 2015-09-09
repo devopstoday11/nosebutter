@@ -143,9 +143,9 @@ curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "
 ** Troubleshooting
 *** Errors
 **** =org-element-headline-parser: Variable binding depth exceeds max-specpdl-size=
-This is error shows your code has recursion issue(s). 
+The =Variable binding depth exceeds max-specpdl-size= error shows your code has recursion issue(s). 
 
-***** Example 1 - Named Block inserts itself via =:noweb=
+***** Example 1 - Named Block inserts into itself via =:noweb=
 
 Did a Copy & Paste and forgot to rename my code block. Didn't discover the recursion issue until I did =C-c= =C-v= =t= to tangle the script.
 
