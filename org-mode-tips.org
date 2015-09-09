@@ -149,6 +149,7 @@ This is a recursion error.
 #+BEGIN_EXAMPLE
 ,#+name: max-specpdl-size-example1
 ,#+header: :noweb yes  
+,#+header: :tangle /tmp/recursion-errors/max-specpdl-size-example1
 ,#+begin_src sh :eval never 
 <<max-specpdl-size-example1>>
 ,#+end_src
