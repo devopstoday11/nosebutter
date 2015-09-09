@@ -140,3 +140,23 @@ curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "
 | Value 3       |
 |---------------|
 
+** Troubleshooting
+*** Errors
+**** =org-element-headline-parser: Variable binding depth exceeds max-specpdl-size=
+This is a recursion error. 
+
+***** Example 1 - Named Block inserts itself via =:noweb=
+#+BEGIN_EXAMPLE
+,#+name: max-specpdl-size-example1
+,#+header: :noweb yes  
+,#+begin_src sh :eval never 
+<<max-specpdl-size-example1>>
+,#+end_src
+
+,#+name: max-specpdl-size-example1
+,#+begin_src sh :eval never 
+echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
+,#+end_src
+
+#+END_EXAMPLE
+
