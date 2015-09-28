@@ -1135,6 +1135,3 @@ The =middleware= source code is listed below:
       ;;    
   esac
 #+END_SRC
-
-#+RESULTS[a777fffe0cc759c40d88bdfc67ca213229f08619]: 
-[[file:script/middleware]]
