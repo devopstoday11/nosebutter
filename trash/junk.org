@@ -218,7 +218,6 @@ In this example, the paths to the aem scripts are =/app/adobe/aem/author/crx-qui
   - Provide & maintain the generic rc script, i.e. =middleware=.
 
     #+CAPTION: The =middleware= scriptname is defined in section [[AppEng Generic RC Script Properties Table]] of this document.
-    #+RESULTS: 
     | Property-name                 | Property-value |
     |-------------------------------+----------------|
     | appeng-generic-rc-script-name | middleware     |
@@ -226,7 +225,6 @@ In this example, the paths to the aem scripts are =/app/adobe/aem/author/crx-qui
   - Provide owner account name of =/app/scripts/rc.d= directory to system adminstrators. If the account name is not specified =appadm= will be used as the default account name. The allowed service account names are listed in the table below:
 
     #+CAPTION: The allowed service account names are defined in section [[Allowed Application Engineer Service Account Names Table]] of this document.
-    #+RESULTS: 
     | Service Account Name |
     |----------------------|
     | apache               |
@@ -272,7 +270,6 @@ The =middleware= script is designed to execute on the following operating system
 In order to execute correctly, the =middleware= script will first need to detect the host OS using the Unix shell command =uname=. The table below lists the known paths for =uname= for compatible operating systems. The list of paths is derived from the [[Required Unix Programs Table][Required Unix Programs Table]].
 
 #+NAME: os-unix-shell-cmd-uname-paths
-#+RESULTS: 
 | /bin/uname     |
 | /usr/bin/uname |
 
@@ -311,7 +308,6 @@ After the =middleware= script finds =uname=, the server operating system will be
 
 - The following table from section [[Allowed Application Engineer Service Account Names Table]] lists the service account names which are allowed to own the =/app/scripts/rc.d= directory.
 
-  #+RESULTS: 
   | Service Account Name |
   |----------------------|
   | apache               |
@@ -430,7 +426,6 @@ After the =middleware= script finds =uname=, the server operating system will be
 
 **** Check =/app/scripts/rc.d= Directory Exists
 
-#+RESULTS: 
 | Required-Directory-Paths |
 |--------------------------|
 | /app/scripts/rc.d        |
@@ -768,7 +763,6 @@ Use the [[AppEng Generic RC Script Properties Table][AppEng Generic RC Script Pr
 *** Required Directory Path Table
 
 #+CAPTION: List of Required Directories
-#+RESULTS: 
 | Required-Directory-Paths |
 |--------------------------|
 | /app/scripts/rc.d        |
@@ -841,7 +835,6 @@ All RC scriptnames should be generated to provide a consistant naming standard a
 
 All startup scriptnames will be prefixed with =S= and an execution order prefix, e.g. =00=.
 
-#+RESULTS: 
 | Middleware | Scriptname |
 |------------+------------|
 | example    | S00example |
@@ -850,14 +843,12 @@ All startup scriptnames will be prefixed with =S= and an execution order prefix,
 
 All shutdown scriptnames will be prefixed with =K= and an execution order prefix, e.g. =00=.
 
-#+RESULTS: 
 | Middleware | Scriptname |
 |------------+------------|
 | example    | K00example |
 
 *** Example of Generated RC Scriptnames for Middleware Software
 
-#+RESULTS: 
 | Middleware  | Startup Scriptname | Shutdown Scriptname |
 |-------------+--------------------+---------------------|
 | WebSphere   | S00websphere       | K00websphere        |
