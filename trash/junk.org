@@ -871,7 +871,6 @@ All shutdown scriptnames will be prefixed with =K= and an execution order prefix
 The =middleware= source code is listed below:
 
 #+CAPTION: Source code of =middleware= script
-#+RESULTS: 
 #+BEGIN_SRC sh
   #!/usr/bin/bash
 
