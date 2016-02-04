@@ -1,4 +1,4 @@
-*** Static Example 1
+*** Static Example 1a
 [[file:graphviz-static-ex1.svg]]
 #+name: static-ex1
 #+begin_src dot :file graphviz-static-ex1.svg :cmd dot
