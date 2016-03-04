@@ -10,6 +10,13 @@
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 
+* Science
+** Physics
+
+#+BEGIN_QUOTE
+Physics is like sex: Sure, it might give some practical results, but that’s not why we do it. ~ Richard Feynman
+#+END_QUOTE
+
 * Programming
 ** Functional Programming
 
@@ -29,5 +36,4 @@ will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
 [fn:1] Healy, Kieran. "Choosing Your Workflow Applications."
 
 [fn:2] [[https://twitter.com/mfeathers/status/29581296216][Feathers, Michael. Twitter]]
-
 
