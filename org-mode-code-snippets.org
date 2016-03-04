@@ -1,4 +1,25 @@
 * Code Snippets
+** =org-element-interpret-data=
+
+  [[http://emacs.stackexchange.com/questions/15152/most-common-data-structure-is-a-list][copied from emacs.stackexchange question]]
+  
+#+BEGIN_SRC emacs-lisp :results raw
+(org-element-interpret-data
+ '(headline (:title "One headline" :level 1)
+            (property-drawer nil ((node-property (:key "property1" :value "value1"))
+                                  (node-property (:key "property2" :value "value2"))))
+            (#("Some much longer content."))))
+#+END_SRC
+
+#+RESULTS:
+* One headline
+:PROPERTIES:
+:property1: (org-clock-in (quote (16)))
+:property2: value2
+:END:
+Some much longer content.
+
+
 ** =org-sbe=
 *** =ob-table.el= example from Commentary Section - *Fixed* - *Works*
 
