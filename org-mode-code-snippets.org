@@ -198,7 +198,7 @@ example-named-comment5-value
 *Note:* Renaming trick also works when your having trouble passing =#+RESULTS:= to another =src block=.
 
 
-* Link within PDF
+* Link to Code Block within Org or PDF
 
 #+BEGIN_LaTeX
 \hypertarget{some-source-code}{} 
@@ -209,15 +209,15 @@ example-named-comment5-value
       print i
 #+END_SRC
 
-* Method 1
+* Method 1 for Org File
 
 [[file:::some-source-code][some-source-code]]
 
-* Method 2
+* Method 2 for Org File
 
 [[file:::/#\+name: +some-source-code/][regex to some-source-code]]
 
-* Method 3
+* Method 3 for PDF
 
 #+BEGIN_SRC latex
   See \hyperlink{some-source-code}{some-source-code}.
