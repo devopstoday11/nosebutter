@@ -50,6 +50,28 @@ Some much longer content.
 
 Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
 
+***  force interpretation of a cell's value as a string 
+
+#+name: get-ip-address
+#+header: :var name=""
+#+begin_src ruby  :results value 
+  require 'resolv' 
+
+  ip_address = ""
+  ip_address = Resolv.getaddress(name) rescue "" unless name.empty?
+  ip_address
+#+end_src
+
+#+RESULTS: get-ip-address
+
+    
+| Hostname      |   IP-Address |
+|---------------+--------------|
+| www.apple.com | 23.204.86.43 |
+#+TBLFM: $2='(org-sbe get-ip-address (name $$1))
+
+
+
 ** org-mode table functions =TBLFM=
 *** Example using =remote= to create clickable links from data in another table   
 
