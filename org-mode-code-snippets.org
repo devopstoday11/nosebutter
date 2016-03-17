@@ -246,24 +246,24 @@ example-named-comment5-value
 #+END_SRC
 
 
-* COMMENT Fix this
+* COMMENT Improve this example for assoc-string
 
 
-#+BEGIN_SRC elisp :var hostname="txaxa449" :results value 
-(setq data-center '((UT . ITOC) (TX . HOPS)))
+#+BEGIN_SRC elisp :var hostname="yyxxxxx" :results value 
+(setq data-center '((XX . IIII) (YY . HHHH)))
 ;(assoc (upcase (substring hostname 0 2)) data-center)
-;(setq s 'UT)
+;(setq s 'XX)
 (setq s (upcase (substring hostname 0 2)))
 ;(let ((s 1)) s) ; returns 1
-;(let ((s 'UT)) s) ; returns UT
-;(let ((s (upcase (substring hostname 0 2)))) s) ; returns UT or TX
-;(let ((s (upcase (substring hostname 0 2)))) (cdr (assoc 'UT data-center))) ; returns ITOC
+;(let ((s 'XX)) s) ; returns XX
+;(let ((s (upcase (substring hostname 0 2)))) s) ; returns XX or YY
+;(let ((s (upcase (substring hostname 0 2)))) (cdr (assoc 'XX data-center))) ; returns IIII
 ;(let ((s (upcase (substring hostname 0 2)))) s) ; returns s value
 
 ;(setq x (let ((s (upcase (substring hostname 0 2)))) s)) ; returns s into x
 ;x
 
-;(cdr (assoc 'UT data-center))
+;(cdr (assoc 'XX data-center))
 ;(cdr (assoc s data-center))
 ;(cdr (assoc s data-center))
 ;(assoc s data-center)
@@ -276,4 +276,33 @@ example-named-comment5-value
 #+END_SRC
 
 #+RESULTS:
-: HOPS
+: HHHH
+
+
+#+BEGIN_SRC elisp :var hostname="utxxxx" :results value 
+(setq my-height (upcase (substring hostname 0 2)))
+(setq dfl
+      `((auto-lower . nil)
+        (auto-raise . nil)
+        (height . ,my-height)
+        (width . 80)
+        (top . 1)
+        (left . 1)))
+(assoc 'height dfl)
+#+END_SRC
+
+#+RESULTS:
+: (height . UT)
+
+# This works now!!
+
+#+NAME: data-center?
+#+HEADER: :var hostname="xxnnn123" 
+#+HEADER: :var dc-list='((XX . IIII) (YY . HHHH))
+#+BEGIN_SRC elisp :results value
+  (setq s (upcase (substring hostname 0 2)))
+  (cdr (assoc-string `,s dc-list)) 
+#+END_SRC
+
+#+RESULTS: data-center?
+: IIII
