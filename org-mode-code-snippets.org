@@ -246,3 +246,34 @@ example-named-comment5-value
 #+END_SRC
 
 
+* COMMENT Fix this
+
+
+#+BEGIN_SRC elisp :var hostname="txaxa449" :results value 
+(setq data-center '((UT . ITOC) (TX . HOPS)))
+;(assoc (upcase (substring hostname 0 2)) data-center)
+;(setq s 'UT)
+(setq s (upcase (substring hostname 0 2)))
+;(let ((s 1)) s) ; returns 1
+;(let ((s 'UT)) s) ; returns UT
+;(let ((s (upcase (substring hostname 0 2)))) s) ; returns UT or TX
+;(let ((s (upcase (substring hostname 0 2)))) (cdr (assoc 'UT data-center))) ; returns ITOC
+;(let ((s (upcase (substring hostname 0 2)))) s) ; returns s value
+
+;(setq x (let ((s (upcase (substring hostname 0 2)))) s)) ; returns s into x
+;x
+
+;(cdr (assoc 'UT data-center))
+;(cdr (assoc s data-center))
+;(cdr (assoc s data-center))
+;(assoc s data-center)
+;`(assoc ,s data-center) ; Interesting!
+;`,s ; Very Interesting!
+
+;(assoc-string `,s data-center) ; Works!!!
+(cdr (assoc-string `,s data-center)) ; Works!!!
+;s
+#+END_SRC
+
+#+RESULTS:
+: HOPS
