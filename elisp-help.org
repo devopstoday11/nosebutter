@@ -1,6 +1,11 @@
 ** Using a ~lambda~ function with ~mapcar~
+   Executing the code below:
+   
+    #+begin_src elisp :exports both
+    (mapcar (lambda (x) (format "%s world!" x)) '("Hi" "Hello" "Howdy"))
+    #+end_src
 
-#+begin_src elisp 
-(mapcar (lambda (x) (format "%s world!" x)) '("Hi" "Hello" "Howdy"))
-("Hi world!" "Hello world!" "Howdy world!")
-#+end_src
+
+   Returns the following results:
+    #+results:
+    : ("Hi world!" "Hello world!" "Howdy world!")
