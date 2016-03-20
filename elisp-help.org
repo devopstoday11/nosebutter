@@ -1,0 +1,6 @@
+** Using a ~lambda~ function with ~mapcar~
+
+#+begin_src elisp 
+(mapcar (lambda (x) (format "%s world!" x)) '("Hi" "Hello" "Howdy"))
+("Hi world!" "Hello world!" "Howdy world!")
+#+end_src
