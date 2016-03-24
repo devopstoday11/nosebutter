@@ -1,2 +1,4 @@
 * Notes about installing curb gem under cygwin
 : gem install curb -- -- --with-curl-lib=/usr/x86_64-w64-mingw32/sys-root/mingw/bin --with-curl-include=/usr/x86_64-w64-mingw32/sys-root/mingw/include/curl
+
+: Resource http://www.basson.at/blog/installing-curb-on-windows
