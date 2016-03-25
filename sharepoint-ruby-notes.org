@@ -20,3 +20,7 @@
     puts l.title
   end
 #+END_SRC
+
+* Notes about installing gem sharepoint-ruby
+: # gem install specific_install
+: # gem specific_install -l https://github.com/Plaristote/sharepoint-ruby.git
