@@ -21,6 +21,10 @@
   end
 #+END_SRC
 
+# This Curl Command WOrks 
+# #curl --ntlm -u username:password -d "{Title: 'Added with curl'}" -H content-type:application/json -X POST "http://sharepoint.hostname/full/path/of/site/_vti_bin/listdata.svc/MyCustomList"
+
+
 * Notes about installing gem sharepoint-ruby
 : # gem install specific_install
 : # gem specific_install -l https://github.com/Plaristote/sharepoint-ruby.git
