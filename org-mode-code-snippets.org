@@ -306,3 +306,32 @@ example-named-comment5-value
 
 #+RESULTS: data-center?
 : IIII
+
+
+* Displaying Code and Results side-by-side in GIthub
+
+#+NAME: my-code
+#+BEGIN_SRC elisp :exports none 
+(+ 1 1)
+#+END_SRC
+
+#+BEGIN_SRC org :results drawer replace :noweb yes :exports results 
+
+  ,#+NAME: my-code-with-answer
+  ,#+BEGIN_SRC elisp  :exports code 
+  <<my-code>> ;=> <<my-code()>>
+  ,#+END_SRC
+
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+
+#+NAME: my-code-with-answer
+#+BEGIN_SRC elisp  :exports code 
+(+ 1 1) ;=> 2
+#+END_SRC
+
+:END:
+
