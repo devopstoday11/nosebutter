@@ -309,17 +309,23 @@ example-named-comment5-value
 
 
 * Displaying Code and Results side-by-side in Github
-
 #+NAME: my-code
 #+BEGIN_SRC elisp :exports none 
 (+ 1 1)
 #+END_SRC
+
+#+NAME: my-other-code
+#+BEGIN_SRC elisp
+(/ 4 (* 2 2))
+#+END_SRC
+
 
 #+BEGIN_SRC org :results drawer replace :noweb yes :exports results 
 
   ,#+NAME: my-code-with-answer
   ,#+BEGIN_SRC elisp  :exports code 
   <<my-code>> ;=> <<my-code()>>
+  <<my-other-code>> ;=> <<my-other-code()>>
   ,#+END_SRC
 
 
@@ -331,6 +337,7 @@ example-named-comment5-value
 #+NAME: my-code-with-answer
 #+BEGIN_SRC elisp  :exports code 
 (+ 1 1) ;=> 2
+(/ 4 (* 2 2)) ;=> 1
 #+END_SRC
 
 :END:
