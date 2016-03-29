@@ -308,7 +308,7 @@ example-named-comment5-value
 : IIII
 
 
-* Displaying Code and Results side-by-side in GIthub
+* Displaying Code and Results side-by-side in Github
 
 #+NAME: my-code
 #+BEGIN_SRC elisp :exports none 
