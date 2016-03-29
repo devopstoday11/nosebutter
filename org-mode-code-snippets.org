@@ -315,7 +315,7 @@ example-named-comment5-value
 #+END_SRC
 
 #+NAME: my-other-code
-#+BEGIN_SRC elisp
+#+BEGIN_SRC elisp :exports none 
 (/ 4 (* 2 2))
 #+END_SRC
 
