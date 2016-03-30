@@ -29,6 +29,11 @@
 #+begin_src sh
 curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://sharepoint.example.org/the/path/_api/web/Lists/getbytitle('MyTitle')/items?"
 #+end_src
+
+To update list need to pass `X-RequestDigest: FormDigestValue` to Get FormDigestValue submit `POST` to `/_api/contextinfo` with no data. See exampple curl command below:
+
+:  curl -v -v -v --ntlm -u $username:$password -H "content-type:application/json;odata=verbose" -H "accept:application/json;odata=verbose" -d "" -X POST "http://$site_hostname/$site_path/_api/contextinfo"
+
 ** Caveat: Passing tables with =hline= to code blocks can be confusing.
 *** Example 1
 **** Table with one =hline= on 2nd row
