@@ -40,6 +40,7 @@ TO create item then pass `X-RequestDigest` as a header
     curl -v -v -v --ntlm -u $username:$password -d "{\"Title\":\"$list_tem\",\"__metadata\":{\"type\":\"$list_type\"}}" -H "content-type:application/json;odata=verbose" -H "accept:application/json;odata=verbose" -H "X-RequestDigest: 0xE7199A5918E328B0BBD11677CA7DB56F8A80D65F45B2B8E449BED751A45877F46E4A8D30AC411C05B3C49F564218E37C347C0BFF98D9862FACCC1005EF368AA2,30 Mar 2016 19:17:21 -0000"  -X POST "http://onecorp.zbc.internal/tops/iops/appeng/_api/Web/Lists(guid'$list_guid')/Items"
     #+END_SRC
 
+> Useful Reference: http://stackoverflow.com/questions/3851445/ruby-how-do-i-send-a-json-post-request-using-curb
 
 ** Caveat: Passing tables with =hline= to code blocks can be confusing.
 *** Example 1
