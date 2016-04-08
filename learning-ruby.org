@@ -38,6 +38,29 @@ This could dramatically speed up code where multiple filters are being applied t
 
 ** Fun with Arrays
 
+*** Playing around
+
+    #+BEGIN_SRC ruby :var data1='(("a") ("b") ("c")) :var data2='(("a" "e" "i") ("f" "b" "j") ("g" "c" "k") ("h" "l" "d")) :exports both
+      # data1
+      # data2
+      # data1.map{|d1| data2.map{|d2| d1 + d2}}
+      # data1.map{|d1| data2.map{|d2| d1 | d2}}
+      # data1.map{|d1| data2.map{|d2| d1 - d2}}
+      # data1.map{|d1| data2.map{|d2| d1 & d2}}
+      # data2.map{|d2| data1.map{|d1| d2 + d1}}
+      # data2.map{|d2| data1.map{|d1| d2 | d1}}
+      # data2.map{|d2| data1.map{|d1| d2 - d1}}
+       data2.map{|d2| data1.map{|d1| d2 & d1}}
+    #+END_SRC
+
+    #+RESULTS:
+    | (a) | nil | nil |
+    | nil | (b) | nil |
+    | nil | nil | (c) |
+    | nil | nil | nil |
+
+
+
 *** Use =include?= and =Regexp.new= to filter rows in array then change order of columns with =map=
 
 #+name: filter-table-rows-ruby
