@@ -5,20 +5,19 @@
   
 #+BEGIN_SRC emacs-lisp :results raw
 (org-element-interpret-data
- '(headline (:title "One headline" :level 1)
+ '(headline (:title "One headline" :level 3)
             (property-drawer nil ((node-property (:key "property1" :value "value1"))
                                   (node-property (:key "property2" :value "value2"))))
             (#("Some much longer content."))))
 #+END_SRC
 
 #+RESULTS:
-* One headline
+*** One headline
 :PROPERTIES:
-:property1: (org-clock-in (quote (16)))
+:property1: value1
 :property2: value2
 :END:
 Some much longer content.
-
 
 ** =org-sbe=
 *** =ob-table.el= example from Commentary Section - *Fixed* - *Works*
