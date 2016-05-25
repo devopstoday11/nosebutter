@@ -209,7 +209,7 @@ example-named-block5-value
 #+RESULTS: example-named-blocks-noweb
 :RESULTS:
 #+NAME: ROOT_DIR
-#+BEGIN_SRC css :noweb yes
+#+BEGIN_SRC css :noweb yes :exports both
 /root-dir
 #+END_SRC
 
@@ -219,7 +219,7 @@ example-named-block5-value
 : /root-dir
 
 #+NAME: GRANDPARENT_DIR
-#+BEGIN_SRC css :noweb yes
+#+BEGIN_SRC css :noweb yes :exports both
 <<ROOT_DIR>>/grandparent
 #+END_SRC
 
@@ -229,7 +229,7 @@ example-named-block5-value
 : /root-dir/grandparent
 
 #+NAME: PARENT_DIR
-#+BEGIN_SRC css :noweb yes
+#+BEGIN_SRC css :noweb yes :exports both
 <<GRANDPARENT_DIR>>/parent
 #+END_SRC
 
@@ -239,11 +239,11 @@ example-named-block5-value
 : /root-dir/grandparent/parent
 
 #+NAME: CHILD_DIR
-#+BEGIN_SRC css :noweb yes
+#+BEGIN_SRC css :noweb yes :exports both
 <<PARENT_DIR>>/child
 #+END_SRC
 
-#+CALL: CHILD_DIR()
+#+CALL: CHILD_DIR() 
 
 #+RESULTS:
 : /root-dir/grandparent/parent/child
