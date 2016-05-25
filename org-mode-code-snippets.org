@@ -109,62 +109,77 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 ** Code blocks inside Drawers
 
 #+NAME: example-configs-table
-| *Configuration Name*   | *Configuration Value*        |
-|------------------------+------------------------------|
-| example-named-comment1 | example-named-comment1-value |
-| example-named-comment2 | example-named-comment2-value |
-| example-named-comment3 | example-named-comment3-value |
-| example-named-comment4 | example-named-comment4-value |
-| example-named-comment5 | example-named-comment5-value |
+| *Configuration Name* | *Configuration Value*      |
+|----------------------+----------------------------|
+| example-named-block1 | example-named-block1-value |
+| example-named-block2 | example-named-block2-value |
+| example-named-block3 | example-named-block3-value |
+| example-named-block4 | example-named-block4-value |
+| example-named-block5 | example-named-block5-value |
 
-#+NAME: example-make-named-comments
+#+NAME: example-make-named-blocks
 #+HEADER: :var data=example-configs-table()
 #+HEADER: :results silent output 
 #+begin_src ruby
   for d in data
-    puts "#+NAME: #{d[0]}\n#+BEGIN_COMMENT\n#{d[1]}\n#+END_COMMENT\n\n#+CALL: #{d[0]}()\n\n"
+    puts "#+NAME: #{d[0]}\n#+BEGIN_SRC css\n#{d[1]}\n#+END_SRC\n\n#+CALL: #{d[0]}()\n\n"
   end
 #+end_src
 
-#+NAME: example-named-comments
-#+CALL: example-make-named-comments() :results drawer value 
+#+NAME: example-named-blocks
+#+CALL: example-make-named-blocks() :results drawer value 
 
-#+RESULTS: example-named-comments
+#+RESULTS: example-named-blocks
 :RESULTS:
-#+NAME: example-named-comment1
-#+BEGIN_COMMENT
-example-named-comment1-value
-#+END_COMMENT
+#+NAME: example-named-block1
+#+BEGIN_SRC css
+example-named-block1-value
+#+END_SRC
 
-#+CALL: example-named-comment1()
+#+CALL: example-named-block1()
 
-#+NAME: example-named-comment2
-#+BEGIN_COMMENT
-example-named-comment2-value
-#+END_COMMENT
+#+RESULTS:
+: example-named-block1-value
 
-#+CALL: example-named-comment2()
+#+NAME: example-named-block2
+#+BEGIN_SRC css
+example-named-block2-value
+#+END_SRC
 
-#+NAME: example-named-comment3
-#+BEGIN_COMMENT
-example-named-comment3-value
-#+END_COMMENT
+#+CALL: example-named-block2()
 
-#+CALL: example-named-comment3()
+#+RESULTS:
+: example-named-block2-value
 
-#+NAME: example-named-comment4
-#+BEGIN_COMMENT
-example-named-comment4-value
-#+END_COMMENT
+#+NAME: example-named-block3
+#+BEGIN_SRC css
+example-named-block3-value
+#+END_SRC
 
-#+CALL: example-named-comment4()
+#+CALL: example-named-block3()
 
-#+NAME: example-named-comment5
-#+BEGIN_COMMENT
-example-named-comment5-value
-#+END_COMMENT
+#+RESULTS:
+: example-named-block3-value
 
-#+CALL: example-named-comment5()
+#+NAME: example-named-block4
+#+BEGIN_SRC css
+example-named-block4-value
+#+END_SRC
+
+#+CALL: example-named-block4()
+
+#+RESULTS:
+: example-named-block4-value
+
+#+NAME: example-named-block5
+#+BEGIN_SRC css
+example-named-block5-value
+#+END_SRC
+
+#+CALL: example-named-block5()
+
+#+RESULTS:
+: example-named-block5-value
 
 :END:
 
