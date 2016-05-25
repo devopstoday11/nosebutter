@@ -3,7 +3,7 @@
 
   [[http://emacs.stackexchange.com/questions/15152/most-common-data-structure-is-a-list][copied from emacs.stackexchange question]]
   
-#+BEGIN_SRC emacs-lisp :results raw
+#+BEGIN_SRC emacs-lisp :results raw :exports both
 (org-element-interpret-data
  '(headline (:title "One headline" :level 3)
             (property-drawer nil ((node-property (:key "property1" :value "value1"))
