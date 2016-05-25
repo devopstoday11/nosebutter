@@ -183,6 +183,74 @@ example-named-block5-value
 
 :END:
 
+*** Using =noweb= Syntax with Code blocks inside Drawers
+
+#+NAME: example-configs-noweb-table
+| *Configuration Name* | *Configuration Value*      |
+|----------------------+----------------------------|
+| ROOT_DIR             | /root-dir                  |
+| GRANDPARENT_DIR      | <<ROOT_DIR>>/grandparent   |
+| PARENT_DIR           | <<GRANDPARENT_DIR>>/parent |
+| CHILD_DIR            | <<PARENT_DIR>>/child       |
+
+
+#+NAME: example-make-named-blocks-noweb
+#+HEADER: :var data=example-configs-noweb-table()
+#+HEADER: :results silent output 
+#+begin_src ruby
+  for d in data
+    puts "#+NAME: #{d[0]}\n#+BEGIN_SRC css :noweb yes\n#{d[1]}\n#+END_SRC\n\n#+CALL: #{d[0]}()\n\n"
+  end
+#+end_src
+
+#+NAME: example-named-blocks-noweb
+#+CALL: example-make-named-blocks-noweb() :results drawer value 
+
+#+RESULTS: example-named-blocks-noweb
+:RESULTS:
+#+NAME: ROOT_DIR
+#+BEGIN_SRC css :noweb yes
+/root-dir
+#+END_SRC
+
+#+CALL: ROOT_DIR()
+
+#+RESULTS:
+: /root-dir
+
+#+NAME: GRANDPARENT_DIR
+#+BEGIN_SRC css :noweb yes
+<<ROOT_DIR>>/grandparent
+#+END_SRC
+
+#+CALL: GRANDPARENT_DIR()
+
+#+RESULTS:
+: /root-dir/grandparent
+
+#+NAME: PARENT_DIR
+#+BEGIN_SRC css :noweb yes
+<<GRANDPARENT_DIR>>/parent
+#+END_SRC
+
+#+CALL: PARENT_DIR()
+
+#+RESULTS:
+: /root-dir/grandparent/parent
+
+#+NAME: CHILD_DIR
+#+BEGIN_SRC css :noweb yes
+<<PARENT_DIR>>/child
+#+END_SRC
+
+#+CALL: CHILD_DIR()
+
+#+RESULTS:
+: /root-dir/grandparent/parent/child
+
+:END:
+
+
 ** Tangling formatted org-tables into files or source code
 
 *** Call table with new name and have results wrapped as org code block
