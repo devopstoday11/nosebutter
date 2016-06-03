@@ -42,6 +42,52 @@ TO create item then pass `X-RequestDigest` as a header
 
 > Useful Reference: http://stackoverflow.com/questions/3851445/ruby-how-do-i-send-a-json-post-request-using-curb
 
+** Embedding org-mode table data as perl code using a python code block and =:noweb=
+
+This technique will allow you to place the table data into your perl code so that the code is more readable.
+
+
+#+BEGIN_SRC org
+
+  ,#+NAME: data-table
+  | Property-Name | Property-Value |
+  |---------------+----------------|
+  | P1_STRING1    | P1_VALUE1      |
+  | P2_STRING2    | 1234           |
+
+  ,#+NAME: convert-data-to-perl-code
+  ,#+BEGIN_SRC python :var data=data-table :results verbatim code replace :session :exports none 
+    data
+  ,#+END_SRC
+
+  ,#+RESULTS: convert-data-to-perl-code
+  ,#+BEGIN_SRC python
+  [['P1_STRING1', 'P1_VALUE1'], ['P2_STRING2', 1234]]
+  ,#+END_SRC
+
+  ,#+NAME: data-table-perl-code
+  ,#+BEGIN_SRC perl :noweb yes :eval never :exports code 
+  my @test_data = <<convert-data-to-perl-code()>>;
+  ,#+END_SRC
+#+END_SRC
+
+#+RESULTS: 
+:RESULTS:
+
+
+#+NAME: data-table
+| Property-Name | Property-Value |
+|---------------+----------------|
+| P1_STRING1    | P1_VALUE1      |
+| P2_STRING2    | 1234           |
+
+#+NAME: data-table-perl-code
+#+BEGIN_SRC perl
+  my @test_data = [['P1_STRING1', 'P1_VALUE1'], ['P2_STRING2', 1234]];
+#+END_SRC
+:END:
+
+
 ** Caveat: Passing tables with =hline= to code blocks can be confusing.
 *** Example 1
 **** Table with one =hline= on 2nd row
