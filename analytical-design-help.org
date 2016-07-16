@@ -1,0 +1,4 @@
+* Analytical Design Help 
+  Useful references related to the topic of Analytical Design
+** Edward R. Tufte
+*** Design Priciples
