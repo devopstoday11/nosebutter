@@ -6,6 +6,15 @@
    If you want to tangle only blocks under a specific tree
    1. Open Tree in Indirect Buffer =C-c C-x b=
    2. Tangle blocks the indirect buffer using =C-c C-v C-t=
+** Add 2 columns of Hex Numbers and Display
+#+BEGIN_SRC org
+| 0x10 | 0x0 |  16 | 10 |
+| 0x20 | 0x1 |  33 | 21 |
+| 0x30 | 0x2 |  50 | 32 |
+| 0xf0 | 0xf | 255 | FF |
+#+TBLFM: $3='(+ (string-to-number (substring $2 2) 16) (string-to-number (substring $1 2) 16))::$4='(format "%X" (string-to-number $3))
+#+END_SRC
+
 ** Prompt for =:var= variables dynamically in =minibuffer=
 #+begin_src elisp
 (read-passwd "Password: ")
