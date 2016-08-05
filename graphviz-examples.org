@@ -1,5 +1,5 @@
 *** Static Example 1
-[![file:graphviz-static-ex1.svg]]
+[[file:graphviz-static-ex1.svg][graphviz-static-ex1.svg]]
 #+name: static-ex1
 #+begin_src dot :file graphviz-static-ex1.svg :cmd dot
   digraph Graph_1 {
@@ -335,4 +335,3 @@
 #+BEGIN_src dot
 [[file:ex2-output.dot]]
 #+END_src
-
