@@ -428,3 +428,18 @@ example-named-block5-value
 
 :END:
 
+* Code Block Template to Pretty Print JSON
+
+#+BEGIN_SRC ruby :results verbatim replace :exports both
+  require 'json'
+
+  some_data = %q({"type":"graph"})
+
+  JSON.pretty_generate(JSON.parse(some_data))
+
+#+END_SRC
+
+#+RESULTS:
+: {
+:   "type": "graph"
+: }
