@@ -24,7 +24,7 @@
 2. Call =elisp= block, /convert-data-to-R-code/, in =R= code block during export via =noweb=
 
    #+BEGIN_QUOTE
-    *Note:* Pass original =:var= headers inside square brackets =[]= to =elisp= code block, e.g. ~:var table="./filename_example-table.tsv"~
+    *Note:* Pass original =:var= headers inside square brackets =[]= to =elisp= code block, e.g. :var table="./filename_example-table.tsv"
    #+END_QUOTE
 
    #+NAME: make-example2
