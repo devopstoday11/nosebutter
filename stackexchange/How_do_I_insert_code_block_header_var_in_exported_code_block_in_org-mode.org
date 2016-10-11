@@ -1,0 +1,67 @@
+* Embed =org-babel-variable-assignments:R= call into =R= code block using =elisp= and =noweb=
+
+1. Create an =elisp= block without =:var= headers, e.g. /convert-data-to-R-code/, that returns results from =org-babel-variable-assignments:R= function.
+
+   #+NAME: make-example1
+   #+BEGIN_SRC org :results drawer replace :exports code 
+
+     ,#+NAME: convert-data-to-R-code
+     ,#+BEGIN_SRC elisp  :exports none 
+       (mapconcat 'identity (org-babel-variable-assignments:R params) " ")
+     ,#+END_SRC
+
+   #+END_SRC
+
+   #+RESULTS: make-example1
+   :RESULTS:
+
+   #+NAME: convert-data-to-R-code
+   #+BEGIN_SRC elisp  :exports none 
+     (mapconcat 'identity (org-babel-variable-assignments:R params) " ")
+   #+END_SRC
+   :END:
+
+2. Call =elisp= block, /convert-data-to-R-code/, in =R= code block during export via =noweb=
+
+   #+BEGIN_QUOTE
+    *Note:* Pass original =:var= headers inside square brackets =[]= to =elisp= code block, e.g. =:var table="./filename_example-table.tsv"=
+   #+END_QUOTE
+
+   #+NAME: make-example2
+   #+BEGIN_SRC org :results drawer replace :exports both 
+
+     ,#+BEGIN_SRC R :results replace output  :noweb yes 
+     <<convert-data-to-R-code[ :var table="./filename_example-table.tsv"]()>>
+     dim(table)
+     ,#+END_SRC
+
+   #+END_SRC
+
+     After exporting, the =R= code should contain missing variable assignments.
+   #+RESULTS: make-example2
+   :RESULTS:
+
+   #+BEGIN_SRC R :results replace output  :noweb yes :tangle yes 
+   <<convert-data-to-R-code[ :var table="./filename_example-table.tsv"]()>>
+   dim(table)
+   #+END_SRC
+   :END:
+
+
+----------
+
+#+BEGIN_SRC elisp :wrap QUOTE :exports results
+(format "This code was tested using  \n%s  \norg-mode version: %s " (version) (org-version))
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_QUOTE
+This code was tested using  
+GNU Emacs 24.5.1 (x86_64-unknown-cygwin, GTK+ Version 3.14.13)
+ of 2015-06-23 on desktop-new
+org-mode version: 8.3.5 
+#+END_QUOTE
+
+
+
+#+OPTIONS: toc:nil num:nil author:nil
