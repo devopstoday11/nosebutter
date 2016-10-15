@@ -10,6 +10,12 @@
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 
+* Animals
+** Dogs
+#+BEGIN_QUOTE
+Outside of a dog, a book is a man's best friend. Inside of a dog it's too dark to read.[fn:3] ~ Groucho Marx
+#+END_QUOTE
+
 * Science
 ** Physics
 
@@ -37,3 +43,4 @@ will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
 
 [fn:2] [[https://twitter.com/mfeathers/status/29581296216][Feathers, Michael. Twitter]]
 
+[fn:3] http://www.brainyquote.com/quotes/quotes/g/grouchomar137218.html
