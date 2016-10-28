@@ -18,3 +18,29 @@
 
 #+RESULTS: is-a-checkbox-on
 : t
+
+
+
+#+NAME: three-headlines
+#+BEGIN_SRC org
+  ,* level 1
+  ,** level 2
+  ,*** level 3
+#+END_SRC
+
+
+#+BEGIN_SRC elisp :results list replace :var data=three-headlines() :exports both 
+  (org-element-map
+      (with-temp-buffer
+        (insert data)
+        (org-element-parse-buffer))
+      '(headline)
+    (lambda (hl) (org-element-property :raw-value hl))
+    )
+#+END_SRC
+
+#+RESULTS:
+- level 1
+- level 2
+- level 3
+
