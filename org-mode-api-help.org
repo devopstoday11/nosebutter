@@ -144,4 +144,23 @@
 		    (:parent #8)))))))))))
 #+END_SRC
 
+This shows how code block interprets org code block
+
+#+BEGIN_SRC org
+  ,#+NAME: nested-list
+  ,#+BEGIN_SRC org
+    - level 1
+      - level 2
+        - level 3
+  ,#+END_SRC
+
+  ,#+BEGIN_SRC elisp :var data=nested-list() :results pp replace :exports both 
+    data
+  ,#+END_SRC
+
+  ,#+RESULTS:
+  : "- level 1\n  - level 2\n    - level 3"
+#+END_SRC
+
+
 -------
