@@ -1,0 +1,20 @@
+** Parsing org code block with elisp
+
+#+NAME: is-checked
+#+BEGIN_SRC org :results raw replace 
+  - [X] yes, I am checked
+#+END_SRC
+
+#+NAME: is-a-checkbox-on
+#+BEGIN_SRC elisp :results replace :var data=is-checked()
+  (org-element-map
+      (with-temp-buffer
+        (insert data)
+        (org-element-parse-buffer))
+      'item
+    (lambda (item) (eq (org-element-property :checkbox item) 'on))
+    nil t))
+#+END_SRC
+
+#+RESULTS: is-a-checkbox-on
+: t
