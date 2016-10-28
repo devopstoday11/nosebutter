@@ -6,7 +6,7 @@
 #+END_SRC
 
 #+NAME: is-a-checkbox-on
-#+BEGIN_SRC elisp :results replace :var data=is-checked()
+#+BEGIN_SRC elisp :results replace :var data=is-checked() :exports both
   (org-element-map
       (with-temp-buffer
         (insert data)
