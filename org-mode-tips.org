@@ -112,7 +112,7 @@ This technique will allow you to place the table data into your perl code so tha
 ***** Default behavior
 
 #+NAME: ex1-table-one-hline-default
-#+begin_src elisp :var data=ex1-table-one-hline 
+#+begin_src elisp :var data=ex1-table-one-hline :exports both
   data
 #+end_src
 
