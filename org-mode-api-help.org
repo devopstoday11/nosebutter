@@ -160,7 +160,7 @@ This shows how code block interprets org code block
 
   ,#+RESULTS:
   : "- level 1\n  - level 2\n    - level 3"
-  # 012345678901234567890123456789012345678  
+  #  0123456789012345678901234567890123456
 #+END_SRC
 
 
