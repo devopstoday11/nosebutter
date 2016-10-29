@@ -235,7 +235,7 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 ** Indexable Variable Values Examples
 
 #+NAME: 3D
-#+BEGIN_SRC emacs-lisp :exportsd both
+#+BEGIN_SRC emacs-lisp :exports both
   '( 
     ( ;;3D[0,,]
       ( ;;3D[0,0,]
