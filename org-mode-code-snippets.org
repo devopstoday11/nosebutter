@@ -110,20 +110,23 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 | xterm  | [[shell:xterm -name 'username@192.168.0.6' -e ssh -X username@192.168.0.6 &]] |
 #+TBLFM: $1=(xterm)::$2='(concat "[[" "shell:" $1 " -name 'username@" remote(example-hosts-table, @@#$2) "'" " -e ssh -X username@" remote(example-hosts-table, @@#$2) " &" "]]")
 
-#+NAME: the-table
-| A | B | C |
-|---+---+---|
-| 1 | 2 | 3 |
-| 4 | 5 | 6 |
-| 7 | 8 | 9 |
-
-| A | B | C |
-|---+---+---|
-| 1 | 2 | 3 |
-| 4 | 5 | 6 |
-| 7 | 8 | 9 |
-#+TBLFM: @<$<..@>$>=remote(the-table, @@#$$#);LE
-
+- Simple ~remote()~ example for tables
+  #+BEGIN_SRC org
+  ,#+NAME: the-table
+  | A | B | C |
+  |---+---+---|
+  | 1 | 2 | 3 |
+  | 4 | 5 | 6 |
+  | 7 | 8 | 9 |
+  
+  
+  | A | B | C |
+  |---+---+---|
+  | 1 | 2 | 3 |
+  | 4 | 5 | 6 |
+  | 7 | 8 | 9 |
+  ,#+TBLFM: @<$<..@>$>=remote(the-table, @@#$$#);LE
+  #+END_SRC
 
 ** Code blocks inside Drawers
 
