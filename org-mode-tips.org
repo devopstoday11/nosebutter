@@ -16,14 +16,14 @@
 #+END_SRC
 
 ** Prompt for =:var= variables dynamically in =minibuffer=
-#+begin_src elisp
+#+begin_src elisp :exports both
 (read-passwd "Password: ")
 #+end_src
 
 #+RESULTS:
 : myPassword
 
-#+begin_src elisp
+#+begin_src elisp :exports both
 (read-string "Username: ")
 #+end_src
 
@@ -150,7 +150,7 @@ This technique will allow you to place the table data into your perl code so tha
 ***** Default behavior
 
 #+NAME: ex1-table-two-hline-default
-#+begin_src elisp :var data=ex1-table-two-hline 
+#+begin_src elisp :var data=ex1-table-two-hline  :exports both
   data
 #+end_src
 
@@ -164,7 +164,7 @@ This technique will allow you to place the table data into your perl code so tha
 ***** Added =:colnames yes=
 
 #+NAME: ex1-table-two-hline-added-colnames-yes
-#+begin_src elisp :var data=ex1-table-two-hline :colnames yes 
+#+begin_src elisp :var data=ex1-table-two-hline :colnames yes  :exports both
   data
 #+end_src
 
@@ -179,7 +179,7 @@ This technique will allow you to place the table data into your perl code so tha
 ***** Added =hlines yes=
 
 #+NAME: ex1-table-two-hline-added-hlines-yes
-#+begin_src elisp :var data=ex1-table-two-hline :hlines yes  
+#+begin_src elisp :var data=ex1-table-two-hline :hlines yes   :exports both
   data
 #+end_src
 
@@ -195,7 +195,7 @@ This technique will allow you to place the table data into your perl code so tha
 ***** Added both =:colnames yes= and =hlines yes=
 
 #+NAME: ex1-table-two-hline-added-both-colnames-hlines-yes
-#+begin_src elisp :var data=ex1-table-two-hline :colnames yes :hlines yes  
+#+begin_src elisp :var data=ex1-table-two-hline :colnames yes :hlines yes   :exports both
   data
 #+end_src
 
