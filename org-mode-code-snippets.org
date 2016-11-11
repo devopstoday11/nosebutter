@@ -535,10 +535,21 @@ example-named-block5-value
 - Exported Script Output:
 
   #+RESULTS: step2-script
+  : Message: Hi Everyone!
 
 - Tangled Script Code
 
-  #+INCLUDE: junk40-step2.sh src
+  : #+INCLUDE: junk40-step2.sh src
+
+  #+BEGIN_SRC
+    #!/usr/bin/env bash
+    DATA='Hi Everyone'
+    MORE_DATA='Other Stuff'
+    # Step 2 - Code Begin
+    echo "Message: $DATA!"
+    # Step 2 - Code End
+    exit
+  #+END_SRC
 
 
 
