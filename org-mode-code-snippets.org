@@ -472,5 +472,73 @@ example-named-block5-value
 | 5 | D |
 | 6 | E |
 
+* ~header-args~ property Examples
+
+** Step 1
+:PROPERTIES:
+:header-args: :noweb-ref step1-code  :eval never 
+:END:
+1. Change dir
+
+   #+BEGIN_SRC shell
+     cd /some/directory
+   #+END_SRC
+
+2. Extract Archive
+   
+   #+BEGIN_SRC shell
+     unzip -d /path/to/dir archive.zip
+   #+END_SRC
+
+** Step 2
+:PROPERTIES:
+:header-args: :noweb-ref step2-code :exports both :var DATA="Hey Terra"
+:END:
+
+1. Display Message
+
+   #+BEGIN_SRC shell
+     echo "Message: $DATA!"
+   #+END_SRC
+
+     #+RESULTS:
+     : Message: Hey Terra!
+
+** Scripts
+
+*** Step 1 Script
+:PROPERTIES:
+:header-args: :shebang "#!/usr/bin/env bash" :noweb yes :tangle junk40-step1.sh  :eval never
+:END:
+
+ #+BEGIN_SRC shell 
+   # Step 1 - Code Begin
+   <<step1-code>>
+   # Step 1 - Code End
+   exit
+ #+END_SRC
+
+*** Step 2 Script
+:PROPERTIES:
+:header-args:shell: :shebang "#!/usr/bin/env bash" :noweb yes :tangle junk40-step2.sh  :var DATA="Hi Everyone" 
+:END:
+- Exported Script Code
+   
+  #+NAME: step2-script
+  #+BEGIN_SRC shell :exports both :var MORE_DATA="Other Stuff"
+    # Step 2 - Code Begin
+    <<step2-code>>
+    # Step 2 - Code End
+    exit
+  #+END_SRC
+
+- Exported Script Output:
+
+  #+RESULTS: step2-script
+
+- Tangled Script Code
+
+  #+INCLUDE: junk40-step2.sh src
+
 
 
