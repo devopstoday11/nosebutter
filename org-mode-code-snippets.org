@@ -396,3 +396,81 @@ example-named-block5-value
 : {
 :   "type": "graph"
 : }
+
+* ~ob-ref~ Examples
+
+#+BEGIN_EXAMPLE
+  ;; Functions for referencing data from the header arguments of a
+  ;; org-babel block.  The syntax of such a reference should be
+
+  ;;   #+VAR: variable-name=file:resource-id
+
+  ;; - variable-name :: the name of the variable to which the value
+  ;;                    will be assigned
+
+  ;; - file :: path to the file containing the resource, or omitted if
+  ;;           resource is in the current file
+
+  ;; - resource-id :: the id or name of the resource
+
+  ;; So an example of a simple src block referencing table data in the
+  ;; same file would be
+
+  ;;  #+NAME: sandbox
+  ;;  | 1 |         2 | 3 |
+  ;;  | 4 | org-babel | 6 |
+  ;;
+  ;;  #+begin_src emacs-lisp :var table=sandbox
+  ;;    (message table)
+  ;;  #+end_src
+
+#+END_EXAMPLE
+
+** Table in same file
+#+NAME: sandbox
+| 1 |         2 | 3 |
+| 4 | org-babel | 6 |
+
+#+begin_src emacs-lisp :var table=sandbox
+  table
+#+end_src
+
+#+RESULTS:
+| 1 |         2 | 3 |
+| 4 | org-babel | 6 |
+
+** Table in external file
+
+#+BEGIN_SRC org :file junk40a.org :results file replace 
+
+
+  ,#+NAME: table1
+  | Column1 | Column2 |
+  |---------+---------|
+  |       2 | A       |
+  |       3 | B       |
+  |       4 | C       |
+  |       5 | D       |
+  |       6 | E       |
+  ,#+TBLFM: $1=@#
+
+#+END_SRC
+
+#+RESULTS:
+[[file:junk40a.org]]
+
+*Note: Ingest the org file first with ~C-c C-v i~*
+
+#+begin_src emacs-lisp :var table=junk40a.org:table1 :exports both
+  table
+#+end_src
+
+#+RESULTS:
+| 2 | A |
+| 3 | B |
+| 4 | C |
+| 5 | D |
+| 6 | E |
+
+
+
