@@ -326,3 +326,95 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
   ,#+RESULTS:
   | 19 | 22 | 25 |
 #+END_SRC
+
+
+* Calling Named Code Blocks from Command-line Examples
+
+#+BEGIN_SRC org :tangle call-named-code-block-examples.org
+
+  ,** Call Named Code Block Example Script
+
+
+  ,#+BEGIN_SRC shell :eval never :tangle call-named-code-block-examples.sh :shebang "#!/bin/sh"
+    # -*- mode: shell-script -*-
+    #
+    # Call named code block in org-mode file
+    #
+    DIR=`pwd`
+    FILE=$1
+    CODE_BLOCK=$2
+
+    emacs -Q --batch \
+	  --eval "
+    (progn
+      (require 'org)(require 'ob)(require 'ob-table)(setq org-confirm-babel-evaluate nil)
+      (mapc (lambda (file)
+	      (find-file (expand-file-name file \"$DIR\"))
+	      (let ((re-run (quote t))
+		    (results (quote \"ERROR: Did not call code block: $CODE_BLOCK\")))
+		(save-excursion
+		  (org-babel-goto-named-src-block \"$CODE_BLOCK\")
+		  (let ((info (org-babel-get-src-block-info 'light)))
+		    (when info
+		      (save-excursion
+			;; go to the results, if there aren't any then run the block
+			(goto-char (or (and (not re-run) (org-babel-where-is-src-block-result))
+				       (progn (org-babel-execute-src-block)
+					      (org-babel-where-is-src-block-result))))
+			(end-of-line 1)
+			(while (looking-at \"[\n\r\t\f ]\") (forward-char 1))
+			;; open the results
+			(if (looking-at org-bracket-link-regexp)
+			    ;; file results
+			    (org-open-at-point)
+			  (let ((r (org-babel-format-result
+				    (org-babel-read-result) (cdr (assq :sep (nth 2 info))))))
+			    (pop-to-buffer (get-buffer-create \"*Org-Babel Results*\"))
+			    (delete-region (point-min) (point-max))
+			    (insert r)
+			    (setq results (buffer-string))))
+			t)))
+		  t)
+		(princ (format \"%s\" results))
+		)
+
+	      (kill-buffer))
+	    '(\"$FILE\"))
+      )
+    "
+
+  ,#+END_SRC
+
+  ,*Note:* Tangle files first with ~C-c C-v C-t~
+
+  ,#+NAME: call-get-org-version
+  ,#+BEGIN_SRC shell
+    ./call-named-code-block-examples.sh ./call-named-code-block-examples.org "get-org-version" 2>/dev/null
+  ,#+END_SRC
+
+
+  ,#+NAME: call-get-emacs-version
+  ,#+BEGIN_SRC shell
+    ./call-named-code-block-examples.sh ./call-named-code-block-examples.org "get-emacs-version" 2>/dev/null
+  ,#+END_SRC
+
+  ,** Named Code Block Examples
+
+  ,#+NAME: get-org-version
+  ,#+BEGIN_SRC elisp 
+  (format "org-mode version: %s" (org-version))
+  ,#+END_SRC
+
+  ,#+RESULTS: get-org-version
+  : org-mode version: 9.0
+
+  ,#+NAME: get-emacs-version
+  ,#+BEGIN_SRC elisp 
+  (format "emacs version: %s" (substring (version) 10 16))
+  ,#+END_SRC
+
+  ,#+RESULTS: get-emacs-version
+  : emacs version: 24.5.1
+
+
+#+END_SRC
