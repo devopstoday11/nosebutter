@@ -9,3 +9,27 @@
    Returns the following results:
     #+results:
     : ("Hi world!" "Hello world!" "Howdy world!")
+** Reading from ~stdin~ using ~emacs --script~ and ~elisp~
+   
+   #+BEGIN_QUOTE
+   *Note:* Code block from [[http://superuser.com/a/487329/114596]]
+   #+END_QUOTE
+   
+   #+BEGIN_SRC shell :shebang "#!/usr/bin/emacs --script" :tangle emacs-read-stdin.sh 
+     (with-temp-buffer
+       (progn
+         (condition-case nil
+         (let (line)
+      (while (setq line (read-from-minibuffer ""))
+             (insert line)
+             (insert "\n")))
+      (error nil))
+         (princ (buffer-string))
+         ))
+   #+END_SRC
+
+   - Below is the code that prints out the input
+      #+BEGIN_QUOTE
+        (princ (buffer-string))
+      #+END_QUOTE
+      
