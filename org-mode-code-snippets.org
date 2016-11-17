@@ -401,7 +401,7 @@ example-named-block5-value
 ** elisp code
 
 #+NAME: pp-json
-#+BEGIN_SRC elisp :var data="{}"
+#+BEGIN_SRC elisp :var data="{}" :exports code
   (require 'json)
   (let 'myjson
     (with-temp-buffer
@@ -416,7 +416,7 @@ example-named-block5-value
 : null
 
 
-#+BEGIN_SRC elisp :var data="{\"userId\": \"myaccount\",\"roles\": [\"Role1\"]}" :post pp-json(data=*this*)
+#+BEGIN_SRC elisp :var data="{\"userId\": \"myaccount\",\"roles\": [\"Role1\"]}" :post pp-json(data=*this*) :exports results
   data
 #+END_SRC
 
