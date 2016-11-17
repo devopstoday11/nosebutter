@@ -382,6 +382,7 @@ example-named-block5-value
 :END:
 
 * Code Block Template to Pretty Print JSON
+** Ruby Code
 
 #+BEGIN_SRC ruby :results verbatim replace :exports both
   require 'json'
@@ -396,6 +397,37 @@ example-named-block5-value
 : {
 :   "type": "graph"
 : }
+
+** elisp code
+
+#+NAME: pp-json
+#+BEGIN_SRC elisp :var data="{}"
+  (require 'json)
+  (let 'myjson
+    (with-temp-buffer
+	(insert data)
+	(json-pretty-print-buffer)
+	(setq myjson (buffer-string)))
+   (format "%s" myjson)
+  )
+#+END_SRC
+
+#+RESULTS: pp-json
+: null
+
+
+#+BEGIN_SRC elisp :var data="{\"userId\": \"myaccount\",\"roles\": [\"Role1\"]}" :post pp-json(data=*this*)
+  data
+#+END_SRC
+
+#+RESULTS:
+: {
+:   "roles": [
+:     "Role1"
+:   ],
+:   "userId": "myaccount"
+: }
+
 
 * ~ob-ref~ Examples
 
