@@ -1,11 +1,13 @@
 * Answer - Try 2
-** Code
+
+** Add Code to Org file
 *** expand-src-block
+
 #+NAME: make-expand-src-block
-#+BEGIN_SRC org :results drawer replace :exports code 
+#+BEGIN_SRC org :results drawer replace :exports code :tangle How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f1.org
 
   ,#+NAME: expand-src-block
-  ,#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports code
+  ,#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports none
     (save-excursion
       (org-babel-goto-named-src-block block-name)
       (setq datum (org-element-at-point))
@@ -22,7 +24,7 @@
 :RESULTS:
 
 #+NAME: expand-src-block
-#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports code
+#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports none 
   (save-excursion
     (org-babel-goto-named-src-block block-name)
     (setq datum (org-element-at-point))
@@ -34,7 +36,7 @@
 #+END_SRC
 :END:
 
-*** wrap-code
+*** wrap-code                                                    :noexport:
 
 #+BEGIN_SRC org :results drawer replace :exports code 
 
@@ -63,6 +65,133 @@
    )
 #+END_SRC
 :END:
+
+** Usage Examples
+*** General
+
+**** Use ~noweb~ Syntax to Export Code with Variables
+1. Assign original code block a name using ~#+NAME:~.
+
+   #+BEGIN_SRC org :eval never
+     ,#+NAME: print-abc
+     ,#+BEGIN_SRC shell :var data="ABC"
+       echo -n $data
+     ,#+END_SRC
+   #+END_SRC
+
+2. Prevent original code block from exporting using ~:exports none~.
+
+   #+BEGIN_SRC org :eval never 
+     ,#+NAME: print-abc
+     ,#+BEGIN_SRC shell :var data="ABC" :exports none
+       echo -n $data
+     ,#+END_SRC
+   #+END_SRC
+
+3. Create new ~noweb~ code block under original block.
+
+   #+NAME: make-print-abc
+   #+BEGIN_SRC org :exports code
+     ,#+NAME: print-abc
+     ,#+BEGIN_SRC shell :var data="ABC" :exports none
+       echo -n $data
+     ,#+END_SRC
+ 
+     ,#+BEGIN_SRC shell :noweb yes :exports both 
+      <<expand-src-block(block-name="print-abc")>>
+     ,#+END_SRC
+    #+END_SRC
+
+   Exported output should be similar to the following:
+
+     #+NAME: print-abc
+     #+BEGIN_SRC shell :var data="ABC" :exports none
+       echo -n $data
+     #+END_SRC
+
+     #+BEGIN_SRC shell :noweb yes :exports both 
+      <<expand-src-block(block-name="print-abc")>>
+     #+END_SRC
+
+
+
+**** Use ~#+CALL:~ Syntax to Export Code with Variables         :noexport:
+
+> *Note:* Throws error still debugging
+
+*** Question Specific Use Case
+
+Added ~expand-src-block~ code, ~:exports none~ headers and ~noweb~ code blocks to your original example use case.
+  
+   #+BEGIN_SRC org :exports none :tangle How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f1.org
+     ,* Export with variables
+     :PROPERTIES:
+     :header-args: :var status="not_finished"
+     :END:
+
+     ,#+NAME: example-table
+     | 1 |
+     | 2 |
+     | 3 |
+     | 4 |
+
+     Here we import a table.          
+     ,#+NAME: table-length
+     ,#+BEGIN_SRC R :var table=example-table :tangle "./export_var.R" :exports none
+     status <- "finished"
+     dim(table)
+     ,#+END_SRC
+
+     # Export the expanded code
+     ,#+BEGIN_SRC R :noweb yes :exports both 
+      <<expand-src-block(block-name="table-length")>>
+     ,#+END_SRC
+
+     Here we think we import a table
+     ,#+NAME: table-str-length
+     ,#+BEGIN_SRC R :var table="./filename_example-table.tsv" :tangle "./export_var.R" :exports none
+     length(table)
+     print(status)
+     ,#+END_SRC
+
+     # Export the expanded code
+     ,#+BEGIN_SRC R :noweb yes :exports both 
+      <<expand-src-block(block-name="table-str-length")>>
+     ,#+END_SRC
+
+     ,*** Some subcase
+
+     If I run with the data in ="./other_data.tsv"=
+     ,#+call: table-str-length[ :var table="./other_data.tsv"]()
+   #+END_SRC
+
+#+INCLUDE: How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f1.org src org
+
+[[How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f1.org]]
+
+Exported results should be similar to the following:
+
+#+INCLUDE: junk44c-exported.org src org
+     
+** Test Info
+
+
+----------
+
+#+BEGIN_SRC elisp :wrap QUOTE :exports results
+(format "This code was tested using  \n%s  \norg-mode version: %s " (version) (org-version))
+#+END_SRC
+
+** Export Settings                                                :noexport:
+
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
+#+OPTIONS: author:nil broken-links:nil c:nil creator:nil
+#+OPTIONS: d:t date:nil e:t email:nil f:t inline:t num:nil
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:nil title:nil toc:nil todo:t |:t
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.5.1 (Org mode 9.0)
 
 
 * Answer - Try 1
