@@ -130,7 +130,7 @@ GNU Emacs 24.5.1 (x86_64-unknown-cygwin, GTK+ Version 3.14.13)
 org-mode version: 9.0 
 #+END_QUOTE
 
-** COMMENT Export Settings                                                :noexport:
+** Export Settings                                                :noexport:
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
 #+OPTIONS: author:nil broken-links:nil c:nil creator:nil
