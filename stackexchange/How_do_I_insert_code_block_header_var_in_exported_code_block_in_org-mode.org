@@ -1,9 +1,28 @@
 * Answer - Try 2
 ** Code
 *** expand-src-block
+#+NAME: make-expand-src-block
+#+BEGIN_SRC org :results drawer replace :exports code 
 
-  #+NAME: expand-src-block
-  #+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports code
+  ,#+NAME: expand-src-block
+  ,#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports code
+    (save-excursion
+      (org-babel-goto-named-src-block block-name)
+      (setq datum (org-element-at-point))
+      t)
+    (setq info (org-babel-get-src-block-info nil datum))
+    (setq lang (nth 0 info))
+    (setq body (org-babel-expand-src-block nil info))
+    (format "%s" body)
+  ,#+END_SRC
+
+#+END_SRC
+
+#+RESULTS: make-expand-src-block
+:RESULTS:
+
+#+NAME: expand-src-block
+#+BEGIN_SRC elisp :var block-name="" :var datum="" :var info="" :var lang="" :var body="" :exports code
   (save-excursion
     (org-babel-goto-named-src-block block-name)
     (setq datum (org-element-at-point))
@@ -12,19 +31,39 @@
   (setq lang (nth 0 info))
   (setq body (org-babel-expand-src-block nil info))
   (format "%s" body)
-  #+END_SRC
+#+END_SRC
+:END:
 
 *** wrap-code
 
-  #+NAME: wrap-code
-  #+BEGIN_SRC elisp :var body="code-body" :var lang="code-lang" :var params='(":exports" "both" ":results"  "verbatim")
+#+BEGIN_SRC org :results drawer replace :exports code 
+
+  ,#+NAME: wrap-code
+  ,#+BEGIN_SRC elisp :var body="code-body" :var lang="code-lang" :var params='(":exports" "both" ":results"  "verbatim")
+    (concat 
+     "#+begin_src "
+     lang " " (mapconcat (function (lambda (x) (format "%s" x))) params " ") " \n"
+     body
+     "\n#+end_src"
+     )
+  ,#+END_SRC
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+
+#+NAME: wrap-code
+#+BEGIN_SRC elisp :var body="code-body" :var lang="code-lang" :var params='(":exports" "both" ":results"  "verbatim")
   (concat 
    "#+begin_src "
    lang " " (mapconcat (function (lambda (x) (format "%s" x))) params " ") " \n"
    body
    "\n#+end_src"
    )
-  #+END_SRC
+#+END_SRC
+:END:
+
 
 * Answer - Try 1
 ** Embed =org-babel-variable-assignments:R= call into =R= code block using =elisp= and =noweb=
