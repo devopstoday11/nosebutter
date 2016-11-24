@@ -171,8 +171,10 @@ Added ~expand-src-block~ code, ~:exports none~ headers and ~noweb~ code blocks t
 
 Exported results should be similar to the following:
 
-#+INCLUDE: junk44c-exported.org src org
-     
+#+INCLUDE: How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f2.org src org
+
+[[How_do_I_insert_code_block_header_var_in_exported_code_block_in_org-mode-f2.org]]
+
 ** Test Info
 
 
