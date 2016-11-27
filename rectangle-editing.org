@@ -124,10 +124,7 @@
 
 * Code Tested
 
-#+BEGIN_SRC elisp  :exports results :results raw replace 
-(format "emacs version: %s    \norg-mode version: %s    \n" (substring (version) 0 (string-match-p (regexp-quote "(") (version))) (org-version))
-#+END_SRC
-
-#+RESULTS:
-emacs version: GNU Emacs 25.1.1     
-org-mode version: 9.0    
+| / |                 <r> |                  |
+|   |    *emacs version:* | GNU Emacs 25.1.1 |
+|   | *org-mode version:* |              9.0 |
+#+TBLFM: @2$3='(format "%s" (substring (version) 0 (string-match-p (regexp-quote "(") (version)))))::@3$3='(org-version)
