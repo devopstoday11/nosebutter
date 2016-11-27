@@ -1,3 +1,8 @@
+#+OPTIONS: todo:t
+
+** Research 
+*** Completion
+**** TODO Read about `ispell-complete-word-interior-frag` for word completetion
 ** General Purpose Code [0/0]
 *** TODO Return Default Value
 *** TODO Validate Input 
