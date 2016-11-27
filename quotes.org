@@ -12,6 +12,7 @@
 
 * Animals
 ** Dogs
+
 #+BEGIN_QUOTE
 Outside of a dog, a book is a man's best friend. Inside of a dog it's too dark to read.[fn:3] ~ Groucho Marx
 #+END_QUOTE
@@ -29,6 +30,7 @@ Physics is like sex: Sure, it might give some practical results, but that’s no
 #+BEGIN_QUOTE
 OO makes code understandable by encapsultating the moving parts. FP makes code understandable by minimizing moving parts.[fn:2] ~ Michael Feathers
 #+END_QUOTE
+
 * Keeping Backup Copies
 
 #+BEGIN_QUOTE
