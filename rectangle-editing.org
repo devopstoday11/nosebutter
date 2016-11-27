@@ -10,7 +10,6 @@
 	... More ...
   Lec 24 |        1:24:47
   Lec 25 |        1:25:21
-
 #+END_EXAMPLE
 
 ** Write or find an org-mode code block in your favorite programming language.
