@@ -1,23 +1,25 @@
 * Answer Use Org-mode Code Blocks to Convert from a String to List of Checkboxes in Multiple Languages
 ** Wrap your list inside a named dynamic block
+
 #+NAME: my-list-block
-#+BEGIN:
-Lec 1 |         1:20:36
-Lec 2 |         1:10:32
-Lec 3 |         1:08:33
-Lec 4 |         1:20:33
-      ... More ...
-Lec 24 |        1:24:47
-Lec 25 |        1:25:21
-#+END:
+#+BEGIN_EXAMPLE
+  Lec 1 |         1:20:36
+  Lec 2 |         1:10:32
+  Lec 3 |         1:08:33
+  Lec 4 |         1:20:33
+	... More ...
+  Lec 24 |        1:24:47
+  Lec 25 |        1:25:21
+
+#+END_EXAMPLE
+
 ** Write or find an org-mode code block in your favorite programming language.
 *** Example 1 - Using an =elisp= Code Block
 
 #+name: list-into-checklist-elisp
 #+header: :results list raw replace output 
 #+header: :var data=my-list-block()
-#+HEADER: :exports both 
-#+begin_src elisp
+#+begin_src elisp :exports both 
   (dolist (x (split-string data "\n"))
         (princ (format "[ ] %s\n" x)))
 #+end_src
