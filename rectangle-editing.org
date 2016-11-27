@@ -121,3 +121,15 @@
 - [ ] Lec 5 |         1:24:47
 - [ ] Lec 6 |         1:25:21
 #+END_SRC
+
+* Code Tested
+
+#+BEGIN_SRC elisp :wrap QUOTE
+(format "emacs version: %s  \norg-mode version: %s" (substring (version) 0 (string-match-p (regexp-quote "(") (version))) (org-version))
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_QUOTE
+emacs version: GNU Emacs 25.1.1   
+org-mode version: 9.0
+#+END_QUOTE
