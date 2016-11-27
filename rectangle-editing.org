@@ -7,30 +7,33 @@
   Lec 2 |         1:10:32
   Lec 3 |         1:08:33
   Lec 4 |         1:20:33
-	... More ...
-  Lec 24 |        1:24:47
-  Lec 25 |        1:25:21
+  Lec 5 |         1:24:47
+  Lec 6 |         1:25:21
 #+END_EXAMPLE
 
 ** Write or find an org-mode code block in your favorite programming language.
 *** Example 1 - Using an =elisp= Code Block
 
+*Code*
+
 #+name: list-into-checklist-elisp
-#+header: :results list raw replace output 
+#+header: :results raw replace output 
 #+header: :var data=my-list-block()
 #+begin_src elisp :exports both 
   (dolist (x (split-string data "\n"))
-        (princ (format "[ ] %s\n" x)))
+      (unless (string= "" x)
+    	    (princ (format "- [ ] %s\n" x))))
 #+end_src
+
+*Output*
 
 #+RESULTS: list-into-checklist-elisp
 - [ ] Lec 1 |         1:20:36
 - [ ] Lec 2 |         1:10:32
 - [ ] Lec 3 |         1:08:33
 - [ ] Lec 4 |         1:20:33
-- [ ]       ... More ...
-- [ ] Lec 24 |        1:24:47
-- [ ] Lec 25 |        1:25:21
+- [ ] Lec 5 |         1:24:47
+- [ ] Lec 6 |         1:25:21
 
 *** Example 2 - Using a =perl= Code Block
 
