@@ -17,7 +17,7 @@
 *Code*
 
 #+name: list-into-checklist-elisp
-#+header: :results raw replace output 
+#+header: :results org replace output 
 #+header: :var data=my-list-block()
 #+begin_src elisp :exports both 
   (dolist (x (split-string data "\n"))
@@ -28,12 +28,14 @@
 *Output*
 
 #+RESULTS: list-into-checklist-elisp
+#+BEGIN_SRC org
 - [ ] Lec 1 |         1:20:36
 - [ ] Lec 2 |         1:10:32
 - [ ] Lec 3 |         1:08:33
 - [ ] Lec 4 |         1:20:33
 - [ ] Lec 5 |         1:24:47
 - [ ] Lec 6 |         1:25:21
+#+END_SRC
 
 *** Example 2 - Using a =perl= Code Block
 
