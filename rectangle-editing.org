@@ -1,5 +1,5 @@
 * Answer Use Org-mode Code Blocks to Convert from a String to List of Checkboxes in Multiple Languages
-** Wrap your list inside a named dynamic block
+** Wrap your list inside a named example block
 
 #+NAME: my-list-block
 #+BEGIN_EXAMPLE
