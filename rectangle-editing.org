@@ -124,12 +124,15 @@
 
 * Code Tested
 
-#+BEGIN_SRC elisp :wrap QUOTE :exports results 
-(format "\temacs version: %s  \n\torg-mode version: %s" (substring (version) 0 (string-match-p (regexp-quote "(") (version))) (org-version))
+#+BEGIN_SRC elisp  :exports results :results html replace 
+(format "\temacs version: %s  \n\n\torg-mode version: %s\n\n" (substring (version) 0 (string-match-p (regexp-quote "(") (version))) (org-version))
 #+END_SRC
 
 #+RESULTS:
-#+BEGIN_QUOTE
+#+BEGIN_EXPORT html
 	emacs version: GNU Emacs 25.1.1   
+
 	org-mode version: 9.0
-#+END_QUOTE
+
+#+END_EXPORT
+
