@@ -430,7 +430,7 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 
 * Does ~#+ATTR_HTML:~ syntax render in GitHub? Not yet.
 
-#+BEGIN_SRC org :results raw replace
+#+BEGIN_SRC org :results raw replace :exports both
   ,#+ATTR_HTML: :title The Org mode homepage :style color:red;
   [[http://orgmode.org]]
 #+END_SRC
