@@ -418,3 +418,14 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 
 
 #+END_SRC
+
+* Export Settings for GitLab/GitHub Example
+#+BEGIN_SRC org
+,* Export Settings                                                  :noexport:
+#+OPTIONS: todo:t
+#+OPTIONS:  f:t
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+
+#+END_SRC
