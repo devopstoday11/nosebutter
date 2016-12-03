@@ -427,3 +427,8 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 ,#+EXPORT_SELECT_TAGS: export
 ,#+EXPORT_EXCLUDE_TAGS: noexport
 #+END_SRC
+
+* Do ~#+ATTR_HTML~ render in GitHub?
+
+  #+ATTR_HTML: :title The Org mode homepage :style color:red;
+  [[http://orgmode.org]]
