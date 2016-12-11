@@ -584,4 +584,16 @@ example-named-block5-value
   #+END_SRC
 
 
+** Get Filename from URL in another Table Cell using ~url-file-nondirectory~ and ~org-lookup-first~
+
+    #+NAME: chef-install-media-info
+    | Property-Name | Property-Value                                                                                           |
+    |---------------+----------------------------------------------------------------------------------------------------------|
+    | OS            | rhel6                                                                                                    |
+    | Architecture  | x86_64                                                                                                   |
+    | SHA256        | b6f2178f77838f12b33be8216e10363d53bbc96ebb3cbeb86af45a06285ff72b                                         |
+    | URL           | https://packages.chef.io/files/stable/chef-server/12.11.1/el/6/chef-server-core-12.11.1-1.el6.x86_64.rpm |
+    | Filename      | chef-server-core-12.11.1-1.el6.x86_64.rpm                                                                |
+    |---------------+----------------------------------------------------------------------------------------------------------|
+    #+TBLFM: @6$2='(url-file-nondirectory (format "%s" (org-lookup-first "URL" '(@I$1..@II$1) '(@I$2..@II$2) 'string= )));L
 
