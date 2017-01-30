@@ -173,6 +173,11 @@ when saturday
 end
 #+end_src
 
+* Export Settings                                                  :noexport:
+#+OPTIONS:  f:t
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
 * Footnotes
 
 [fn:1] http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29
