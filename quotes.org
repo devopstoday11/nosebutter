@@ -39,6 +39,12 @@ back up your work regularly. Because you are lazy and prone to magical thinking,
 will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
 #+END_QUOTE
 
+* Terraforming
+
+#+BEGIN_QUOTE
+Biology rather than physical engineering is the only realistic way to do things on a planetary scale.[fn:4] ~ Paul Dear at the MRC Laboratory of Molecular Biology in Cambridge.
+#+END_QUOTE
+
 * Footnotes
 
 [fn:1] Healy, Kieran. "Choosing Your Workflow Applications."
@@ -46,3 +52,6 @@ will not do this responsibly by yourself.[fn:1] ~ Kieran Healy
 [fn:2] [[https://twitter.com/mfeathers/status/29581296216][Feathers, Michael. Twitter]]
 
 [fn:3] http://www.brainyquote.com/quotes/quotes/g/grouchomar137218.html
+
+[fn:4] Build a Mars base with a box of engineered bugs | New Scientist - www.newscientist.com
+https://www.newscientist.com/article/mg21628855.100-build-a-mars-base-with-a-box-of-engineered-bugs/?cmpid=RSS%2525257cNSNS%2525257c2012-GLOBAL%2525257conline-news
