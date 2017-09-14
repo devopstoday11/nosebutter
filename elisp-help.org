@@ -35,6 +35,11 @@
       
 ** Get Major Mode of Current Buffer
 
-#+BEGIN_SRC elisp
-   (buffer-local-value 'major-mode (get-buffer (buffer-name)))
-#+END_SRC
+   - Used the following references: 
+      - https://www.gnu.org/software/emacs/manual/html_node/elisp/Buffer-Names.html
+      - https://stackoverflow.com/a/11488539/951721
+   
+
+   #+BEGIN_SRC elisp
+      (buffer-local-value 'major-mode (get-buffer (buffer-name)))
+   #+END_SRC
