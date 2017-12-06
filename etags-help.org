@@ -1,4 +1,4 @@
-** Mapping noweb references to named code blocks
+** Mapping noweb references to named objects
 
 #+begin_src shell :eval never
   # Map NOWEB References
