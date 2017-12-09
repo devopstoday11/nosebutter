@@ -1,0 +1,641 @@
+'name': 'Grammar Tests'
+'scopeName': 'source.gmrtsts'
+'limitLineLength': false
+'fileTypes': [
+  'gmrtsts'
+]
+'patterns': [
+  {
+    'include': '#code-block-shell'
+  }
+
+  # {
+  #   #'comment': 'code-block-shell'
+  #   #'comment': '((?=[ ]*)([#][+]BEGIN)(_SRC)[ \t]+([-\w]+))([\w\W]+(?=[ ]*[#][+]END))((?=[ ]*)([#][+]END\3))'
+  #   'name': 'xyz.gmrtsts'
+  #   'begin': '(?=[ ]*)([#][+]BEGIN)(_SRC)([ \\t]+)(shell)(.+)?'
+  #   'end': '(?=[ ]*)([#][+]END\\2)'
+  #   'beginCaptures':
+  #     '1':
+  #       'name': 'xyz.xyz-1.begin.gmrtsts'
+  #     '2':
+  #       'name': 'xyz.xyz-2.gmrtsts'
+  #     '3':
+  #       'name': 'xyz.xyz-3.gmrtsts'
+  #     '4':
+  #       'name': 'xyz.xyz-4.gmrtsts'
+  #     '5':
+  #       'name': 'xyz.xyz-5.gmrtsts'
+  #   'endCaptures':
+  #     '1':
+  #       'name': 'xyz.xyz-1.end.gmrtsts'
+  #   'contentName': 'source.embedded.${4:/downcase}'
+  #   'patterns': [
+  #     {
+  #       'include': 'source.shell-session'
+  #     }
+  #   ]
+  # }
+
+  # {
+  #   # Attempt to provide syntax highlighting for unknown languages
+  #   'begin': '^\\s*([#][+]BEGIN)(_SRC)\\s*([-\\w]+)\\s*(.*)$'
+  #   'beginCaptures':
+  #     '0':
+  #       'name': 'support.gmrtsts'
+  #   'end': '^\\s*([#][+]END)\\2\\s*$'
+  #   'endCaptures':
+  #     '0':
+  #       'name': 'support.gmrtsts'
+  #   'name': 'markup.code.other.gmrtsts'
+  #   'contentName': 'source.embedded.${3:/downcase}'
+  # }
+  #
+  # {
+  #   'begin': '^\\s*([#][+]BEGIN_SRC).*$'
+  #   'beginCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'end': '^\\s*([#][+]END_SRC)\\s*$'
+  #   'endCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'name': 'markup.raw.gfm'
+  # }
+  #
+  #
+  # {
+  #   'comment': 'code-block-shell'
+  #   'begin': '^\\s*([#][+]BEGIN_SRC)\\s+(?i:(sh|bash|shell))(\\s.+)*$'
+  #   'end': '^\\s*([#][+]END_SRC)\\s*$'
+  #   'beginCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'endCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'name': 'markup.code.shell.gfm'
+  #   'contentName': 'source.embedded.shell'
+  #   'patterns': [
+  #     {
+  #       'include': 'source.shell'
+  #     }
+  #   ]
+  # }
+
+  # {
+  #   'comment': 'code-block-shell'
+  #   'begin': '^\\s*([#][+]BEGIN_SRC)\\s+(?i:(sh|bash|shell))(\\s.+)*$'
+  #   'end': '^\\s*([#][+]END_SRC)\\s*$'
+  #   'beginCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'endCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'name': 'markup.code.shell.gfm'
+  #   'contentName': 'source.embedded.shell-gmrtsts'
+  #   'patterns': [
+  #     {
+  #       'include': 'source.shell-gmrtsts'
+  #     }
+  #   ]
+  # }
+
+
+  # {
+  #   'begin': '^\\s*(`{3,}|~{3,}).*$'
+  #   'beginCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'end': '^\\s*\\1((?<=`)`+|(?<=~)~+)?\\s*$'
+  #   'endCaptures':
+  #     '0':
+  #       'name': 'support.gfm'
+  #   'name': 'markup.raw.gfm'
+  # }
+
+
+  {
+    'include': '#comment'
+  }
+  {
+    'include': '#comment-block'
+  }
+  {
+    'include': '#example-line'
+  }
+  {
+    'include': '#example-block'
+  }
+  {
+    'include': '#quote-block'
+  }
+  {
+    'include': '#verbatim'
+  }
+  {
+    'include': '#code'
+  }
+  {
+    'include': '#emphasis'
+  }
+  {
+    'match': '^\\s*(\\d+\\.)([ \\t]+)(.*)$\\n'
+    'captures':
+      '0':
+        'name': 'markup.list.gmrtsts'
+      '1':
+        'name': 'punctuation.definition.list.gmrtsts'
+      '2':
+        'name': 'punctuation.definition.list.gmrtsts'
+      '3':
+        'name': 'markup.list.item.gmrtsts'
+    'patterns': [
+      {
+        'include': '#emphasis'
+      }
+    ]
+  }
+  {
+    'begin': '^(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-1.gmrtsts'
+    'captures':
+      '1':
+        'name': 'markup.heading.marker.gmrtsts'
+      '2':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+      {
+        'include': '#emphasis'
+      }
+    ]
+  }
+  {
+    'begin': '^(\\*{1})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-2.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.star-1.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+      {
+        'include': '#emphasis'
+      }
+    ]
+  }
+
+  {
+    'begin': '^(\\*{2})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-3.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+      {
+        'include': '#emphasis'
+      }
+    ]
+  }
+
+  {
+    'begin': '^(\\*{3})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-4.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+      {
+        'include': '#emphasis'
+      }
+    ]
+  }
+
+  {
+    'begin': '^(\\*{4})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-5.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+
+  {
+    'begin': '^(\\*{5})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-6.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+
+  {
+    'begin': '^(\\*{6})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-7.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+  {
+    'begin': '^(\\*{7})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-8.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+  {
+    'begin': '^(\\*{8})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-9.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+]
+'repository':
+
+  'comment':
+    'patterns': [
+      {
+        'begin': '^\\s*#\\s'
+        'end': '$'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.gmrtsts'
+        'name': 'comment.line.gmrtsts'
+      }
+    ]
+
+  'comment-block':
+    'patterns': [
+      {
+        'begin': '^(?i:\\s*#\\+BEGIN_COMMENT\\s*)'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.gmrtsts'
+        'end': '^(?i:\\s*#\\+END_COMMENT\\s*)'
+        'name': 'comment.block.gmrtsts'
+      }
+    ]
+
+  'example-line':
+    'patterns': [
+      {
+        'begin': '^\\s*:\\s'
+        'end': '$'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.string.gmrtsts'
+        'name': 'string.unquoted.gmrtsts'
+      }
+    ]
+
+  'example-block':
+    'patterns':[
+        {
+          'begin': '^(?i:\\s*#\\+BEGIN_EXAMPLE\\s*)'
+          'beginCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'end': '^(?i:\\s*#\\+END_EXAMPLE\\s*)'
+          'endCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'contentName': 'string.unquoted.gmrtsts'
+        }
+    ]
+
+  'quote-block':
+    'patterns': [
+      {
+        'begin': '^(?i:\\s*#\\+BEGIN_QUOTE\\s*)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.quote.gmrtsts'
+        'end': '^(?i:\\s*#\\+END_QUOTE\\s*)'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.quote.gmrtsts'
+        'contentName': 'markup.quote.gmrtsts'
+        'patterns': [
+          {
+            'include': '#emphasis'
+          }
+        ]
+      }
+    ]
+
+  'unordered-list':
+    'patterns': [
+        {
+          'match': '^\\s+([*+-])(\\s+)'
+          'captures':
+            '1':
+              'name': 'punctuation.definition.item.gmrtsts'
+            '2':
+              'name': 'punctuation.definition.item.spaces.gmrtsts'
+        }
+    ]
+
+  # 'ordered-list':
+  #   'patterns': [
+  #     {
+  #       'match': '^\\s*(\\d+\\.)[ \\t]+'
+  #       'captures':
+  #         '1':
+  #           'name': 'punctuation.definition.list.gmrtsts'
+  #     }
+  #   ]
+
+  'emphasis':
+    'patterns':[
+      {
+        'include': '#bold'
+      }
+      {
+        'include': '#italic'
+      }
+      {
+        'include': '#underline'
+      }
+      {
+        'include': '#strike-through'
+      }
+    ]
+
+  'code':
+      'patterns': [
+        {
+          'begin': '(?<=^|[^\\w\\d\\~])(\\~)(?!$|\\~|\\s)'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'end': '(?<!^|\\s)(\\~)(?=$|[^\\w|\\d])'
+          'endCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'name': 'markup.code.line.gmrtsts'
+
+        }
+    ]
+
+  'verbatim':
+      'patterns': [
+        {
+          'begin': '(?<=^|[^\\w\\d\\=])(\\=)(?!$|\\=|\\s)'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'end': '(?<!^|\\s)(\\=)(?=$|[^\\w|\\d])'
+          'endCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'name': 'markup.verbatim.gmrtsts'
+        }
+    ]
+
+  'bold':
+      'patterns': [
+        {
+          'begin': '(?<=^|[^\\w\\d\\*])(\\*)(?!$|\\*|\\s)'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'end': '(?<!^|\\s)(\\*)(?=$|[^\\w|\\d])'
+          'endCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'name': 'markup.bold.gmrtsts'
+          'patterns': [
+            {
+              'match': '(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+              'name': 'constant.character.entity.gmrtsts'
+              'captures':
+                '1':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+                '3':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+            }
+            {
+              'include': '#italic'
+            }
+            {
+              'include': '#underline'
+            }
+            {
+              'include': '#strike-through'
+            }
+            {
+              'include': '#code'
+            }
+            {
+              'include': '#verbatim'
+            }
+          ]
+      }
+    ]
+
+  'underline':
+    'patterns':[
+       {
+         'begin': '(?<=^|[^\\w\\d_])(_)(?!$|_|\\s)'
+         'beginCaptures':
+           '1':
+             'name': 'punctuation.definition.character.gmrtsts'
+         'end': '(?<!^|\\s)(_)(?=$|[^\\w|\\d])'
+         'endCaptures':
+           '1':
+             'name': 'punctuation.definition.character.gmrtsts'
+         'name': 'markup.underline.link.gmrtsts'
+         'patterns': [
+           {
+             'match': '(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+             'name': 'constant.character.entity.gmrtsts'
+             'captures':
+               '1':
+                 'name': 'punctuation.definition.entity.gmrtsts'
+               '3':
+                 'name': 'punctuation.definition.entity.gmrtsts'
+           }
+          {
+             'include': '#bold'
+          }
+          {
+            'include': '#italic'
+          }
+          {
+            'include': '#strike-through'
+          }
+          {
+            'include': '#code'
+          }
+          {
+            'include': '#verbatim'
+          }
+         ]
+       }
+
+    ]
+  'italic':
+    'patterns':[
+      {
+          'begin': '(?<=^|[^\\w\\d\\/])(\\/)(?!$|\\/|\\s)'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'end': '(?<!^|\\s)(\\/)(?=$|[^\\w|\\d])'
+          'endCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'name': 'markup.italic.gmrtsts'
+          'patterns': [
+            {
+              'match': '(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+              'name': 'constant.character.entity.gmrtsts'
+              'captures':
+                '1':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+                '3':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+            }
+            {
+              'include': '#bold'
+            }
+            {
+              'include': '#underline'
+            }
+            {
+              'include': '#strike-through'
+            }
+            {
+              'include': '#code'
+            }
+            {
+              'include': '#verbatim'
+            }
+          ]
+        }
+    ]
+
+  'strike-through':
+    'patterns': [
+        {
+          'begin': '(?<=^|[^\\w\\d#\\+])(\\+)(?!$|\\+|\\s)'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'end': '(?<!^|\\s)(\\+)(?=$|[^\\w|\\d])'
+          'endCaptures':
+            '1':
+              'name': 'punctuation.definition.character.gmrtsts'
+          'name': 'markup.strike.gmrtsts'
+          'patterns': [
+            {
+              'match': '(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)'
+              'name': 'constant.character.entity.gmrtsts'
+              'captures':
+                '1':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+                '3':
+                  'name': 'punctuation.definition.entity.gmrtsts'
+            }
+            {
+              'include': '#bold'
+            }
+            {
+              'include': '#italic'
+            }
+            {
+              'include': '#underline'
+            }
+            {
+              'include': '#code'
+            }
+            {
+              'include': '#verbatim'
+            }
+          ]
+        }
+    ]
+
+  'code-block-shell':
+    'patterns':[
+        {
+          'begin': '^(\\s*#\\+BEGIN_SRC\\s+)(shell)(\\s+(:\\w+)(\\s+.+)?)*$'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'end': '^(?i:\\s*#\\+END_SRC\\s*)$'
+          'endCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'contentName': 'source.embedded.shell-gmrtsts'
+          'patterns':[
+            {
+              'include': 'source.shell-gmrtsts'
+            }
+          ]
+        }
+    ]

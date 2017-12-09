@@ -1,0 +1,140 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+@default-very-light-gray: #c5c8c6;
+@default-light-gray: #969896;
+@default-gray: #373b41;
+@default-dark-gray: #282a2e;
+@default-very-dark-gray: #1d1f21;
+
+@default-cyan: cyan;
+@default-blue: blue;
+@default-purple: purple;
+@default-green: green;
+@default-red: red;
+@default-orange: orange;
+@default-light-orange: #ffd280;
+
+
+.grammar-tests {
+}
+
+.syntax--strike.syntax--gmrtsts  {
+  color: lighten(@default-red, 25%);
+  text-decoration: line-through;
+  font-weight: 100;
+}
+
+.syntax--leading-star.syntax--gmrtsts  {
+  color: @syntax-background-color;
+  &:hover {
+     color: @syntax-invisible-character-color;
+  }
+}
+
+.syntax--heading-1.syntax--gmrtsts  {
+   font-weight: bolder;
+}
+
+ .syntax--heading-2.syntax--gmrtsts  {
+   font-weight: bolder;
+}
+
+.syntax--heading-3.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-4.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-5.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-6.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-7.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-8.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--heading-9.syntax--gmrtsts  {
+  font-weight: bolder;
+}
+
+.syntax--punctuation.syntax--definition.syntax--list.syntax--gmrtsts {
+  color: @default-blue;
+}
+
+.syntax--punctuation.syntax--definition.syntax--quote.syntax--gmrtsts {
+
+  color: @syntax-invisible-character-color;
+
+  &:hover {
+    color: darken(@syntax-text-color, 20%);
+  }
+}
+
+.syntax--markup.syntax--quote.syntax--gmrtsts {
+   font-weight: 100;
+   color: darken(@syntax-text-color, 20%);
+   &::before {
+     content: "  ";
+   }
+}
+
+.syntax--string.syntax--unquoted.syntax--gmrtsts {
+  font-weight: 100;
+  color: @default-blue;
+}
+
+.syntax--punctuation.syntax--definition.syntax--string.syntax--gmrtsts {
+  color: @syntax-invisible-character-color;
+
+  &:hover {
+    color: darken(@syntax-text-color, 20%);
+  }
+}
+
+// punctuation.definition.entity
+.syntax--punctuation.syntax--definition.syntax--character.syntax--gmrtsts {
+  color: @syntax-invisible-character-color;
+  font-style: normal;
+  font-weight: 100;
+
+  &:hover {
+    color: darken(@syntax-text-color, 20%);
+  }
+}
+
+.syntax--markup.syntax--code.syntax--line.syntax--gmrtsts {
+  color: cyan;
+  font-family: serif;
+  font-weight: lighter;
+}
+
+.syntax--markup.syntax--verbatim.syntax--gmrtsts {
+  color: lighten(blue, 20%);
+  font-family: monospace;
+}
+
+div.line .syntax--source.syntax--embedded.syntax--shell-gmrtsts {
+  &:hover {
+    background-color: blue;
+  }
+}
+
+div.line {
+  // &:hover {
+  //   background-color: red;
+  // }
+}
