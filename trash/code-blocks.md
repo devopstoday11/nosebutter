@@ -21,6 +21,7 @@ case ${VARIABLE_NAME} in
         ;;
     *)
         echo ${VARIABLE_NAME}
+        ;;
 esac
 
 exit

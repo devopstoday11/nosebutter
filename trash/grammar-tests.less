@@ -22,16 +22,32 @@
 .grammar-tests {
 }
 
+
+.syntax--bold.syntax--gmrtsts  {
+  color: lighten(@syntax-text-color, 15%);
+  font-weight: bold;
+}
+
+.syntax--italic.syntax--gmrtsts  {
+  // color: lighten(@syntax-text-color, 15%);
+  font-style: italic;
+}
+
+.syntax--underline.syntax--gmrtsts  {
+  // color: lighten(@syntax-text-color, 15%);
+  text-decoration: underline;
+}
+
 .syntax--strike.syntax--gmrtsts  {
-  color: lighten(@default-red, 25%);
+  // color: lighten(@default-red, 25%);
   text-decoration: line-through;
   font-weight: 100;
 }
 
 .syntax--leading-star.syntax--gmrtsts  {
-  color: @syntax-background-color;
+  color: @syntax-invisible-character-color;
   &:hover {
-     color: @syntax-invisible-character-color;
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
   }
 }
 
@@ -72,7 +88,7 @@
 }
 
 .syntax--punctuation.syntax--definition.syntax--list.syntax--gmrtsts {
-  color: @default-blue;
+  color: darken(@syntax-text-color, 10%);
 }
 
 .syntax--punctuation.syntax--definition.syntax--quote.syntax--gmrtsts {
@@ -80,7 +96,7 @@
   color: @syntax-invisible-character-color;
 
   &:hover {
-    color: darken(@syntax-text-color, 20%);
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
   }
 }
 
@@ -94,14 +110,14 @@
 
 .syntax--string.syntax--unquoted.syntax--gmrtsts {
   font-weight: 100;
-  color: @default-blue;
+  color: @syntax-text-color;
 }
 
 .syntax--punctuation.syntax--definition.syntax--string.syntax--gmrtsts {
   color: @syntax-invisible-character-color;
 
   &:hover {
-    color: darken(@syntax-text-color, 20%);
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
   }
 }
 
@@ -112,29 +128,34 @@
   font-weight: 100;
 
   &:hover {
-    color: darken(@syntax-text-color, 20%);
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
   }
 }
 
 .syntax--markup.syntax--code.syntax--line.syntax--gmrtsts {
-  color: cyan;
   font-family: serif;
-  font-weight: lighter;
+  // font-weight: lighter;
 }
 
 .syntax--markup.syntax--verbatim.syntax--gmrtsts {
-  color: lighten(blue, 20%);
+  // color: lighten(blue, 20%);
   font-family: monospace;
 }
-
-div.line .syntax--source.syntax--embedded.syntax--shell-gmrtsts {
-  &:hover {
-    background-color: blue;
-  }
+.syntax--border.syntax--pipe.syntax--outer {
+  color: multiply(@syntax-invisible-character-color, gray);
+  font-weight: bold;
+}
+.syntax--border.syntax--header {
+  color: multiply(@syntax-invisible-character-color, gray);
+  font-weight: bold;
+  text-decoration: line-through;
 }
 
-div.line {
-  // &:hover {
-  //   background-color: red;
-  // }
+.syntax--border.syntax--pipe.syntax--inner {
+  color: multiply(@syntax-invisible-character-color, gray);
+  font-weight: bold;
+}
+
+.syntax--table {
+    // background-color: lighten(@syntax-background-color, 2%);
 }

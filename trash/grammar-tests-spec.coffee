@@ -1,3 +1,4 @@
+
 describe "Grammar Tests grammar", ->
   grammar = null
 
