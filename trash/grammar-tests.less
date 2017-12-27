@@ -88,7 +88,11 @@
 }
 
 .syntax--punctuation.syntax--definition.syntax--list.syntax--gmrtsts {
-  color: darken(@syntax-text-color, 10%);
+  color: darken(@syntax-text-color, 11%);
+  font-weight: 500;
+  &:hover {
+    font-weight: bolder;
+  }
 }
 
 .syntax--punctuation.syntax--definition.syntax--quote.syntax--gmrtsts {
@@ -158,4 +162,25 @@
 
 .syntax--table {
     // background-color: lighten(@syntax-background-color, 2%);
+}
+
+.syntax--code-block.syntax--type.syntax--gmrtsts {
+  color: @syntax-invisible-character-color;
+  font-style: italic;
+  &:hover {
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
+    font-style: normal;
+    font-weight: bold;
+  }
+
+}
+
+.syntax--code-block.syntax--code-block-headers.syntax--gmrtsts {
+  color: @syntax-invisible-character-color;
+  font-style: italic;
+  &:hover {
+    color: multiply(@syntax-invisible-character-color, @syntax-invisible-character-color);
+    font-style: normal;
+  }
+
 }

@@ -32,17 +32,43 @@
   {
     'include': '#code-block-shell'
   }
-  # {
-  #   'include': '#tables'
-  # }
+  {
+    'include': '#code-block-ruby'
+  }
+  {
+    'include': '#code-block-python'
+  }
+  {
+    'include': '#code-block-sql'
+  }
+  {
+    'include': '#code-block-css'
+  }
+  {
+    'include': '#keywords-line'
+  }
+  {
+    'include': '#babel-call'
+  }
+
+  {
+    'match': '^(\\s*\\d+\\.)(\\s+)'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.list.gmrtsts'
+      '2':
+        'name': 'punctuation.definition.list.space.gmrtsts'
+  }
+
   {
     'match': '^(\\s+[*]|\\s*[+-])(\\s+)'
     'captures':
       '1':
         'name': 'punctuation.definition.list.gmrtsts'
       '2':
-        'name': 'punctuation.definition.list.spaces.gmrtsts'
+        'name': 'punctuation.definition.list.space.gmrtsts'
   }
+
   {
     'begin': '^(?:[ \\t]*)(\\|)'
     'end': '(\\|)?(?:\\s*)$'
@@ -70,29 +96,6 @@
   }
 
   {
-    'match': '^\\s*(\\d+\\.)([ \\t]+)(.*)$\\n'
-    'captures':
-      '0':
-        'name': 'markup.list.gmrtsts'
-      '1':
-        'name': 'punctuation.definition.list.gmrtsts'
-      '2':
-        'name': 'punctuation.definition.list.gmrtsts'
-      '3':
-        'name': 'markup.list.item.gmrtsts'
-    'patterns': [
-      {
-        'include': '#code'
-      }
-      {
-        'include': '#verbatim'
-      }
-      {
-        'include': '#emphasis'
-      }
-    ]
-  }
-  {
     'begin': '^(\\*{1})(\\s+)'
     'end': '$'
     'name': 'markup.heading.heading-1.gmrtsts'
@@ -113,6 +116,7 @@
       }
     ]
   }
+
   {
     'begin': '^(\\*{1})(\\*{1})(\\s+)'
     'end': '$'
@@ -384,19 +388,9 @@
             '1':
               'name': 'punctuation.definition.item.gmrtsts'
             '2':
-              'name': 'punctuation.definition.item.spaces.gmrtsts'
+              'name': 'punctuation.definition.item.space.gmrtsts'
         }
     ]
-
-  # 'ordered-list':
-  #   'patterns': [
-  #     {
-  #       'match': '^\\s*(\\d+\\.)[ \\t]+'
-  #       'captures':
-  #         '1':
-  #           'name': 'punctuation.definition.list.gmrtsts'
-  #     }
-  #   ]
 
   'emphasis':
     'patterns':[
@@ -425,7 +419,7 @@
           'endCaptures':
             '1':
               'name': 'punctuation.definition.character.gmrtsts'
-          'name': 'markup.code.line.gmrtsts'
+          'name': 'markup.raw.code.line.gmrtsts'
 
         }
     ]
@@ -441,7 +435,7 @@
           'endCaptures':
             '1':
               'name': 'punctuation.definition.character.gmrtsts'
-          'name': 'markup.verbatim.gmrtsts'
+          'name': 'markup.raw.verbatim.gmrtsts'
         }
     ]
 
@@ -616,6 +610,10 @@
           'beginCaptures':
             '1':
               'name': 'punctuation.definition.string.gmrtsts'
+            '2':
+              'name': 'code-block.type.gmrtsts'
+            '3':
+              'name': 'code-block.code-block-headers.gmrtsts'
           'end': '^(?i)(\\s*#\\+END_SRC\\s*)$'
           'endCaptures':
             '0':
@@ -636,6 +634,10 @@
           'beginCaptures':
             '1':
               'name': 'punctuation.definition.string.gmrtsts'
+            '2':
+              'name': 'code-block.type.gmrtsts'
+            '3':
+              'name': 'code-block.code-block-headers.gmrtsts'
           'end': '^(?i)(\\s*#\\+END_SRC\\s*)$'
           'endCaptures':
             '0':
@@ -647,4 +649,115 @@
             }
           ]
         }
+    ]
+
+  'code-block-python':
+    'patterns':[
+        {
+          'begin': '^(\\s*#\\+BEGIN_SRC\\s+)(python)(\\s+(:\\w+)(\\s+.+)?)*$'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.string.gmrtsts'
+            '2':
+              'name': 'code-block.type.gmrtsts'
+            '3':
+              'name': 'code-block.code-block-headers.gmrtsts'
+          'end': '^(?i)(\\s*#\\+END_SRC\\s*)$'
+          'endCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'contentName': 'source.embedded.python-gmrtsts'
+          'patterns':[
+            {
+              'include': 'source.python'
+            }
+          ]
+        }
+    ]
+
+  'code-block-sql':
+    'patterns':[
+        {
+          'begin': '^(\\s*#\\+BEGIN_SRC\\s+)(sql)(\\s+(:\\w+)(\\s+.+)?)*$'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.string.gmrtsts'
+            '2':
+              'name': 'code-block.type.gmrtsts'
+            '3':
+              'name': 'code-block.code-block-headers.gmrtsts'
+          'end': '^(?i)(\\s*#\\+END_SRC\\s*)$'
+          'endCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'contentName': 'source.embedded.sql-gmrtsts'
+          'patterns':[
+            {
+              'include': 'source.sql'
+            }
+          ]
+        }
+    ]
+  'code-block-css':
+    'patterns':[
+        {
+          'begin': '^(\\s*#\\+BEGIN_SRC\\s+)(css)(\\s+(:\\w+)(\\s+.+)?)*$'
+          'beginCaptures':
+            '1':
+              'name': 'punctuation.definition.string.gmrtsts'
+            '2':
+              'name': 'code-block.type.gmrtsts'
+            '3':
+              'name': 'code-block.code-block-headers.gmrtsts'
+          'end': '^(?i)(\\s*#\\+END_SRC\\s*)$'
+          'endCaptures':
+            '0':
+              'name': 'punctuation.definition.string.gmrtsts'
+          'contentName': 'source.embedded.css-gmrtsts'
+          'patterns':[
+            {
+              'include': 'source.css'
+            }
+          ]
+        }
+    ]
+
+  'keywords-line':
+    'patterns': [
+      {
+        'begin': '^(\\s*#[+])(HEADER|NAME|PLOT|CAPTION|RESULTS[\\\[\\\]a-f0-9]*)(:)((\\s+)(.+))?'
+        'end': '$'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.keyword.gmrtsts'
+          '2':
+            'name': 'markup.function.keyword.key-name.gmrtsts'
+          '3':
+            'name': 'punctuation.definition.keyword.gmrtsts'
+          '5':
+            'name': 'punctuation.definition.keyword.space.gmrtsts'
+          '6':
+            'name': 'punctuation.definition.keyword.key-value.gmrtsts'
+        'name': 'markup.keyword.gmrtsts'
+      }
+    ]
+
+  'babel-call':
+    'patterns': [
+      {
+        'begin': '^(\\s*#[+])(CALL[\\\[\\\]a-zA-Z0-9,]*)(:)((\\s+)(.+))?'
+        'end': '$'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.keyword.gmrtsts'
+          '2':
+            'name': 'markup.function.keyword.key-name.gmrtsts'
+          '3':
+            'name': 'punctuation.definition.keyword.gmrtsts'
+          '5':
+            'name': 'punctuation.definition.keyword.space.gmrtsts'
+          '6':
+            'name': 'punctuation.definition.keyword.key-value.gmrtsts'
+        'name': 'markup.keyword.gmrtsts'
+      }
     ]

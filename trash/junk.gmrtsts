@@ -1,3 +1,5 @@
+# -*- mode: org; -*-
+
 * Summary
 
 Required to implement middleware auto start & stop scripts on all servers maintained by Application Engineering team.

@@ -1,9 +1,11 @@
 
 ### Heading Level 3
 
+Example of `inline code`
+
 <!-- Before the shell code block -->
 
-``` shell
+```shell
 #!/usr/bin/env bash
 
 # Comment
