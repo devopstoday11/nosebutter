@@ -48,14 +48,14 @@ Simple2.xsl content
 Example command
 
 #+name: ex1-command
-#+BEGIN_SRC shell :results verbatim replace :exports both :wrap "EXPORT html"
+#+BEGIN_SRC shell :results verbatim replace :exports both 
   xsltproc ./Simple2.xsl ./test.xml 
 #+END_SRC
 
 Results
 
 #+RESULTS: ex1-command
-#+BEGIN_EXPORT html
+#+begin_example
 <pre>1a
 1b
 1c
@@ -66,5 +66,5 @@ Results
 3b
 3c
 </pre>
-#+END_EXPORT
+#+end_example
 
