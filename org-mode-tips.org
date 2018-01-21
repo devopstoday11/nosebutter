@@ -13,6 +13,7 @@
      2. Tangle with =C-u C-c C-v t=
    
 ** Add 2 columns of Hex Numbers and Display
+
 #+BEGIN_SRC org
 | 0x10 | 0x0 |  16 | 10 |
 | 0x20 | 0x1 |  33 | 21 |
@@ -22,40 +23,53 @@
 #+END_SRC
 
 ** Prompt for =:var= variables dynamically in =minibuffer=
-#+begin_src elisp :exports both
-(read-passwd "Password: ")
-#+end_src
+*** Example: Prompt for password
+    - elisp code
+       #+name: ex1-prompt-for-password
+       #+begin_src elisp :exports both
+        (read-passwd "Password: ")
+       #+end_src
+    - results
+       #+RESULTS: ex1-prompt-for-password
+       : myPassword
 
-#+RESULTS:
-: myPassword
+*** Example: Prompt for unsername
+    - elisp code
+      #+name: ex1-prompt-for-username
+      #+begin_src elisp :exports both
+       (read-string "Username: ")
+      #+end_src
+    - results
+      #+RESULTS: ex1-prompt-for-username
+      : myUsername
 
-#+begin_src elisp :exports both
-(read-string "Username: ")
-#+end_src
+*** Implementation Example - SharePoint RESTful Call using =curl= Command
 
-#+RESULTS:
-: myUsername
+   #+BEGIN_SRC org
+     ,#+NAME: ex2-rest-sp-curl
+     ,#+HEADER: :wrap EXAMPLE
+     ,#+HEADER: :results replace output 
+     ,#+HEADER: :var password=(read-passwd "Password: ")
+     ,#+HEADER: :var username=(read-string "Username: ")
+     ,#+begin_src sh
+       curl --ntlm -u "$username":"$password" -H "Accept: application/json;odata=verbose" "http://sharepoint.example.org/the/path/_api/web/Lists/getbytitle('MyTitle')/items?"
+     ,#+end_src
+   #+END_SRC
+   
+   To update list need to pass `X-RequestDigest: FormDigestValue` to Get FormDigestValue submit `POST` to `/_api/contextinfo` with no data. See example curl command below:
+   #+BEGIN_SRC shell :results replace output  :var username=(read-string "Username: ") :var password=(read-passwd "Password: ") :var site_hostname="site.hostname" :var site_path="path/to/site" 
+     curl -v -v -v --ntlm -u "$username":"$password" -H "content-type:application/json;odata=verbose" -H "accept:application/json;odata=verbose" -d "" -X POST "http://$site_hostname/$site_path/_api/contextinfo"
+    #+END_SRC
 
-#+NAME: ex2-rest-sp-curl
-#+HEADER: :wrap EXAMPLE
-#+HEADER: :results replace output 
-#+HEADER: :var password=(read-passwd "Password: ")
-#+HEADER: :var username=(read-string "Username: ")
-#+begin_src sh
-curl --ntlm -u $username:$password -H "Accept: application/json;odata=verbose" "http://sharepoint.example.org/the/path/_api/web/Lists/getbytitle('MyTitle')/items?"
-#+end_src
-
-To update list need to pass `X-RequestDigest: FormDigestValue` to Get FormDigestValue submit `POST` to `/_api/contextinfo` with no data. See example curl command below:
-
-:  curl -v -v -v --ntlm -u $username:$password -H "content-type:application/json;odata=verbose" -H "accept:application/json;odata=verbose" -d "" -X POST "http://$site_hostname/$site_path/_api/contextinfo"
-
-TO create item then pass `X-RequestDigest` as a header
+To create item then pass `X-RequestDigest` as a header
 
     #+BEGIN_SRC shell :results replace output  :var username=(read-string "Username: ") :var password=(read-passwd "Password: ") :var site_hostname="site.hostname" :var site_path="path/to/site" :var list_guid="ba393f35-6d80-4e8d-b297-3c7145c48874" :var list_item="Added by curl in code block 1"  :var list_type="SP.Data.TestListItem"
     curl -v -v -v --ntlm -u $username:$password -d "{\"Title\":\"$list_tem\",\"__metadata\":{\"type\":\"$list_type\"}}" -H "content-type:application/json;odata=verbose" -H "accept:application/json;odata=verbose" -H "X-RequestDigest: 0xE7199A5918E328B0BBD11677CA7DB56F8A80D65F45B2B8E449BED751A45877F46E4A8D30AC411C05B3C49F564218E37C347C0BFF98D9862FACCC1005EF368AA2,30 Mar 2016 19:17:21 -0000"  -X POST "http://onecorp.zbc.internal/tops/iops/appeng/_api/Web/Lists(guid'$list_guid')/Items"
     #+END_SRC
 
-> Useful Reference: http://stackoverflow.com/questions/3851445/ruby-how-do-i-send-a-json-post-request-using-curb
+#+BEGIN_QUOTE
+ *Useful Reference:* http://stackoverflow.com/questions/3851445/ruby-how-do-i-send-a-json-post-request-using-curb
+#+END_QUOTE
 
 ** Embedding org-mode table data as perl code using a python code block and =:noweb=
 
