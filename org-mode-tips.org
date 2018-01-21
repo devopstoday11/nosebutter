@@ -3,9 +3,15 @@
    Add =:noweb yes= header to =org= code blocks to build and nest more complex documents.
 ** tangling
 *** tangle all blocks in org buffer =C-c C-v C-t=
-   If you want to tangle only blocks under a specific tree
-   1. Open Tree in Indirect Buffer =C-c C-x b=
-   2. Tangle blocks the indirect buffer using =C-c C-v C-t=
+
+   - If you want to tangle only blocks under a specific tree
+     1. Open Tree in Indirect Buffer =C-c C-x b=
+     2. Tangle blocks the indirect buffer using =C-c C-v C-t=
+     
+   - To tangle a single code block
+     1. Place cursor within block
+     2. Tangle with =C-u C-c C-v t=
+   
 ** Add 2 columns of Hex Numbers and Display
 #+BEGIN_SRC org
 | 0x10 | 0x0 |  16 | 10 |
