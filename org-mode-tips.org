@@ -75,7 +75,7 @@ To create item then pass =X-RequestDigest= as a header
 
 This technique will allow you to place the table data into your perl code so that the code is more readable.
 
-
+- Implementation Example
 #+BEGIN_SRC org
 
   ,#+NAME: data-table
@@ -99,7 +99,7 @@ This technique will allow you to place the table data into your perl code so tha
   my @test_data = <<convert-data-to-perl-code()>>;
   ,#+END_SRC
 #+END_SRC
-
+- Output Results
 #+RESULTS: 
 :RESULTS:
 
