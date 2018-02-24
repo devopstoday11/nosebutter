@@ -1,8 +1,9 @@
-'name': 'Grammar Tests'
+'name': 'Org-Mode Syntax - Draft'
 'scopeName': 'source.gmrtsts'
 'limitLineLength': false
 'fileTypes': [
   'gmrtsts'
+  'org'
 ]
 'patterns': [
   {
@@ -52,21 +53,159 @@
   }
 
   {
-    'match': '^(\\s*\\d+\\.)(\\s+)'
+    'begin': '^(\\*{3})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-4.gmrtsts'
     'captures':
       '1':
-        'name': 'punctuation.definition.list.gmrtsts'
+        'name': 'leading-star.gmrtsts'
       '2':
-        'name': 'punctuation.definition.list.space.gmrtsts'
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+      {
+        'include': '#task-status'
+      }
+      {
+        'include': '#code'
+      }
+      {
+        'include': '#verbatim'
+      }
+      {
+        'include': '#emphasis'
+      }
+    ]
   }
 
   {
-    'match': '^(\\s+[*]|\\s*[+-])(\\s+)'
+    'begin': '^(\\*{4})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-5.gmrtsts'
     'captures':
       '1':
-        'name': 'punctuation.definition.list.gmrtsts'
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#task-status'
+        }
+        {
+          'include': '#code'
+        }
+        {
+          'include': '#verbatim'
+        }
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+
+  {
+    'begin': '^(\\*{5})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-6.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#task-status'
+        }
+        {
+          'include': '#code'
+        }
+        {
+          'include': '#verbatim'
+        }
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+
+  {
+    'begin': '^(\\*{6})(\\*{1})(\\s+)'
+    'end': '$'
+    'name': 'markup.heading.heading-7.gmrtsts'
+    'captures':
+      '1':
+        'name': 'leading-star.gmrtsts'
+      '2':
+        'name': 'markup.heading.marker.gmrtsts'
+      '3':
+        'name': 'markup.heading.space.gmrtsts'
+    'patterns': [
+        {
+          'include': '#task-status'
+        }
+        {
+          'include': '#code'
+        }
+        {
+          'include': '#verbatim'
+        }
+        {
+          'include': '#emphasis'
+        }
+      ]
+  }
+  {
+    'begin': '^(-----BEGIN PGP MESSAGE-----)$'
+    'end': '^(-----END PGP MESSAGE-----)$'
+    'name': 'crypt.pgp.message.string.gmrtsts'
+    'beginCaptures':
+      '1':
+        'name': 'crypt.pgp.message.begin.string.gmrtsts'
+    'endCaptures':
+      '1':
+        'name': 'crypt.pgp.message.begin.string.gmrtsts'
+    'patterns': [
+    ]
+  }
+
+
+  {
+    'match': '^(\\s*\\d+\\.)(\\s+)(([\\\[])([ X-])([\\\]])(\\s))?'
+    'captures':
+      '1':
+        'name': 'variable.ordered.list.gmrtsts'
       '2':
         'name': 'punctuation.definition.list.space.gmrtsts'
+      '3':
+        'name': 'variable.checkbox.list.gmrtsts'
+      '4':
+        'name': 'punctuation.definition.checkbox.begin.list.gmrtsts'
+      '5':
+        'name': 'checkbox.string.gmrtsts'
+      '6':
+        'name': 'punctuation.definition.checkbox.end.list.gmrtsts'
+  }
+
+  {
+    'match': '^(\\s+[*]|\\s*[+-])(\\s+)(([\\\[])([ X-])([\\\]])(\\s))?'
+    'captures':
+      '1':
+        'name': 'variable.unordered.list.gmrtsts'
+      '2':
+        'name': 'punctuation.definition.list.space.gmrtsts'
+      '3':
+        'name': 'variable.checkbox.list.gmrtsts'
+      '4':
+        'name': 'punctuation.definition.checkbox.begin.list.gmrtsts'
+      '5':
+        'name': 'checkbox.string.gmrtsts'
+      '6':
+        'name': 'punctuation.definition.checkbox.end.list.gmrtsts'
   }
 
   {
@@ -106,6 +245,9 @@
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
       {
+        'include': '#task-status'
+      }
+      {
         'include': '#code'
       }
       {
@@ -129,6 +271,9 @@
       '3':
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
+      {
+        'include': '#task-status'
+      }
       {
         'include': '#code'
       }
@@ -154,6 +299,9 @@
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
       {
+        'include': '#task-status'
+      }
+      {
         'include': '#code'
       }
       {
@@ -177,6 +325,9 @@
       '3':
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
+      {
+        'include': '#task-status'
+      }
       {
         'include': '#code'
       }
@@ -202,6 +353,9 @@
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
         {
+          'include': '#task-status'
+        }
+        {
           'include': '#code'
         }
         {
@@ -225,6 +379,9 @@
       '3':
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
+        {
+          'include': '#task-status'
+        }
         {
           'include': '#code'
         }
@@ -250,6 +407,9 @@
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
         {
+          'include': '#task-status'
+        }
+        {
           'include': '#code'
         }
         {
@@ -273,6 +433,9 @@
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
         {
+          'include': '#task-status'
+        }
+        {
           'include': '#code'
         }
         {
@@ -295,6 +458,9 @@
       '3':
         'name': 'markup.heading.space.gmrtsts'
     'patterns': [
+        {
+          'include': '#task-status'
+        }
         {
           'include': '#code'
         }
@@ -407,6 +573,32 @@
         'include': '#strike-through'
       }
     ]
+
+  'task-status-todo':
+      'patterns': [
+          {
+            'match': '(?<=[\\\*]\\s)(TODO)\\b'
+            'name': 'constant.task.status.todo.gmrtsts'
+          }
+      ]
+
+  'task-status-done':
+      'patterns': [
+          {
+            'match': '(?<=[\\\*]\\s)(DONE)\\b'
+            'name': 'constant.task.status.done.gmrtsts'
+          }
+      ]
+
+  'task-status':
+      'patterns': [
+          {
+            'include': '#task-status-todo'
+          }
+          {
+            'include': '#task-status-done'
+          }
+      ]
 
   'code':
       'patterns': [

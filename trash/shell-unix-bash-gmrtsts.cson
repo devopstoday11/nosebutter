@@ -1,5 +1,5 @@
 'scopeName': 'source.shell-gmrtsts'
-'name': 'Shell Script gmrtsts'
+'name': 'Shell Script - Org-Mode Syntax'
 'fileTypes': [
   'sh'
   'bash'

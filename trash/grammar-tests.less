@@ -87,12 +87,42 @@
   font-weight: bolder;
 }
 
-.syntax--punctuation.syntax--definition.syntax--list.syntax--gmrtsts {
-  color: darken(@syntax-text-color, 11%);
+.syntax--variable.syntax--checkbox.syntax--list.syntax--gmrtsts {
+  font-weight: bolder;
+}
+
+.syntax--variable.syntax--ordered.syntax--list.syntax--gmrtsts {
+  // color: darken(@syntax-text-color, 11%);
   font-weight: 500;
   &:hover {
     font-weight: bolder;
   }
+}
+
+.syntax--variable.syntax--unordered.syntax--list.syntax--gmrtsts {
+  // color: darken(@syntax-text-color, 11%);
+  font-weight: 500;
+  &:hover {
+    font-weight: bolder;
+  }
+}
+
+.syntax--constant.syntax--task.syntax--status.syntax--todo.syntax--gmrtsts {
+  //color: darken(@syntax-background-color, 15%);
+  background-color: darken(@syntax-background-color, 5%);
+  font-family: monospace;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+.syntax--constant.syntax--task.syntax--status.syntax--done.syntax--gmrtsts {
+  color: @syntax-invisible-character-color;
+  background-color: darken(@syntax-background-color, 1%);
+  font-family: monospace;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
 }
 
 .syntax--punctuation.syntax--definition.syntax--quote.syntax--gmrtsts {
