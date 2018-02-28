@@ -254,54 +254,51 @@ example-named-block5-value
 
 ** Tangling formatted org-tables into files or source code
 
-*** Call table with new name and have results wrapped as org code block
-
-#+NAME: example-table-into-org-block
-#+CALL: example-configs-table() :cache yes :results table org replace 
-
-#+RESULTS[e00168416978c3284ca41781e32a0e0f475c4445]: example-table-into-org-block
 #+BEGIN_SRC org
-| *Configuration Name*   | *Configuration Value*        |
-|------------------------+------------------------------|
-| example-named-comment1 | example-named-comment1-value |
-| example-named-comment2 | example-named-comment2-value |
-| example-named-comment3 | example-named-comment3-value |
-| example-named-comment4 | example-named-comment4-value |
-| example-named-comment5 | example-named-comment5-value |
-| example-named-comment6 | example-named-comment6-value |
+
+  ,#+NAME: example-configs-table-fix1
+  | *Configuration Name* | *Configuration Value*      |
+  |----------------------+----------------------------|
+  | example-named-block1 | example-named-block1-value |
+  | example-named-block2 | example-named-block2-value |
+  | example-named-block3 | example-named-block3-value |
+  | example-named-block4 | example-named-block4-value |
+  | example-named-block5 | example-named-block5-value |
+
+  ,#+NAME: example-table-into-org-block-fix1
+  ,#+BEGIN_SRC elisp :var data=example-configs-table-fix1 :colnames yes :results table org replace 
+    data
+  ,#+END_SRC
+
+  ,#+NAME: example-table-into-org-block-renamed-fix1
+  ,#+RESULTS: example-table-into-org-block-fix1
+  ,#+BEGIN_SRC org
+  | *Configuration Name* | *Configuration Value*      |
+  |----------------------+----------------------------|
+  | example-named-block1 | example-named-block1-value |
+  | example-named-block2 | example-named-block2-value |
+  | example-named-block3 | example-named-block3-value |
+  | example-named-block4 | example-named-block4-value |
+  | example-named-block5 | example-named-block5-value |
+  ,#+END_SRC
+
+  ,#+NAME: example-table-into-org-block-renamed-noweb-fix1
+  ,#+BEGIN_SRC css :noweb yes 
+    <<example-table-into-org-block-renamed-fix1()>>
+  ,#+END_SRC
+
+  ,#+RESULTS: example-table-into-org-block-renamed-noweb-fix1
+  : | *Configuration Name* | *Configuration Value*      |
+  : |----------------------+----------------------------|
+  : | example-named-block1 | example-named-block1-value |
+  : | example-named-block2 | example-named-block2-value |
+  : | example-named-block3 | example-named-block3-value |
+  : | example-named-block4 | example-named-block4-value |
+  : | example-named-block5 | example-named-block5-value |
+
 #+END_SRC
-
-*** Then Add new name above results block 
-
-#+NAME: example-table-into-org-block1
-#+CALL: example-configs-table() :cache yes :results table org replace 
-
-#+NAME: example-table-into-org-block1a
-#+RESULTS[e00168416978c3284ca41781e32a0e0f475c4445]: example-table-into-org-block1
-#+BEGIN_SRC org
-| *Configuration Name*   | *Configuration Value*        |
-|------------------------+------------------------------|
-| example-named-comment1 | example-named-comment1-value |
-| example-named-comment2 | example-named-comment2-value |
-| example-named-comment3 | example-named-comment3-value |
-| example-named-comment4 | example-named-comment4-value |
-| example-named-comment5 | example-named-comment5-value |
-| example-named-comment6 | example-named-comment6-value |
-#+END_SRC
-
-
-
-*** Then use =noweb= of renamed results block inside code or file 
-
-#+begin_src sh :eval never :noweb tangle :tangle example-tangle-formatted-org-tables 
-  #
-  # <<example-table-into-org-block1a()>>
-  #
-
-#+end_src
 
 *Note:* Renaming trick also works when your having trouble passing =#+RESULTS:= to another =src block=.
-
 
 * Link to Code Block within Org or PDF
 
