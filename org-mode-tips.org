@@ -518,3 +518,7 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 #+RESULTS:
 #+ATTR_HTML: :title The Org mode homepage :style color:red;
 [[http://orgmode.org]]
+
+* mode line to temporary disable confirmation to execute or evaluate source blocks
+  1. Add near beginning of org file
+  : # -*- mode: org; org-confirm-babel-evaluate: nil; -*-
