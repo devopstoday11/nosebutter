@@ -81,6 +81,25 @@
 | src-block-b |
 | src-block-c |
 
+
+---------
+
+
+#+BEGIN_SRC elisp :results replace :var data=named-src-blocks() :exports both :var name="src-block-a"
+(let ((my-names (org-element-map
+      (with-temp-buffer
+        (insert data)
+        (org-element-parse-buffer))
+      '(src-block)
+    (lambda (x) (org-element-property :name x))
+    )))
+(if (member name my-names) name nil))
+#+END_SRC
+
+#+RESULTS:
+: src-block-a
+
+
 *** parsed values
 
 **** AST headlines
