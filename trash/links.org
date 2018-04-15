@@ -115,6 +115,8 @@ In this example, the =full path= to the apache script is =/etc/init.d/httpd= and
 
 [[http://example.org][=Example=]]
 
+#+HTML: <a href="http://example.org"><code>Example</code></a>
+
 ** Verbatim Outside Description
 
 =[[http://example.org][Example]]=
@@ -122,7 +124,9 @@ In this example, the =full path= to the apache script is =/etc/init.d/httpd= and
 ** Code Inside Description
 
 [[http://example.org][~Example~]]
- 
+
+#+HTML: <a href="http://example.org"><code>Example</code></a>
+
 ** Code Outside Description
 
 ~[[http://example.org][Example]]~
