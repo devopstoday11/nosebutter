@@ -1,12 +1,16 @@
 # -*- mode: org; -*-
-#+OPTIONS:  \n:nil
+#+OPTIONS:  \n:t
 
 * Radio Links
 
-Lorem ipsum
+Lorem ipsum  
+
 est laborum
+
 reprehenderit in voluptate
+
 Duis aute
+
 quis nostrud exercitation
 
 - *<<<Lorem ipsum>>>* dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -33,32 +37,58 @@ Here we refer to item [[target][The Target]].
 
 http://www.astro.uva.nl/~dominik             on the web   
 
-doi:10.1000/182                              DOI for an electronic resource    
+doi:10.1000/182                              DOI for an electronic resource
+
 file:/home/dominik/images/jupiter.jpg        file, absolute path
+
 =/home/dominik/images/jupiter.jpg=             same as above
+
 file:papers/last.pdf                         file, relative path
+
 =./papers/last.pdf=                            same as above
+
 file:/ssh:myself@some.where:papers/last.pdf  file, path on remote machine
+
 =/ssh:myself@some.where:papers/last.pdf=       same as above
+
 file:sometextfile::NNN                       file, jump to line number
+
 file:projects.org                            another Org file
+
 file:projects.org::some words                text search in Org file(31)
+
 file:projects.org::*task title               heading search in Org file(32)
+
 docview:papers/last.pdf::NNN                 open in doc-view mode at page
+
 id:B7423F4D-2E8A-471B-8810-C40F074717E9      Link to heading by ID
+
 news:comp.emacs                              Usenet link
+
 mailto:adent@galaxy.net                      Mail link
+
 mhe:folder                                   MH-E folder link
+
 mhe:folder#id                                MH-E message link
+
 rmail:folder                                 RMAIL folder link
+
 rmail:folder#id                              RMAIL message link
+
 gnus:group                                   Gnus group link
+
 gnus:group#id                                Gnus article link
+
 bbdb:R.*Stallman                             BBDB link (with regexp)
+
 irc:/irc.com/#emacs/bob                      IRC link
+
 info:org#External links                      Info node or index link
+
 shell:ls =*.org=                               A shell command
+
 elisp:org-agenda                             Interactive Elisp command
+
 elisp:(find-file-other-frame "Elisp.org")    Elisp form to evaluate
 
 ** Other Examples
