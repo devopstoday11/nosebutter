@@ -1,0 +1,39 @@
+* String Manipulation
+** Download Trusted Certificates
+
+#+NAME: gitlab-trusted-certs
+| URL                        | Filename          | Method  |
+|----------------------------+-------------------+---------|
+| http://example.com/xyz.crt | xyz.pem           | curl    |
+| example.net:443            | example.net.pem   | openssl |
+| example.org:443            | example.org.pem   | openssl |
+
+#+BEGIN_QUOTE
+  *Note:* Only the =curl= and =openssl= methods are implemented. All other method values will be skipped.
+#+END_QUOTE
+ 
+1. Download the current certificate authority certificate file.
+
+   #+BEGIN_SRC shell :results verbatim :var TRUSTED_CERTS=gitlab-trusted-certs
+     for url in "${!TRUSTED_CERTS[@]}"; do
+
+         METHOD=${TRUSTED_CERTS[$url]#*$'\n'}
+
+         if [ ${METHOD} == 'curl' ]; then
+             echo "Downloading $url - Method <${METHOD}> is curl"
+             curl $url | openssl x509 -inform der -outform pem > ${TRUSTED_CERTS[$url]%$'\n'*}
+         elif [ ${METHOD} == 'openssl' ]; then
+             echo "Downloading $url - Method <${METHOD}> is openssl"
+             openssl s_client -showcerts -connect $url </dev/null 2>/dev/null | openssl x509 -outform PEM > ${TRUSTED_CERTS[$url]%$'\n'*}
+         else
+             echo "Skipping $url - Method <${METHOD}> is unknown"
+         fi
+
+     done
+   #+END_SRC
+
+   #+RESULTS:
+   : Downloading http://example.com/xyz.crt - Method <curl> is curl
+   : Downloading example.net:443 - Method <openssl> is openssl
+   : Downloading example.org:443 - Method <openssl> is openssl
+
