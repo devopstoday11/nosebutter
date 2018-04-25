@@ -11,8 +11,8 @@
 #+BEGIN_QUOTE
   *Note:* Only the =curl= and =openssl= methods are implemented. All other method values will be skipped.
 #+END_QUOTE
- 
-1. Download the current certificate authority certificate file.
+
+*** Download trusted certificate files.
 
    #+BEGIN_SRC shell :results verbatim :var TRUSTED_CERTS=gitlab-trusted-certs
      for url in "${!TRUSTED_CERTS[@]}"; do
