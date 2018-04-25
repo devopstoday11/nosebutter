@@ -37,3 +37,26 @@
    : Downloading example.net:443 - Method <openssl> is openssl
    : Downloading example.org:443 - Method <openssl> is openssl
 
+** Deploy Generate Self-signed Certificate Script(s)
+
+#+NAME: install-gitlab/generate-self-signed-certificate-script-shell-code
+#+BEGIN_SRC shell :eval never
+  #
+  # Create Self-Signed Certificate for GitLab
+  #
+  HOSTNAME_FQDN=`hostname --fqdn`
+  mkdir -p /etc/gitlab/ssl
+  openssl req -x509 -sha256 -out "/etc/gitlab/ssl/${HOSTNAME_FQDN,,}.crt" -days 3650 -keyout "/etc/gitlab/ssl/${HOSTNAME_FQDN,,}.key" -newkey rsa:2048 -subj "/C=ZZ/ST=YY/L=XXX/O=WWWW/OU=VVVVV/CN=${HOSTNAME_FQDN,,}" -batch -nodes
+  #
+  # Deploy Trusted Certificates
+  #
+  mkdir -p /etc/gitlab/trusted-certs
+  #
+  for line in `grep .pem sha256sums.txt`; do
+      EXTENSION=${line##*\.}
+      if [ ${EXTENSION} == "pem" ]; then
+          cp $line /etc/gitlab/trusted-certs
+      fi
+  done
+#+END_SRC
+
