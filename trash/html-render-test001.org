@@ -1,6 +1,5 @@
 
-#+HTML: 
-#+HTML: 
+#+HTML: <style> h1 {color:red;} </style> 
 
 * Heading 1
 ** Heading 2
