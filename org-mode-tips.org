@@ -1,4 +1,14 @@
 * org-mode tips
+** Lists
+*** Start ordered lists with new number - /Note: Does not render in org-ruby yet/
+
+#+BEGIN_QUOTE
+Add ~[@#]~ at beginning of list item title. If list title contains checkbox, place before the checkbox.
+#+END_QUOTE
+
+1. [@20] Start this at 20
+1. [@30] [ ] Start this item at 30   
+
 ** weaving
    Add =:noweb yes= header to =org= code blocks to build and nest more complex documents.
 ** tangling
