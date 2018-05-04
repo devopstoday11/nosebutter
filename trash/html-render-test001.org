@@ -1,6 +1,5 @@
 
-#+HTML: <style> h1 {color:red;} </style> 
-
+#+html: <a href="https://ci.appveyor.com/project/justinjk007/pentagonal-tiling"> <img src="https://ci.appveyor.com/api/projects/status/ldc8jtft09n5997e?svg=true" alt="Project Badge"> </a>
 * Heading 1
 ** Heading 2
 *** Heading 3
