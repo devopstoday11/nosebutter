@@ -129,6 +129,8 @@ When exported, the code blocks with headers should be displayed.
 
 #+TITLE: demo-example-code-blocks-with-headers
 #+DATE: <2015-10-16 Fri>
+#+AUTHOR: 
+#+EMAIL:
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:{} arch:headline
 #+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
 #+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
