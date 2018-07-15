@@ -533,7 +533,7 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 
 Simulate Left Hand Side (LHS) column name assignments using [[https://orgmode.org/manual/Advanced-features.html#Advanced-features][named fields]] and a [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html][keyboard macro]].
 
-1. Update your example table and formulas as follows:
+1. Update your [[https://emacs.stackexchange.com/q/42598/388][example table]] and formulas as follows:
 
    #+BEGIN_SRC org :exports code
      |   | Runde |  0 |  1 |  2 | Resultat | %          |
