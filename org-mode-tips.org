@@ -529,6 +529,80 @@ echo "Did Copy/Paste and forgot to rename max-specpdl-size-example1 block"
 #+ATTR_HTML: :title The Org mode homepage :style color:red;
 [[http://orgmode.org]]
 
+* Simulate LHS Column Name Assignments
+
+Simulate Left Hand Side (LHS) column name assignments using [[https://orgmode.org/manual/Advanced-features.html#Advanced-features][named fields]] and a [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html][keyboard macro]].
+
+1. Update your example table and formulas as follows:
+
+   #+BEGIN_SRC org :exports code
+     |   | Runde |  0 |  1 |  2 | Resultat | %          |
+     |---+-------+----+----+----+----------+------------|
+     | ! |       | c0 | c1 | cn |          |            |
+     | _ | name  |    |    |    | result   | percentage |
+     | # | Alice |  1 |  1 |  0 |          |            |
+     | # | Bob   |  0 |  0 |  1 |          |            |
+     | # | Eve   |  1 |  1 |  1 |          |            |
+     ,#+TBLFM: $result='(reduce '+ (vector $c0..$cn));N::$percentage='(calc-eval (format "(%i/%i)*100" $result (length (vector $c0..$cn))));%2.2f
+   #+END_SRC
+
+   - *Update Details*
+
+     - Added named column syntax for =c0=, =c1=, and =cn= which is referenced in formulas as =$c0..$cn= to allow additional columns to be added between =c0= and =cn= in future as needed.
+
+     - Redefined =name=, =result= and =percentage= using field name syntax.
+
+     - Added data row to table.
+
+     - Updated =#+TBLFM:= with similar formulas whose results are assigned on the LHS to the field names =$result= and =$percentage=.
+
+2. Define =simulate-lhs-column-name-assignments= keyboard macro using elisp =src= block.
+
+   #+BEGIN_SRC org :exports code
+     ,#+BEGIN_SRC elisp :results silent
+       (fset 'simulate-lhs-column-name-assignments
+          [?\C-u ?\C-u ?\C-c ?\C-c M-down])
+     ,#+END_SRC
+   #+END_SRC
+
+3. Bind =simulate-lhs-column-name-assignments= to key or your choice, e.g. =f6= key.
+
+   #+BEGIN_SRC org :exports code
+     ,#+BEGIN_SRC elisp  :results silent
+       (local-set-key (kbd "<f6>") 'simulate-lhs-column-name-assignments)
+     ,#+END_SRC
+   #+END_SRC
+
+4. Place point, aka cursor, inside a cell on the row which assigns field names.
+
+   : | _ | name  |    |    |    | result   | percentage |
+
+5. Call the =simulate-lhs-column-name-assignments= keyboard macro using the assigned key, e.g. =f6= key, until the line with the field assignments is at bottom of table. 
+
+   After completing this step, your table should resemble the example below:
+
+   #+BEGIN_SRC org :exports code
+     |   | Runde |  0 |  1 |  2 | Resultat |          % |
+     |---+-------+----+----+----+----------+------------|
+     | ! |       | c0 | c1 | cn |          |            |
+     | # | Alice |  1 |  1 |  0 |        2 |      66.67 |
+     | # | Bob   |  0 |  0 |  1 |        1 |      33.33 |
+     | # | Eve   |  1 |  1 |  1 |        3 |     100.00 |
+     | _ | name  |    |    |    |   result | percentage |
+     ,#+TBLFM: $result='(reduce '+ (vector $c0..$cn));N::$percentage='(calc-eval (format "(%i/%i)*100" $result (length (vector $c0..$cn))));%2.2f
+   #+END_SRC
+
+
+
+-----
+
+#+BEGIN_QUOTE
+*The code in this answer was validated using*  
+*emacs version:* GNU Emacs 25.2.1 (x86_64-unknown-cygwin, GTK+ Version 3.22.10)  
+*org version:* 9.1.2  
+#+END_QUOTE
+
+
 * mode line to temporary disable confirmation to execute or evaluate source blocks
   1. Add near beginning of org file
   : # -*- mode: org; org-confirm-babel-evaluate: nil; -*-
