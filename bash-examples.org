@@ -260,4 +260,25 @@ ${SYSTEMCTL_CMD} reload postfix.service
   done
 #+END_SRC
 
-
+* Command Substitution
+** Backticks =``= vs. =$()=
+*** Backticks Can Remove Double Quote
+This example was derived from [[https://stackoverflow.com/a/36978563/951721]]
+#+BEGIN_SRC shell :eval never
+$ echo "`echo \"test\" `"
+test
+$ echo "$(echo \"test\" )"
+"test"
+$ VAR=`echo "test"`
+$ echo $VAR
+test
+$ VAR=`echo \"test\"`
+$ echo $VAR
+"test"
+$ VAR=$(echo "test")
+$ echo $VAR
+test
+$ VAR=$(echo \"test\")
+$ echo $VAR
+"test"
+#+END_SRC
