@@ -262,6 +262,7 @@ ${SYSTEMCTL_CMD} reload postfix.service
 
 * Command Substitution
 ** Backticks =``= vs. =$()=
+- Backtick syntax is official deprecated?
 *** Backticks Can Remove Double Quote
 This example was derived from [[https://stackoverflow.com/a/36978563/951721]]
 #+BEGIN_SRC shell :eval never
