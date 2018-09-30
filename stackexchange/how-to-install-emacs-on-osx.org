@@ -26,12 +26,6 @@ Try the following[fn:1:https://stackoverflow.com/a/44094859/951721]
     brew update
   #+END_SRC
 
-5. Pin imagemagick to version 6 for emacs
-
-  #+BEGIN_SRC shell
-    brew pin imagemagick@6 emacs 
-  #+END_SRC
-
 5. Upgrade any brew stuff you have in case any of them are pre-requisites
 
   #+BEGIN_SRC shell
@@ -52,3 +46,8 @@ Try the following[fn:1:https://stackoverflow.com/a/44094859/951721]
 
   Watch for messages from brew. 
 
+8. Create soft links, if needed.
+
+  #+BEGIN_SRC shell
+    brew linkapps emacs
+  #+END_SRC
