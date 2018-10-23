@@ -1,4 +1,10 @@
 ** Nested properties in =org-table= tranformed into =yaml=
+
+I used the following links as a reference for this example code
+
+- [[https://stackoverflow.com/questions/9381553/ruby-merge-nested-hash/30026371#30026371]]
+- [[https://stackoverflow.com/a/8415328/951721]]
+
 *** Example1 Data
 #+NAME: example1-data
 | property-name           | property-value                       |
