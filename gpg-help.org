@@ -1,0 +1,16 @@
+** Using =gpg= to Encrypt and Decrypt Files
+#+BEGIN_QUOTE
+*Important:* After you have tested your passphrase to both encrypt & decrypt files, delete the decrypted files from your system.
+#+END_QUOTE
+*** Encrypt file using =--symmetric=, =--armor= and =--output= using command options
+   
+   #+BEGIN_SRC shell :eval never
+     gpg --symmetric --armor --output filename.ext.gpg filename.ext 
+   #+END_SRC
+   
+*** Decrypt file using =--decrypt= and =--output= using command options
+   
+   #+BEGIN_SRC shell :eval never
+     gpg --decrypt --output filename.ext filename.ext.gpg 
+   #+END_SRC
+      
