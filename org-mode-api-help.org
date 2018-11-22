@@ -244,3 +244,27 @@ This shows how code block interprets org code block
 :property2: value2
 :END:
 Some much longer content.
+------
+
+** Fetch =KEYWORD= values in current buffer
+
+#+BEGIN_SRC org
+,#+subtitle: Subtitle Part1 Goes Here
+,#+subtitle: Subtitle Part2 Goes Here
+
+
+,#+NAME: get-subtitle
+,#+BEGIN_SRC elisp  :results replace :var keyword="subtitle" :var delimiter=" "
+ (mapconcat 'car (org-element-map
+      (org-element-parse-buffer)
+      '(keyword)
+    (lambda (x) (if (string= (upcase keyword) (org-element-property :key x))
+                 (list (org-element-property :value x)) )
+      )
+    ) delimiter)
+,#+END_SRC
+
+,#+RESULTS: get-subtitle
+: Subtitle Part1 Goes Here Subtitle Part2 Goes Here
+
+#+END_SRC
