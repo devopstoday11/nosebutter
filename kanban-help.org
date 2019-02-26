@@ -1,0 +1,9 @@
+* Kanban Help
+** Concepts
+*** Jira
+# https://community.atlassian.com/t5/Jira-Core-questions/epic-vs-story-vs-task/qaq-p/204224
+: Theme -> Epic -> Story -> Tasks
+*** Azure DevOps
+# https://docs.microsoft.com/en-us/azure/devops/boards/boards/kanban-key-concepts?view=azure-devops
+# https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/agile-process-workflow?view=azure-devops
+: Epic -> Feature -> User Story -> Task
