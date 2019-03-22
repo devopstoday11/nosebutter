@@ -602,3 +602,44 @@ example-named-block5-value
 | _ | name  |      |      |      | result   | percentage |
 | # | Alice |    1 |    1 |    0 | 2        | 66.67      |
 #+TBLFM: $result='(reduce '+ (vector $c0..$c2));N::$percentage='(calc-eval (format "(%i/%i)*100" $result (length (vector $c0..$c2))));%2.2f
+
+* Exporting Subtrees via Command-line
+
+#+BEGIN_SRC org 
+  ,* Export this Subtree
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: exported-file.html
+  :EXPORT_TITLE: Exported Title
+  :ID:       1582d1f4-600f-4018-89c8-8dcb4c05117b
+  :END:
+
+  ,** Abstract
+
+  Abstract text goes here
+
+  ,** Discussion
+
+  Long discussion section
+
+  ,** Conclusion
+
+  Conclusion text goes here
+
+  ,* Adapted From StackExchange
+
+  : https://emacs.stackexchange.com/a/48520/388
+
+  ,#+BEGIN_SRC shell :tangle htmlexport :shebang "#!/usr/bin/env bash"
+    emacs --batch --funcall package-initialize --eval "(progn (find-file \"$1\") \
+                         (org-id-goto \"$2\") \
+                         (org-html-export-to-html nil t))"
+  ,#+END_SRC
+
+
+  ,* Command
+
+  ,#+BEGIN_SRC shell
+  ./htmlexport ./junk33.org '1582d1f4-600f-4018-89c8-8dcb4c05117b'
+  ,#+END_SRC
+#+END_SRC
+
