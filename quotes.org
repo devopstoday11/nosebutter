@@ -23,6 +23,19 @@ Outside of a dog, a book is a man's best friend. Inside of a dog it's too dark t
 The major difference between a thing that might go wrong and a thing that cannot possibly go wrong is that when a thing that cannot possibly go wrong goes wrong it usually turns out to be impossible to get at or repair. [fn:5] ~ Douglas Adams - Mostly Harmless 
 #+END_QUOTE
 
+* Life
+
+#+BEGIN_QUOTE
+I made a gift for you today.  
+It's a map for you to take on your journey to a better future.  
+
+If you ever feel lost, look at your map then close your eyes and imagine the warm sun on your skin, the soft breeze on your cheek, the smell of flowers and feel the rich soil between your toes.  
+
+Remember every day that you are loved and continue to share this love with everyone around you. 
+
+~ The Map Maker (Melioratus)
+#+END_QUOTE
+
 * Science
 ** Physics
 
