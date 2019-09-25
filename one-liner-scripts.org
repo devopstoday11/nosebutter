@@ -1,0 +1,6 @@
+#+TITLE: One-liner Scripts
+
+* Perl
+** Recursively adjust file permissions
+: # Pass files and directories you want fixed as parameters. Adjust this regex to set the script extensions [.](bat|(z|ba?|k|t)?sh) 
+: perl -MFile::Find -e 'find(sub {if(-d $_ || $_=~m/[.](bat|(z|ba?|k|t)?sh)/){chmod 0755, $_}else{chmod 0644, $_}},@ARGV)' ./a0 ./b0 ./script.sh ./file1
