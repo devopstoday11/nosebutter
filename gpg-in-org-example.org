@@ -1,0 +1,73 @@
+# -*- mode: org ; epg-gpg-home-directory: "./.gnupg"; org-confirm-babel-evaluate: nil; org-babel-noweb-wrap-start: "«"; org-babel-noweb-wrap-end: "»"; -*-
+
+* Setup gpg keys
+
+#+NAME: ruby/gpg-gen-key
+#+BEGIN_SRC ruby :var batch_filename="my-batch-file" :var homedir="./.gnupg" :var key_type="RSA" :var subkey_type="" :var key_length=4096 :var subkey_length="" :var key_expire_date=0 :var key_real_name="Real Name Goes Here" :var key_email="name@example.org" :var key_comment="Example Key Comment" :var key_info_confirm="--yes" :var key_passphrase=""
+  require 'tempfile'
+
+  make_key_config=<<-END_OF_MKC
+  %echo Started Generating PGP Key
+  Key-Type: #{key_type}
+  Key-Length: #{key_length}
+  Subkey-Type: #{(subkey_type.empty?)? key_type : subkey_type}
+  Subkey-Length: #{(subkey_length.empty?)? key_length : subkey_length }
+  Name-Real: #{key_real_name}
+  Name-Comment: #{key_comment}
+  Name-Email: #{key_email}
+  Expire-Date: #{key_expire_date}
+  #{(key_passphrase.empty?)? '%no-protection' : %Q(Passphrase: #{key_passphrase})}
+  %commit
+  %echo Finished Generating PGP Key
+  END_OF_MKC
+
+  temp_file = Tempfile.new(batch_filename, "./")
+
+  begin
+    temp_file.write(make_key_config)
+    # Rewinding the file is required to this to work. My guess is file buffering is the reason
+    temp_file.rewind
+    command_output = %x(gpg --yes --homedir #{homedir} --batch --no-tty --gen-key #{temp_file.path})
+  ensure
+    temp_file.close!
+  end
+  command_output
+#+END_SRC
+
+#+RESULTS: ruby/gpg-gen-key
+
+* List Keys
+
+#+NAME: list-keys
+#+BEGIN_SRC ruby :var homedir="./.gnupg"
+  command_output = %x(gpg --homedir #{homedir} --list-public-keys)
+  command_output.split("\n").select{ |c| c.include?("uid")}.map{|r| ['uid',r.gsub(/\s+/," ",).gsub(/^uid /, "")]}
+#+END_SRC
+
+#+RESULTS: list-keys
+| uid | Real Name Goes Here (Example Key Comment) <name@example.org> |
+
+* Credentials
+
+| [[elisp:(org-decrypt-entries)][decrypt]] | [[elisp:(org-encrypt-entries)][encrypt]] | [[elisp:(kill-emacs)][exit only]] | [[elisp:(save-buffers-kill-terminal 't)][save & quit]] | [[elisp:(save-buffer)][save-buffer]] |
+
+
+** Credentials Table                                                 :crypt:
+:PROPERTIES:
+:CRYPTKEY: Real Name Goes Here (Example Key Comment) <name@example.org>
+:END:
+
+#+NAME: example-credentials-table
+| Deploy-Environment | Database | User  | Password                   | Notes |
+|--------------------+----------+-------+----------------------------+-------|
+| example            | db1      | userA | user-a-clear-text-password |       |
+| example            | db2      | userA | user-a-clear-text-password |       |
+| example            | db3      | userA | user-a-clear-text-password |       |
+| example            | db4      | userA | user-a-clear-text-password |       |
+| example            | db4      | userA | user-a-clear-text-password |       |
+
+* Code Examples Tested Version
+
+| gpg (GnuPG) 1.4.21                                                           |
+| GNU Emacs 25.2.1 (x86_64-unknown-cygwin, GTK+ Version 3.22.10) of 2017-04-21 |
+| Org mode version 9.1.2 (9.1.2-15-g1d5142-elpa)                               |
