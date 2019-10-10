@@ -36,3 +36,44 @@
      ;; Workaround for ~/.tramp_history issue
      (setq tramp-histfile-override "/dev/null")
    #+END_SRC
+   
+* Compiling Emacs on Redhat
+1. Install required packages.
+
+   # Used this gist as refernce [[https://gist.github.com/harrifeng/a3ebd9a2af4c65cacfd4]]
+   
+   #+BEGIN_SRC shell
+     sudo yum -y group install "Development tools" --setopt=group_package_types=mandatory,default
+     # If above command does appear to work then check if "Development tools" are already installed
+     sudo yum group list hidden
+     sudo yum -y install gtk+-devel gtk2-devel
+     sudo yum -y install libXpm-devel
+     sudo yum -y install libpng-devel
+     sudo yum -y install giflib-devel
+     sudo yum -y install libtiff-devel libjpeg-devel
+     sudo yum -y install ncurses-devel
+     sudo yum -y install gpm-devel dbus-devel dbus-glib-devel dbus-python
+     sudo yum -y install GConf2-devel pkgconfig
+     sudo yum -y install libXft-devel
+     sudo yum -y install gnutls-devel gnutls gnutls-utils
+     sudo yum install -y aspell
+     # Uninstall emacs 24.3 if needed.
+     sudo yum erase emacs.x86_64
+     wget https://ftp.gnu.org/pub/gnu/emacs/emacs-26.2.tar.gz
+     tar xvfz emacs-26.2.tar.gz
+     cd emacs-26.2
+     ./configure
+     make
+     # Test new emacs
+     ./src/emacs -Q
+     # Install if good
+     sudo make install
+     sudo update-alternatives --install /usr/bin/emacs emacs /usr/local/bin/emacs-26.2 80
+     sudo update-alternatives --install /usr/bin/ctags ctags /usr/local/bin/ctags 80
+     sudo update-alternatives --install /usr/bin/ebrowse ebrowse /usr/local/bin/ebrowse 80
+     sudo update-alternatives --install /usr/bin/emacs-26.2 emacs-26.2 /usr/local/bin/emacs-26.2 80
+     sudo update-alternatives --install /usr/bin/emacsclient emacsclient /usr/local/bin/emacsclient 80
+     sudo update-alternatives --install /usr/bin/etags etags /usr/local/bin/etags 80
+   #+END_SRC 
+
+2. As 
