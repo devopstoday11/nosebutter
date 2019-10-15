@@ -1,6 +1,8 @@
 # -*- mode: org -*-
 
-* Setup gpg keys
+* Setup =gpg= keys
+
+To setup example =gpg= execute the =ruby/gpg-gen-key= code block shown below.
 
 #+NAME: ruby/gpg-gen-key
 #+BEGIN_SRC ruby :var batch_filename="my-batch-file" :var homedir="./.gnupg" :var key_type="RSA" :var subkey_type="" :var key_length=4096 :var subkey_length="" :var key_expire_date=0 :var key_real_name="Real Name Goes Here" :var key_email="name@example.org" :var key_comment="Example Key Comment" :var key_info_confirm="--yes" :var key_passphrase="" :results silent
@@ -38,6 +40,8 @@
 
 ** =cred= Script Code
 
+Tangle the code below to create the =cred= script.
+
  #+BEGIN_SRC sh :tangle cred :shebang "#!/usr/bin/env bash" :eval never
    #
    set -e
@@ -65,7 +69,7 @@
 	       ;;
 	   g)
 	       GPG_HOMEDIR=${OPTARG:-$GPG_HOMEDIR}
-	       ;;
+	       ;;2
 	   ?)
 	   usage
 	   exit 1
@@ -139,6 +143,8 @@
 
 ** Deploy =cred= as =root=
 
+If desired, deploy the =cred= script to =/usr/local/share/emacs/site-lisp/cred= as user in the systems administrators group.
+
  #+BEGIN_SRC bash :eval never
   cp cred /usr/local/share/emacs/site-lisp/
   update-alternatives --install /usr/bin/cred cred /usr/local/share/emacs/site-lisp/cred 80
@@ -147,6 +153,8 @@
 * Setup =default.el= Config File
 
 ** =default.el= Code
+
+Tangle the code below to create the =default.el= code.
 
  #+BEGIN_SRC elisp :tangle default.el :eval never
    (package-initialize)
@@ -180,11 +188,15 @@
 
 ** Deploy =default.el= as =root=
 
+If desired, deploy the =default.el= file to =/usr/local/share/emacs/site-lisp/default.el= as user in the systems administrators group.
+
  #+BEGIN_SRC bash :eval never
    cp default.el /usr/local/share/emacs/site-lisp/
  #+END_SRC
 
 * List Keys
+
+Validate your =gpg= settings by executing the =list-keys= code block below:
 
 #+NAME: list-keys
 #+BEGIN_SRC ruby :var homedir="./.gnupg" :exports both
@@ -197,6 +209,14 @@
 | uid | Real Name2 Goes Here (Example Key Comment2) <name2@example.org> |
 
 * Credentials
+
+1. Update the =CRYPTKEY= property under the =Credentials Table= section to match the =uid= value of your key.
+2. Save this file.
+3. Close this file.
+4. Open the file, using ~cred gpg-in-org-example.org~ 
+5. Add, delete or update the rows in the =example-credentials-table= table below.
+6. Click the =decrypt=, =encrypt=, =exit only=, and =save & quit= links as appropriate.
+7. If prompted, choose 'yes' or 'no' as appropriate.
 
 # [[elisp:(org-decrypt-entries)][decrypt]] # [[elisp:(org-encrypt-entries)][encrypt]] # [[elisp:(kill-emacs)][exit only]] # [[elisp:(save-buffers-kill-terminal 't)][save & quit]] #
 
