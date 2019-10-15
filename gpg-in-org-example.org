@@ -216,7 +216,7 @@ Validate your =gpg= settings by executing the =list-keys= code block below:
 4. Open the file, using ~cred gpg-in-org-example.org~ 
 5. Add, delete or update the rows in the =example-credentials-table= table below.
 6. Click the =decrypt=, =encrypt=, =exit only=, and =save & quit= links as appropriate.
-7. If prompted, choose 'yes' or 'no' as appropriate.
+7. If prompted, choose /yes/ or /no/ as appropriate.
 
 # [[elisp:(org-decrypt-entries)][decrypt]] # [[elisp:(org-encrypt-entries)][encrypt]] # [[elisp:(kill-emacs)][exit only]] # [[elisp:(save-buffers-kill-terminal 't)][save & quit]] #
 
