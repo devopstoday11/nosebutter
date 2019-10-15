@@ -1,9 +1,9 @@
-# -*- mode: org ; epg-gpg-home-directory: "./.gnupg"; org-confirm-babel-evaluate: nil; org-babel-noweb-wrap-start: "«"; org-babel-noweb-wrap-end: "»"; -*-
+# -*- mode: org -*-
 
 * Setup gpg keys
 
 #+NAME: ruby/gpg-gen-key
-#+BEGIN_SRC ruby :var batch_filename="my-batch-file" :var homedir="./.gnupg" :var key_type="RSA" :var subkey_type="" :var key_length=4096 :var subkey_length="" :var key_expire_date=0 :var key_real_name="Real Name Goes Here" :var key_email="name@example.org" :var key_comment="Example Key Comment" :var key_info_confirm="--yes" :var key_passphrase=""
+#+BEGIN_SRC ruby :var batch_filename="my-batch-file" :var homedir="./.gnupg" :var key_type="RSA" :var subkey_type="" :var key_length=4096 :var subkey_length="" :var key_expire_date=0 :var key_real_name="Real Name Goes Here" :var key_email="name@example.org" :var key_comment="Example Key Comment" :var key_info_confirm="--yes" :var key_passphrase="" :results silent
   require 'tempfile'
 
   make_key_config=<<-END_OF_MKC
@@ -34,7 +34,155 @@
   command_output
 #+END_SRC
 
-#+RESULTS: ruby/gpg-gen-key
+* Setup =cred= Command
+
+** =cred= Script Code
+
+ #+BEGIN_SRC sh :tangle cred :shebang "#!/usr/bin/env bash" :eval never
+   #
+   set -e
+   set -u
+   set -o pipefail
+
+   #
+   # Variables
+   #
+   GPG_HOMEDIR=".gnupg"
+
+   #
+   # Define Usage
+   #
+   usage () {
+       echo "script usage: $(basename $0) [-h] [-g GPG_HOMEDIR] FILE" >&2
+   }
+
+
+   while getopts 'hg:' OPTION; do
+       case "$OPTION" in
+	   h)
+	       usage
+	       exit 0
+	       ;;
+	   g)
+	       GPG_HOMEDIR=${OPTARG:-$GPG_HOMEDIR}
+	       ;;
+	   ?)
+	   usage
+	   exit 1
+	   ;;
+       esac
+   done
+   shift "$(($OPTIND -1))"
+
+   #
+   # Require FILE Argument
+   #
+
+   if [ $# == 0 ]; then
+       echo 'ERROR: Missing Required FILE Argument'
+       usage
+       exit 1
+   else
+       FILE_PATH=$1
+
+       if [ ! -f $FILE_PATH ]; then
+	   echo "ERROR: Bad FILE Argument: $FILE_PATH"
+	   usage
+	   exit 1
+       fi
+   fi
+
+   #
+   # Check GPG_HOMEDIR Exists
+   #
+
+   if [ ! -d $GPG_HOMEDIR ]; then
+
+       echo "WARN: Missing GPG_HOMEDIR: $GPG_HOMEDIR"
+
+       file_dir=$(dirname $FILE_PATH) 
+
+       echo "WARN: Looking for GPG_HOMEDIR under $PWD/$file_dir/$(basename $GPG_HOMEDIR)"
+    
+       if [ -d "$PWD/$file_dir/$(basename $GPG_HOMEDIR)" ]; then
+	   echo "INFO: Found $PWD/$file_dir/$(basename $GPG_HOMEDIR)"
+	   echo "WARN: Resetting GPG_HOMEDIR to: $PWD/$file_dir/$(basename $GPG_HOMEDIR)"
+	   GPG_HOMEDIR="$PWD/$file_dir/$(basename $GPG_HOMEDIR)"
+       else
+	   echo "ERROR: Missing GPG_HOMEDIR Directory: $GPG_HOMEDIR"
+	   echo "ERROR: GPG_HOMEDIR Directory must exist! Please provide the full path to GPG_HOMEDIR."
+	   usage
+	   exit 1
+       fi  
+   fi
+
+   #
+   # Validate GPG_HOMEDIR Not Empty
+   #
+   GPG_FILES_EXPECTED=3
+   GPG_FILES_FOUND=0
+
+   for file in $(ls -1 $GPG_HOMEDIR/*.gpg); do
+       GPG_FILES_FOUND=$((GPG_FILES_FOUND+1))
+   done
+
+   if [ ! $GPG_FILES_FOUND -ge $GPG_FILES_EXPECTED ]; then
+       echo "ERROR: Expecting at least $GPG_FILES_EXPECTED .gpg files under $GPG_HOMEDIR: Found: $GPG_FILES_FOUND"
+       echo "ERROR: Please provide a path to valid GPG_HOMEDIR"
+       usage
+       exit 1
+   fi
+
+   emacs --load /usr/local/share/emacs/site-lisp/default.el --eval '(xterm-mouse-mode)' $FILE_PATH --eval "(beginning-of-buffer)" --eval '(search-forward "* Credentials")' --eval '(org-narrow-to-subtree)' --eval '(outline-show-all)' --eval "(setq epg-gpg-home-directory \"$GPG_HOMEDIR\")"
+
+ #+END_SRC
+
+** Deploy =cred= as =root=
+
+ #+BEGIN_SRC bash :eval never
+  cp cred /usr/local/share/emacs/site-lisp/
+  update-alternatives --install /usr/bin/cred cred /usr/local/share/emacs/site-lisp/cred 80
+ #+END_SRC
+
+* Setup =default.el= Config File
+
+** =default.el= Code
+
+ #+BEGIN_SRC elisp :tangle default.el :eval never
+   (package-initialize)
+
+   (custom-set-variables
+    '(org-babel-load-languages
+      (quote
+       ((emacs-lisp . t)
+	(dot . t)
+	(perl . t)
+	(python . t)
+	(ruby . t)
+	(org . t)
+	(R . t)
+	(java . t)
+	(js . t)
+	(latex . t)
+	(css . t)
+	(shell . t)
+	(awk . t)
+	(calc . t)
+	(screen . t)
+	(sql . t))))
+    '(org-babel-noweb-wrap-end "»")
+    '(org-babel-noweb-wrap-start "«")
+   )
+
+   (require 'org)
+   (require 'org-crypt)
+ #+END_SRC
+
+** Deploy =default.el= as =root=
+
+ #+BEGIN_SRC bash :eval never
+   cp default.el /usr/local/share/emacs/site-lisp/
+ #+END_SRC
 
 * List Keys
 
@@ -45,12 +193,12 @@
 #+END_SRC
 
 #+RESULTS: list-keys
-| uid | Real Name Goes Here (Example Key Comment) <name@example.org> |
+| uid | Real Name Goes Here (Example Key Comment) <name@example.org>    |
+| uid | Real Name2 Goes Here (Example Key Comment2) <name2@example.org> |
 
 * Credentials
 
-| [[elisp:(org-decrypt-entries)][decrypt]] | [[elisp:(org-encrypt-entries)][encrypt]] | [[elisp:(kill-emacs)][exit only]] | [[elisp:(save-buffers-kill-terminal 't)][save & quit]] | [[elisp:(save-buffer)][save-buffer]] |
-
+# [[elisp:(org-decrypt-entries)][decrypt]] # [[elisp:(org-encrypt-entries)][encrypt]] # [[elisp:(kill-emacs)][exit only]] # [[elisp:(save-buffers-kill-terminal 't)][save & quit]] #
 
 ** Credentials Table                                                 :crypt:
 :PROPERTIES:
@@ -58,16 +206,13 @@
 :END:
 
 #+NAME: example-credentials-table
-| Deploy-Environment | Database | User  | Password                   | Notes |
-|--------------------+----------+-------+----------------------------+-------|
-| example            | db1      | userA | user-a-clear-text-password |       |
-| example            | db2      | userA | user-a-clear-text-password |       |
-| example            | db3      | userA | user-a-clear-text-password |       |
-| example            | db4      | userA | user-a-clear-text-password |       |
-| example            | db4      | userA | user-a-clear-text-password |       |
+| Deploy-Environment | Database | User  | Password         | Notes |
+|--------------------+----------+-------+------------------+-------|
+| example            |  mydb    | userA |  user-a-password |       |
 
 * Code Examples Tested Version
 
-| gpg (GnuPG) 1.4.21                                                           |
-| GNU Emacs 25.2.1 (x86_64-unknown-cygwin, GTK+ Version 3.22.10) of 2017-04-21 |
-| Org mode version 9.1.2 (9.1.2-15-g1d5142-elpa)                               |
+| gpg (GnuPG) 2.0.22                                                                        |
+| libgcrypt 1.5.3                                                                           |
+| GNU Emacs 26.2 (build 1, x86_64-pc-linux-gnu, X toolkit, Xaw3d scroll bars) of 2019-10-11 |
+| Org mode version 9.1                                                                      |
