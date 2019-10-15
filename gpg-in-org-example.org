@@ -187,7 +187,7 @@
 * List Keys
 
 #+NAME: list-keys
-#+BEGIN_SRC ruby :var homedir="./.gnupg"
+#+BEGIN_SRC ruby :var homedir="./.gnupg" :exports both
   command_output = %x(gpg --homedir #{homedir} --list-public-keys)
   command_output.split("\n").select{ |c| c.include?("uid")}.map{|r| ['uid',r.gsub(/\s+/," ",).gsub(/^uid /, "")]}
 #+END_SRC
