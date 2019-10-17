@@ -1,5 +1,41 @@
 # -*- mode: org -*-
 
+* List Keys
+
+Validate your =gpg= settings by executing the =list-keys= code block below:
+
+#+NAME: list-keys
+#+BEGIN_SRC ruby :var homedir="./.gnupg" :exports both
+  command_output = %x(gpg --homedir #{homedir} --list-public-keys)
+  command_output.split("\n").select{ |c| c.include?("uid")}.map{|r| ['uid',r.gsub(/\s+/," ",).gsub(/^uid /, "")]}
+#+END_SRC
+
+#+RESULTS: list-keys
+| uid | Real Name Goes Here (Example Key Comment) <name@example.org>    |
+| uid | Real Name2 Goes Here (Example Key Comment2) <name2@example.org> |
+
+* Credentials
+
+1. Update the =CRYPTKEY= property under the =Credentials Table= section to match the =uid= value of your key.
+2. Save this file.
+3. Close this file.
+4. Open the file, using ~cred gpg-in-org-example.org~ 
+5. Add, delete or update the rows in the =example-credentials-table= table below.
+6. Click the =decrypt=, =encrypt=, =exit only=, and =save & quit= links as appropriate.
+7. If prompted, choose /yes/ or /no/ as appropriate.
+
+# [[elisp:(org-decrypt-entries)][decrypt]] # [[elisp:(org-encrypt-entries)][encrypt]] # [[elisp:(kill-emacs)][exit only]] # [[elisp:(save-buffers-kill-terminal 't)][save & quit]] #
+
+** Credentials Table                                                 :crypt:
+:PROPERTIES:
+:CRYPTKEY: Real Name Goes Here (Example Key Comment) <name@example.org>
+:END:
+
+#+NAME: example-credentials-table
+| Deploy-Environment | Database | User  | Password         | Notes |
+|--------------------+----------+-------+------------------+-------|
+| example            |  mydb    | userA |  user-a-password |       |
+
 * Setup =gpg= keys
 
 To setup example =gpg= execute the =ruby/gpg-gen-key= code block shown below.
@@ -193,42 +229,6 @@ If desired, deploy the =default.el= file to =/usr/local/share/emacs/site-lisp/de
  #+BEGIN_SRC bash :eval never
    cp default.el /usr/local/share/emacs/site-lisp/
  #+END_SRC
-
-* List Keys
-
-Validate your =gpg= settings by executing the =list-keys= code block below:
-
-#+NAME: list-keys
-#+BEGIN_SRC ruby :var homedir="./.gnupg" :exports both
-  command_output = %x(gpg --homedir #{homedir} --list-public-keys)
-  command_output.split("\n").select{ |c| c.include?("uid")}.map{|r| ['uid',r.gsub(/\s+/," ",).gsub(/^uid /, "")]}
-#+END_SRC
-
-#+RESULTS: list-keys
-| uid | Real Name Goes Here (Example Key Comment) <name@example.org>    |
-| uid | Real Name2 Goes Here (Example Key Comment2) <name2@example.org> |
-
-* Credentials
-
-1. Update the =CRYPTKEY= property under the =Credentials Table= section to match the =uid= value of your key.
-2. Save this file.
-3. Close this file.
-4. Open the file, using ~cred gpg-in-org-example.org~ 
-5. Add, delete or update the rows in the =example-credentials-table= table below.
-6. Click the =decrypt=, =encrypt=, =exit only=, and =save & quit= links as appropriate.
-7. If prompted, choose /yes/ or /no/ as appropriate.
-
-# [[elisp:(org-decrypt-entries)][decrypt]] # [[elisp:(org-encrypt-entries)][encrypt]] # [[elisp:(kill-emacs)][exit only]] # [[elisp:(save-buffers-kill-terminal 't)][save & quit]] #
-
-** Credentials Table                                                 :crypt:
-:PROPERTIES:
-:CRYPTKEY: Real Name Goes Here (Example Key Comment) <name@example.org>
-:END:
-
-#+NAME: example-credentials-table
-| Deploy-Environment | Database | User  | Password         | Notes |
-|--------------------+----------+-------+------------------+-------|
-| example            |  mydb    | userA |  user-a-password |       |
 
 * Code Examples Tested Version
 
