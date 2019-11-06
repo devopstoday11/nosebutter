@@ -1,0 +1,30 @@
+* Chef
+** Calling ~Chef::Resource::Directory~ inside a ~ruby_block~ resource
+
+#+BEGIN_SRC ruby 
+ruby_block 'make_directories' do
+  block do
+    dir_root_default = '/tmp/'
+    dir_list = 'dir1b/dir2b/dir3b'
+
+    dir_path = dir_root_default
+
+    dir_list.split('/').each do | d |
+      dir_path = dir_path.split('/') + [d]
+      dir_path = dir_path.join('/')
+      r = Chef::Resource::Directory.new(dir_path, run_context)
+      r.owner      'nobody'
+      r.group      'nobody'
+      r.mode       '0750'
+      r.not_if     { ::Dir.exist?(dir_path) }
+      r.run_action :create
+      # puts dir_path
+      # puts r
+
+    end
+  end
+end
+
+
+
+#+END_SRC
