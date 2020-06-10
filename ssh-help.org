@@ -1,0 +1,16 @@
+* SSH Help
+** How-To
+*** Fetching Hostkeys for =~/.ssh/known_hosts=
+**** Example 1 
+#+BEGIN_EXAMPLE shell
+  ssh-keyscan <<hostname>>
+#+END_EXAMPLE
+**** Example 2 
+#+BEGIN_EXAMPLE shell
+  ssh-keyscan -H <<hostname>>
+#+END_EXAMPLE
+*** Generating Fingerprints from  =~/.ssh/known_hosts=
+**** Example 1 
+#+BEGIN_EXAMPLE shell
+  ssh-keygen -F <<hostname>> -l
+#+END_EXAMPLE
