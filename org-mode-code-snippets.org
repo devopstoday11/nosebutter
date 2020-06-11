@@ -583,6 +583,10 @@ example-named-block5-value
 
 ** Get Filename from URL in another Table Cell using ~url-file-nondirectory~ and ~org-lookup-first~
 
+    #+BEGIN_QUOTE
+      *Important:* No unquoted whitespace allowed in =Property-Name= and =Property-Value= columns because ~org-lookup-first~ function will provide incorrect answer.
+    #+END_QUOTE
+
     #+NAME: chef-install-media-info
     | Property-Name | Property-Value                                                                                           |
     |---------------+----------------------------------------------------------------------------------------------------------|
