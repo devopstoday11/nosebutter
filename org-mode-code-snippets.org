@@ -33,7 +33,6 @@
 Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR* 
 
 ***  force interpretation of a cell's value as a string 
-
 #+name: get-ip-address
 #+header: :var name=""
 #+begin_src ruby  :results value 
@@ -46,12 +45,18 @@ Note: Updated ='fibbd= to =fibbd= in example which *fixed #ERROR*
 
 #+RESULTS: get-ip-address
 
+**** Method 1
     
 | Hostname      |   IP-Address |
 |---------------+--------------|
 | www.apple.com | 23.204.86.43 |
 #+TBLFM: $2='(org-sbe get-ip-address (name $$1))
 
+**** Method 2
+    
+| Hostname      |   IP-Address |
+|---------------+--------------|
+| www.apple.com | 23.204.86.43 |
 
 
 ** org-mode table functions =TBLFM=
