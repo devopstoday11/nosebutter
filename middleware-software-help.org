@@ -1,0 +1,14 @@
+
+
+* Middleware Software
+** Application Servers
+*** IBM WebSphere
+**** Configure Custom HTTPD Access Logs
+1. Login to webconsole.
+2. Navigate to *Application Servers \rightarrow JVM_NAME \rightarrow Webcontainer transport chains \rightarrow WCInboundDefault \rightarrow HTTP inbound channel (HTTP_2) \rightarrow Custom properties*
+3. Create new =accessLogFormat= property.
+4. Set value to desired format string.
+5. Click =Apply= button.
+6. Click =Review= link.
+7. Click Checkbox =[X] Synchronize changes with Nodes=.
+8. Click =Save= button.
