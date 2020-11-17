@@ -39,7 +39,7 @@ Remember every day that you are loved and continue to share this love with every
 * Science
 
 #+begin_quote
-The brilliance of human science is no match for the frequent stupidity of human behaviour.[fn:7] ~ Helen McCarthy
+[T]he brilliance of human science is no match for the frequent stupidity of human behaviour.[fn:7] ~ Helen McCarthy
 #+end_quote
 
 
