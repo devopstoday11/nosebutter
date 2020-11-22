@@ -36,6 +36,12 @@ Remember every day that you are loved and continue to share this love with every
 ~ The Map Maker (Melioratus)
 #+END_QUOTE
 
+-----
+
+#+BEGIN_QUOTE
+For the amount of trust I put in food to solve all my emotional problems, you’d think it could at least have the decency to not make me fat. [fn:8] ~ Dani Messerschmidt
+#+END_QUOTE
+
 * Science
 
 #+begin_quote
@@ -92,3 +98,5 @@ https://www.newscientist.com/article/mg21628855.100-build-a-mars-base-with-a-box
 [fn:6] Johnson, Andrew L., "Literate Programming Using Noweb", 1997/10/01, Linux Journal, [[https://www.linuxjournal.com/article/2188]]
 
 [fn:7] McCarthy, Helen, Twitter: @tweetheart4711, 2020/11/17,[[https://twitter.com/tweetheart4711/status/1328650194326532097?s=21]]
+
+[fn:8] Messerschmidt, Dani, Twitter: @riddlefish, 2020/11/20, [[https://twitter.com/riddlefish/status/1329973928744259586?s=21]]
