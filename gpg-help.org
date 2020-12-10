@@ -14,3 +14,19 @@
      gpg --decrypt --output filename.ext filename.ext.gpg 
    #+END_SRC
       
+** Using =gpg-zip= to Encrypt and Decrypt =tar= Files.
+
+*** Decrypt and extract specific file to =STDOUT= using =--decrypt=, =--tar-args=, and =--gpg-args= and a passphrase from a file.
+   
+   #+BEGIN_SRC bash :eval never
+     #
+     # If using command in a devops script, explicitly export correct HOME or command may fail with return code 2
+     #
+     # export HOME=/home/the_username
+     FILENAME_TO_EXTRACT=the_filename
+     FULL_PATH_TO_PASSPHRASE_FILE=/full/path/to/passphrase_file
+     FULL_PATH_ENCRYPTED_FILE=/full/path/to/encrypted_file
+     FULL_PATH_STDERR_OUTPUT_FILE=/dev/null
+     gpg-zip --decrypt --tar-args "--to-stdout ${FILENAME_TO_EXTRACT}" --gpg-args "--batch --passphrase-file ${FULL_PATH_TO_PASSPHRASE_FILE}" ${FULL_PATH_ENCRYPTED_FILE} 2>${FULL_PATH_STDERR_OUTPUT_FILE}
+   #+END_SRC
+ 
